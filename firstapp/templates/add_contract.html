@@ -1,0 +1,315 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<!-- Page Wrapper -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Add Contract</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="form" id="contractform">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group-item">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Contract Number</label>
+                                        <input type="text" class="form-control" name="contractno"
+                                            placeholder="Contract Number">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Customer</label>
+                                        <select name="customername" class=" form-control select">
+                                            <option disabled selected>Select Customer</option>
+                                            {% for p in customer %}
+                                            <option value="{{p.id}}">{{p.customer.customer_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Space</label>
+                                        <select name="masterspace" class=" form-control select">
+                                            <option disabled selected>Select Space</option>
+                                            {% for p in masterspace %}
+                                            <option value="{{p.id}}">{{p.space_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Agreement Number</label>
+                                        <input name="agreementno" type="text" class="form-control"
+                                            placeholder=" Agreement Number">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Agreement Date</label>
+                                        <input name="agreementdate" type="date" class="form-control" placeholder="Agreement Date">
+                                    </div>
+                                </div>
+                            
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Auction Number</label>
+                                        <input name="auctionno" type="text" class="form-control"
+                                            placeholder="Auction Number">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Auction Date</label>
+                                        <input name="auctiondate" type="date" class="form-control"
+                                            placeholder="Auction Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <input name="auctiondatepic" type="file" class="form-control" accept=".pdf,.doc,.docx,.jpg" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Auction Notice No</label>
+                                        <input name="auctionnoticeno" type="text" class="form-control"
+                                            placeholder="Auction Notice No">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Auction Notice No Date</label>
+                                        <input name="auctionnoticenodate" type="date" class="form-control"
+                                            placeholder="Auction Notice No Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <input name="auctionnoticenodatepic" type="file" class="form-control" accept=".pdf,.doc,.docx,.jpg" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Final Allotment Order No</label>
+                                        <input name="finalallotmentorderno" type="text" class="form-control"
+                                            placeholder="Final Alotment Order No">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Final Alotment Order No Date</label>
+                                        <input name="finalallotmentordernodate" type="date" class="form-control"
+                                            placeholder="Final Alotment Order date">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Auction Notice Ref No</label>
+                                        <input name="auctionnoticerefno" type="text" class="form-control"
+                                            placeholder="Auction Notice Ref No">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Auction Notice Ref No Date</label>
+                                        <input name="auctionnoticerefnodate" type="date" class="form-control"
+                                            placeholder="Auction Notice Ref No Date">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Fitment period (in days)</label>
+                                        <input name="fitment" type="number" class="form-control"
+                                            placeholder="Fitment period">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Lock in period (in days)</label>
+                                        <input name="lockin" type="number" class="form-control"
+                                            placeholder="Lock in period">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Contract period (in years)</label>
+                                        <input name="contract_period" type="number" class="form-control"
+                                            placeholder="Contract period">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>RFP No</label>
+                                        <input name="rfp_number" type="text" class="form-control" placeholder="RFP No">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>RFP Date</label>
+                                        <input name="rfp_date" type="date" class="form-control" placeholder="RFP Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <input name="rfpdatepic" type="file" class="form-control" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>RFP Ref No</label>
+                                        <input name="rfp_ref_number" type="text" class="form-control" placeholder="RFP Ref No">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>RFP Ref Date</label>
+                                        <input name="rfp_ref_date" type="date" class="form-control" placeholder="RFP Ref Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>LOA No</label>
+                                        <input name="loa_number" type="text" class="form-control" placeholder="LOA No">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>LOA Date</label>
+                                        <input name="loa_date" type="date" class="form-control" placeholder="LOA Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Invoice Start Date</label>
+                                        <input name="invoice_start_date" type="date" class="form-control" placeholder="Invoice Start Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tenure Start Date</label>
+                                        <input name="tenure_start_date" type="date" class="form-control" placeholder="Tenure Start Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tenure End Date</label>
+                                        <input name="tenure_end_date" type="date" class="form-control" placeholder="Tenure End Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Bill Start Date</label>
+                                        <input name="bill_start_date" type="date" class="form-control" placeholder="Bill Start Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Sq Feet Rate</label>
+                                        <input name="sq_ft_rate" type="number" class="form-control" placeholder="Sq Feet Rate">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Rent Amount</label>
+                                        <input name="rent_amount" type="number" class="form-control" placeholder="Rent Amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Utility Charges</label>
+                                        <input name="utility_charges" type="number" class="form-control" placeholder="Utility Charges">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>CAM Charges </label>
+                                        <input name="cam_charges" type="number" class="form-control" placeholder="CAM Charges">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Security Deposit</label>
+                                        <input name="security_deposit" type="number" class="form-control" placeholder="Security Deposit">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Hike (in percentage)</label>
+                                        <input name="hikes" type="number" class="form-control" placeholder="Hike">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Authorized Signatory</label>
+                                        <input name="auth_sign" type="text" class="form-control" placeholder="Authorized Signatory">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Designations</label>
+                                        <input name="desiginations" type="text" class="form-control" placeholder="Designations">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="add-customer-btns text-end">
+                            <a href="/view_contracts" type="reset" class="btn customer-btn-cancel">Cancel</a>
+                            <button href="#" id="submitbutton" class="btn customer-btn-save">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+
+<script>
+    document.getElementById("contract").classList.add("active");
+</script>
+
+<script src="/static/assets/js/create_contract.js"></script>
+
+<style>
+    .error {
+        color: red;
+    }
+
+    .address {
+        color: blue;
+    }
+</style>
+
+{% endblock %}

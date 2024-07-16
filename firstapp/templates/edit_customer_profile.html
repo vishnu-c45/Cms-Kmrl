@@ -1,0 +1,531 @@
+{% extends 'customer_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Settings</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-xl-3 col-md-4">
+
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Settings Menu -->
+                        <div class="widget settings-menu mb-0">
+                            <ul>
+                                <li class="nav-item">
+                                    <a href="/edit_profile" class="nav-link active">
+                                        <i class="far fa-user"></i> <span>Profile Settings</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/changepassword" class="nav-link">
+                                        <i class="fa-solid fa-unlock-keyhole"></i>  <span>Change Password</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /Settings Menu -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-9 col-md-8">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Basic information</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Form -->
+                        <form role="form" class="form" id="userform">
+                            {% csrf_token %}
+                            <div class="row form-group">
+                                <label for="name" class="col-sm-3 col-form-label input-label">Photo</label>
+                                <div class="col-sm-9">
+                                    <div class="d-flex align-items-center">
+                                        <label class="avatar avatar-xxl profile-cover-avatar" for="avatar_upload">
+                                            {% if std.profile_pic %}
+                                            <img class="avatar-img" src="{{ std.profile_pic }}" alt="Profile Image" id="blah">
+                                            {% else %}
+                                            <img src="/static/assets/img/profiles/avatar-07.jpg" alt="Profile Image">
+                                            {% endif %}
+                                            <input type="file" id="avatar_upload" name="pic" onchange="previewImage(this);">
+                                            <span class="avatar-edit">
+                                                <i class="fe fe-edit avatar-uploader-icon shadow-soft"></i>
+                                            </span>
+                                        </label>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="name" class="col-sm-3 col-form-label input-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="username" id="username"
+                                        value="{{std.username}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="name" class="col-sm-3 col-form-label input-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        value="{{std.login_name}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="email" class="col-sm-3 col-form-label input-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        value="{{std.email}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Phone <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="phone" id="phone"
+                                        value="{{std.phno}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Business Name <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="business_name" id="business_name"
+                                        value="{{customer.customer.business_name}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Business Type <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="business_type" id="business_type"
+                                        value="{{customer.customer.business_type}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">GST <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="gst_no" id="gst_no"
+                                        value="{{customer.gst_no}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">PAN <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="pan_no" id="pan_no"
+                                        value="{{customer.pan_no}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Address <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        value="{{customer.address}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">City <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="city" id="city"
+                                        value="{{customer.city}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Pincode <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="pincode" id="pincode"
+                                        value="{{customer.pincode}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">District <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="district" id="district"
+                                        value="{{customer.district}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">State <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="state" id="state"
+                                        value="{{customer.state}}">
+                                </div>
+                            </div><div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">State Code <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="state_code" id="state_code"
+                                        value="{{customer.state_code}}">
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button id="submit" value="{{std.id}}" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                        <!-- /Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+<script>
+    function previewImage(input) {
+        var imgElement = document.getElementById('blah');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgElement.setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<script>
+   var pincode= $("#pincode").val();
+   if (pincode == 'None'){
+    $("#pincode").val("");
+    $('#state_code').val("");
+    $('#business_name').val("");
+    $('#business_type').val("");
+    $('#gst_no').val("");
+    $('#pan_no').val("");
+    $('#address').val("");
+    $('#city').val("");
+    $('#district').val("");
+    $('#state').val("");
+
+   }
+
+</script>
+
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form action="#" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Customer
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="member_search1"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Brian Johnson
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Russell Copeland
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Greg Lynch
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> John Blair
+                                            </label>
+                                            <!-- View All -->
+                                            <div class="view-content">
+                                                <div class="viewall-One">
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Barbara Moore
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Hendry Evan
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Richard Miles
+                                                    </label>
+                                                </div>
+                                                <div class="view-all">
+                                                    <a href="javascript:void(0);" class="viewall-button-One"><span
+                                                            class="me-2">View All</span><span><i
+                                                                class="fa fa-circle-chevron-down"></i></span></a>
+                                                </div>
+                                            </div>
+                                            <!-- /View All -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Select Date
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="form-custom">
+                                    <input type="text" class="form-control" id="member_search2"
+                                        placeholder="Search here">
+                                    <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                </div>
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> All Invoices
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Paid
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Overdue
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Draft
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Recurring
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Cancelled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+
+                <!-- Category -->
+                <div class="accordion accordion-last" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Category
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes3">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Advertising
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Food
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Repairs
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Software
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Stationary
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Medical
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Designing
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span
+                                                    class="me-2">View All</span><span><i
+                                                        class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Category -->
+
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span><img src="/static/assets/img/icons/chart.svg" class="me-2"
+                            alt="Generate report"></span>Generate report
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+<!-- reply modal -->
+
+<div class="modal custom-modal fade" id="edit_contact" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0">
+                    <h4 class="mb-0">Reply</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Message</label>
+                            <input type="textarea" class="form-control" placeholder="Enter Message">
+                            <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn me-2">Cancel</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Reply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Reply Modal -->
+
+    <!-- Delete Items Modal -->
+    <div class="modal custom-modal fade" id="delete_modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Delete Message</h3>
+                        <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="reset" data-bs-dismiss="modal"
+                                    class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" data-bs-dismiss="modal"
+                                    class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Delete Items Modal -->
+
+
+</div>
+
+<script>
+    document.getElementById('settings').classList.add('active');
+</script>
+
+<script src="/static/assets/js/update_customer.js"></script>
+
+
+{% endblock %}

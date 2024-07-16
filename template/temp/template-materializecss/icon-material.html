@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>Kanakku - Materialize Admin HTML Template</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" href="assets/img/favicon.png">
+		
+		<!-- Materialize CSS -->
+        
+		<link rel="stylesheet" href="assets/css/materialize.min.css">
+		<link rel="stylesheet" href="assets/css/materialize-custom.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		
+		<!-- Material CSS -->
+		<link rel="stylesheet" href="assets/plugins/material/materialdesignicons.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+		
+			<!-- Header -->
+			<div class="header header-one">
+			
+				<!-- Logo -->
+				<div class="header-left header-left-one">
+					<a href="index.html" class="logo">
+						<img src="assets/img/logo.png" alt="Logo">
+					</a>
+					<a href="index.html" class="white-logo">
+						<img src="assets/img/logo-white.png" alt="Logo">
+					</a>
+					<a href="index.html" class="logo logo-small">
+						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+					</a>
+				</div>
+				<!-- /Logo -->
+				
+				<!-- Sidebar Toggle -->
+				<a href="javascript:void(0);" id="toggle_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Sidebar Toggle -->
+				
+				<!-- Search -->
+				<div class="top-nav-search">
+					<form>
+						<input type="text" class="form-control" placeholder="Search here">
+						<button class="btn" type="submit"><i class="fas fa-search"></i></button>
+					</form>
+				</div>
+				<!-- /Search -->
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Menu -->
+				<ul class="nav nav-tabs user-menu">
+					<!-- Flag -->
+					<li class="nav-item dropdown has-arrow flag-nav">
+						<a class="nav-link dropdown-toggle dropdown-trigger" data-target="dropdown-lang" href="#" role="button">
+							<img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
+						</a> 
+						<div id="dropdown-lang" class="dropdown-content dropdown-menu dropdown-menu-right">
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/us.png" alt="" height="16"> English
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/fr.png" alt="" height="16"> French
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/es.png" alt="" height="16"> Spanish
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/de.png" alt="" height="16"> German
+							</a>
+						</div>
+					</li>
+					<!-- /Flag -->
+					
+					<!-- Notifications -->
+					<li class="nav-item dropdown">
+						<a href="#" class="dropdown-toggle dropdown-trigger nav-link" data-target="dropdown-notify">
+							<i data-feather="bell"></i> <span class="badge rounded-pill">5</span>
+						</a>
+						<div id="dropdown-notify" class="dropdown-content dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Clear All</a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-02.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
+													<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
+													<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-primary-light"><i class="far fa-user"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">New user registered</span></p>
+													<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
+													<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">You have received a new message</span></p>
+													<p class="noti-time"><span class="notification-time">2 days ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="activities.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
+					
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow main-drop">
+						<a href="#" class="dropdown-toggle dropdown-trigger nav-link" data-target="dropdown-profile">
+							<span class="user-img">
+								<img src="assets/img/profiles/avatar-01.jpg" alt="">
+								<span class="status online"></span>
+							</span>
+							<span>Admin</span>
+						</a>
+						<div id="dropdown-profile" class="dropdown-content dropdown-menu">
+							<a class="dropdown-item" href="profile.html"><i data-feather="user" class="me-1"></i> Profile</a>
+							<a class="dropdown-item" href="settings.html"><i data-feather="settings" class="me-1"></i> Settings</a>
+							<a class="dropdown-item" href="login.html"><i data-feather="log-out" class="me-1"></i> Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Menu -->
+				
+			</div>
+			<!-- /Header -->
+			
+			<!-- Sidebar -->
+			<div class="sidebar" id="sidebar">
+				<div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"><span>Main</span></li>
+							<li>
+								<a href="index.html"><i data-feather="home"></i> <span>Dashboard</span></a>
+							</li>
+							<li>
+								<a href="customers.html"><i data-feather="users"></i> <span>Customers</span></a>
+							</li>
+							<li>
+								<a href="estimates.html"><i data-feather="file-text"></i> <span>Estimates</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="clipboard"></i> <span> Invoices</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="invoices.html">Invoices List</a></li>
+									<li><a href="invoice-grid.html">Invoices Grid</a></li>
+									<li><a href="invoice-grid-two.html">Invoices Grid 2</a></li>
+									<li><a href="add-invoice.html">Add Invoices</a></li>
+									<li><a href="edit-invoice.html">Edit Invoices</a></li>
+									<li><a href="view-invoice.html">Invoices Details</a></li>
+									<li><a href="view-invoice-two.html">Invoices Details 2</a></li>
+									<li><a href="invoices-settings.html">Invoices Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="invoice-items.html"><i data-feather="star"></i> <span>Items</span></a>
+							</li>
+							<li>
+								<a href="payments.html"><i data-feather="credit-card"></i> <span>Payments</span></a>
+							</li>
+							<li>
+								<a href="expenses.html"><i data-feather="package"></i> <span>Expenses</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="pie-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="sales-report.html">Sales Report</a></li>
+									<li><a href="expenses-report.html">Expenses Report</a></li>
+									<li><a href="profit-loss-report.html">Profit & Loss Report</a></li>
+									<li><a href="taxs-report.html">Taxs Report</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Blogs</span>
+									<span class="menu-arrow"></span>
+								</a>
+								<ul>
+									<li><a href="blog.html" >All Blogs</a></li>
+									<li><a href="add-blog.html">Add Blog</a></li>
+									<li><a href="edit-blog.html">Edit Blog</a></li>
+									<li><a href="blog-categories.html">Categories</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="calendar.html">Calendar</a></li>
+									<li><a href="inbox.html">Email</a></li>
+								</ul>
+							</li>
+							<li class="menu-title"> 
+								<span>Pages</span>
+							</li>
+							<li> 
+								<a href="profile.html"><i data-feather="user-plus"></i> <span>Profile</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="lock"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="login.html"> Login </a></li>
+									<li><a href="register.html"> Register </a></li>
+									<li><a href="forgot-password.html"> Forgot Password </a></li>
+									<li><a href="lock-screen.html"> Lock Screen </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="alert-octagon"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="error-404.html">404 Error </a></li>
+									<li><a href="error-500.html">500 Error </a></li>
+								</ul>
+							</li>
+							<li> 
+								<a href="users.html"><i data-feather="user"></i> <span>Users</span></a>
+							</li>
+							<li> 
+								<a href="blank-page.html"><i data-feather="file"></i> <span>Blank Page</span></a>
+							</li>
+							<li> 
+								<a href="maps-vector.html"><i data-feather="map-pin"></i> <span>Vector Maps</span></a>
+							</li>
+							<li class="menu-title"> 
+								<span>UI Interface</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fab fa-get-pocket"></i> <span>Base UI </span> <span class="menu-arrow"></span></a>
+								<ul>
+                                    <li><a href="alerts.html">Alerts</a></li>                                    
+                                    <li><a href="accordions.html">Accordions</a></li>
+                                    <li><a href="avatar.html">Avatar</a></li> 
+                                    <li><a href="badges.html">Badges</a></li>
+                                    <li><a href="buttons.html">Buttons</a></li>   
+                                    <li><a href="buttongroup.html">Button Group</a></li>                                  
+                                    <li><a href="breadcrumbs.html">Breadcrumb</a></li>
+                                    <li><a href="cards.html">Cards</a></li>
+                                    <li><a href="carousel.html">Carousel</a></li>                                   
+                                    <li><a href="dropdowns.html">Dropdowns</a></li>
+                                    <li><a href="grid.html">Grid</a></li>
+                                    <li><a href="images.html">Images</a></li>
+                                    <li><a href="lightbox.html">Lightbox</a></li>
+                                    <li><a href="media.html">Media</a></li>                              
+                                    <li><a href="modal.html">Modals</a></li>
+                                    <li><a href="offcanvas.html">Offcanvas</a></li>
+                                    <li><a href="pagination.html">Pagination</a></li>                                   
+                                    <li><a href="progress.html">Progress Bars</a></li>
+                                    <li><a href="placeholders.html">Placeholders</a></li>
+                                    <li><a href="rangeslider.html">Range Slider</a></li>                                    
+                                    <li><a href="spinners.html">Spinner</a></li>
+                                    <li><a href="sweetalerts.html">Sweet Alerts</a></li>
+                                    <li><a href="tab.html">Tabs</a></li>
+                                    <li><a href="toastr.html">Toasts</a></li>
+                                    <li><a href="tooltip.html">Tooltip</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="video.html">Video</a></li>
+                                </ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="box"></i> <span>Elements </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="ribbon.html">Ribbon</a></li>
+									<li><a href="clipboard.html">Clipboard</a></li>
+									<li><a href="drag-drop.html">Drag & Drop</a></li>
+									<li><a href="rating.html">Rating</a></li>
+									<li><a href="text-editor.html">Text Editor</a></li>
+									<li><a href="counter.html">Counter</a></li>
+									<li><a href="scrollbar.html">Scrollbar</a></li>
+									<li><a href="notification.html">Notification</a></li>
+									<li><a href="stickynote.html">Sticky Note</a></li>
+									<li><a href="timeline.html">Timeline</a></li>
+									<li><a href="horizontal-timeline.html">Horizontal Timeline</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="bar-chart-2"></i> <span> Charts </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chart-apex.html">Apex Charts</a></li>
+									<li><a href="chart-js.html">Chart Js</a></li>
+									<li><a href="chart-morris.html">Morris Charts</a></li>
+									<li><a href="chart-flot.html">Flot Charts</a></li>
+									<li><a href="chart-peity.html">Peity Charts</a></li>
+									<li><a href="chart-c3.html">C3 Charts</a></li>
+								</ul>
+							</li>
+							<li class="submenu active">
+								<a href="#"><i data-feather="award"></i> <span> Icons </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
+									<li><a href="icon-feather.html">Feather Icons</a></li>
+									<li><a href="icon-ionic.html">Ionic Icons</a></li>
+									<li><a href="icon-material.html" class="active">Material Icons</a></li>
+									<li><a href="icon-pe7.html">Pe7 Icons</a></li>
+									<li><a href="icon-simpleline.html">Simpleline Icons</a></li>
+									<li><a href="icon-themify.html">Themify Icons</a></li>
+									<li><a href="icon-weather.html">Weather Icons</a></li>
+									<li><a href="icon-typicon.html">Typicon Icons</a></li>
+									<li><a href="icon-flag.html">Flag Icons</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="columns"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="form-basic-inputs.html">Basic Inputs </a></li>
+									<li><a href="form-input-groups.html">Input Groups </a></li>
+									<li><a href="form-horizontal.html">Horizontal Form </a></li>
+									<li><a href="form-vertical.html"> Vertical Form </a></li>
+									<li><a href="form-mask.html">Form Mask </a></li>
+									<li><a href="form-validation.html">Form Validation </a></li>
+									<li><a href="form-select2.html">Form Select2 </a></li>
+									<li><a href="form-fileupload.html">File Upload </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="layout"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="tables-basic.html">Basic Tables </a></li>
+									<li><a href="data-tables.html">Data Table </a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col s12">
+								<h3 class="page-title">Material Icon</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Material Icon</li>
+								</ul>
+							</div>
+						</div>
+					</div>	
+					<!-- /Page Header -->					
+					
+					<div class="row">
+					
+						<!-- Chart -->
+						<div class="col s12">	
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Material Icons</div>
+								</div>
+								<div class="card-body">
+									<div class="icons-items">
+										<ul class="icons-list">
+											<li><i class="mdi mdi-access-point tooltipped" data-position="top" data-tooltip="mdi-access-point"></i></li>
+											<li><i class="mdi mdi-access-point-network tooltipped" data-position="top" data-tooltip="mdi-access-point-network"></i></li>
+											<li><i class="mdi mdi-account tooltipped" data-position="top" data-tooltip="mdi-account"></i></li>
+											<li><i class="mdi mdi-account-alert tooltipped" data-position="top" data-tooltip="mdi-account-alert"></i></li>
+											<li><i class="mdi mdi-account-box tooltipped" data-position="top" data-tooltip="mdi-account-box"></i></li>
+											<li><i class="mdi mdi-account-box-outline tooltipped" data-position="top" data-tooltip="mdi-account-box-outline"></i></li>
+											<li><i class="mdi mdi-account-card-details tooltipped" data-position="top" data-tooltip="mdi-account-card-details"></i></li>
+											<li><i class="mdi mdi-account-check tooltipped" data-position="top" data-tooltip="mdi-account-check"></i></li>
+											<li><i class="mdi mdi-account-circle tooltipped" data-position="top" data-tooltip="mdi-account-circle"></i></li>
+											<li><i class="mdi mdi-account-convert tooltipped" data-position="top" data-tooltip="mdi-account-convert"></i></li>
+											<li><i class="mdi mdi-account-edit tooltipped" data-position="top" data-tooltip="mdi-account-edit"></i></li>
+											<li><i class="mdi mdi-account-key tooltipped" data-position="top" data-tooltip="mdi-account-key"></i></li>
+											<li><i class="mdi mdi-account-location tooltipped" data-position="top" data-tooltip="mdi-account-location"></i></li>
+											<li><i class="mdi mdi-account-minus tooltipped" data-position="top" data-tooltip="mdi-account-minus"></i></li>
+											<li><i class="mdi mdi-account-multiple tooltipped" data-position="top" data-tooltip="mdi-account-multiple"></i></li>
+											<li><i class="mdi mdi-account-multiple-minus tooltipped" data-position="top" data-tooltip="mdi-account-multiple-minus"></i></li>
+											<li><i class="mdi mdi-account-multiple-outline tooltipped" data-position="top" data-tooltip="mdi-account-multiple-outline"></i></li>
+											<li><i class="mdi mdi-account-multiple-plus tooltipped" data-position="top" data-tooltip="mdi-account-multiple-plus"></i></li>
+											<li><i class="mdi mdi-account-network tooltipped" data-position="top" data-tooltip="mdi-account-network"></i></li>
+											<li><i class="mdi mdi-account-off tooltipped" data-position="top" data-tooltip="mdi-account-off"></i></li>
+											<li><i class="mdi mdi-account-outline tooltipped" data-position="top" data-tooltip="mdi-account-outline"></i></li>
+											<li><i class="mdi mdi-account-plus tooltipped" data-position="top" data-tooltip="mdi-account-plus"></i></li>
+											<li><i class="mdi mdi-account-remove tooltipped" data-position="top" data-tooltip="mdi-account-remove"></i></li>
+											<li><i class="mdi mdi-account-search tooltipped" data-position="top" data-tooltip="mdi-account-search"></i></li>
+											<li><i class="mdi mdi-account-settings tooltipped" data-position="top" data-tooltip="mdi-account-settings"></i></li>
+											<li><i class="mdi mdi-account-settings-variant tooltipped" data-position="top" data-tooltip="mdi-account-settings-variant"></i></li>
+											<li><i class="mdi mdi-account-star tooltipped" data-position="top" data-tooltip="mdi-account-star"></i></li>
+											<li><i class="mdi mdi-account-switch tooltipped" data-position="top" data-tooltip="mdi-account-switch"></i></li>
+											<li><i class="mdi mdi-adjust tooltipped" data-position="top" data-tooltip="mdi-adjust"></i></li>
+											<li><i class="mdi mdi-air-conditioner tooltipped" data-position="top" data-tooltip="mdi-air-conditioner"></i></li>
+											<li><i class="mdi mdi-airballoon tooltipped" data-position="top" data-tooltip="mdi-airballoon"></i></li>
+											<li><i class="mdi mdi-airplane tooltipped" data-position="top" data-tooltip="mdi-airplane"></i></li>
+											<li><i class="mdi mdi-airplane-landing tooltipped" data-position="top" data-tooltip="mdi-airplane-landing"></i></li>
+											<li><i class="mdi mdi-airplane-off tooltipped" data-position="top" data-tooltip="mdi-airplane-off"></i></li>
+											<li><i class="mdi mdi-airplane-takeoff tooltipped" data-position="top" data-tooltip="mdi-airplane-takeoff"></i></li>
+											<li><i class="mdi mdi-airplay tooltipped" data-position="top" data-tooltip="mdi-airplay"></i></li>
+											<li><i class="mdi mdi-alarm tooltipped" data-position="top" data-tooltip="mdi-alarm"></i></li>
+											<li><i class="mdi mdi-alarm-bell tooltipped" data-position="top" data-tooltip="mdi-alarm-bell"></i></li>
+											<li><i class="mdi mdi-alarm-check tooltipped" data-position="top" data-tooltip="mdi-alarm-check"></i></li>
+											<li><i class="mdi mdi-alarm-light tooltipped" data-position="top" data-tooltip="mdi-alarm-light"></i></li>
+											<li><i class="mdi mdi-alarm-multiple tooltipped" data-position="top" data-tooltip="mdi-alarm-multiple"></i></li>
+											<li><i class="mdi mdi-alarm-off tooltipped" data-position="top" data-tooltip="mdi-alarm-off"></i></li>
+											<li><i class="mdi mdi-alarm-plus tooltipped" data-position="top" data-tooltip="mdi-alarm-plus"></i></li>
+											<li><i class="mdi mdi-alarm-snooze tooltipped" data-position="top" data-tooltip="mdi-alarm-snooze"></i></li>
+											<li><i class="mdi mdi-album tooltipped" data-position="top" data-tooltip="mdi-album"></i></li>
+											<li><i class="mdi mdi-alert tooltipped" data-position="top" data-tooltip="mdi-alert"></i></li>
+											<li><i class="mdi mdi-alert-box tooltipped" data-position="top" data-tooltip="mdi-alert-box"></i></li>
+											<li><i class="mdi mdi-alert-circle tooltipped" data-position="top" data-tooltip="mdi-alert-circle"></i></li>
+											<li><i class="mdi mdi-alert-circle-outline tooltipped" data-position="top" data-tooltip="mdi-alert-circle-outline"></i></li>
+											<li><i class="mdi mdi-alert-decagram tooltipped" data-position="top" data-tooltip="mdi-alert-decagram"></i></li>
+											<li><i class="mdi mdi-alert-octagon tooltipped" data-position="top" data-tooltip="mdi-alert-octagon"></i></li>
+											<li><i class="mdi mdi-alert-octagram tooltipped" data-position="top" data-tooltip="mdi-alert-octagram"></i></li>
+											<li><i class="mdi mdi-alert-outline tooltipped" data-position="top" data-tooltip="mdi-alert-outline"></i></li>
+											<li><i class="mdi mdi-all-inclusive tooltipped" data-position="top" data-tooltip="mdi-all-inclusive"></i></li>
+											<li><i class="mdi mdi-alpha tooltipped" data-position="top" data-tooltip="mdi-alpha"></i></li>
+											<li><i class="mdi mdi-alphabetical tooltipped" data-position="top" data-tooltip="mdi-alphabetical"></i></li>
+											<li><i class="mdi mdi-altimeter tooltipped" data-position="top" data-tooltip="mdi-altimeter"></i></li>
+											<li><i class="mdi mdi-amazon tooltipped" data-position="top" data-tooltip="mdi-amazon"></i></li>
+											<li><i class="mdi mdi-amazon-clouddrive tooltipped" data-position="top" data-tooltip="mdi-amazon-clouddrive"></i></li>
+											<li><i class="mdi mdi-ambulance tooltipped" data-position="top" data-tooltip="mdi-ambulance"></i></li>
+											<li><i class="mdi mdi-amplifier tooltipped" data-position="top" data-tooltip="mdi-amplifier"></i></li>
+											<li><i class="mdi mdi-anchor tooltipped" data-position="top" data-tooltip="mdi-anchor"></i></li>
+											<li><i class="mdi mdi-android tooltipped" data-position="top" data-tooltip="mdi-android"></i></li>
+											<li><i class="mdi mdi-android-debug-bridge tooltipped" data-position="top" data-tooltip="mdi-android-debug-bridge"></i></li>
+											<li><i class="mdi mdi-android-head tooltipped" data-position="top" data-tooltip="mdi-android-head"></i></li>
+											<li><i class="mdi mdi-android-studio tooltipped" data-position="top" data-tooltip="mdi-android-studio"></i></li>
+											<li><i class="mdi mdi-angular tooltipped" data-position="top" data-tooltip="mdi-angular"></i></li>
+											<li><i class="mdi mdi-angularjs tooltipped" data-position="top" data-tooltip="mdi-angularjs"></i></li>
+											<li><i class="mdi mdi-animation tooltipped" data-position="top" data-tooltip="mdi-animation"></i></li>
+											<li><i class="mdi mdi-apple tooltipped" data-position="top" data-tooltip="mdi-apple"></i></li>
+											<li><i class="mdi mdi-apple-finder tooltipped" data-position="top" data-tooltip="mdi-apple-finder"></i></li>
+											<li><i class="mdi mdi-apple-ios tooltipped" data-position="top" data-tooltip="mdi-apple-ios"></i></li>
+											<li><i class="mdi mdi-apple-keyboard-caps tooltipped" data-position="top" data-tooltip="mdi-apple-keyboard-caps"></i></li>
+											<li><i class="mdi mdi-apple-keyboard-command tooltipped" data-position="top" data-tooltip="mdi-apple-keyboard-command"></i></li>
+											<li><i class="mdi mdi-apple-keyboard-control tooltipped" data-position="top" data-tooltip="mdi-apple-keyboard-control"></i></li>
+											<li><i class="mdi mdi-apple-keyboard-option tooltipped" data-position="top" data-tooltip="mdi-apple-keyboard-option"></i></li>
+											<li><i class="mdi mdi-apple-keyboard-shift tooltipped" data-position="top" data-tooltip="mdi-apple-keyboard-shift"></i></li>
+											<li><i class="mdi mdi-apple-mobileme tooltipped" data-position="top" data-tooltip="mdi-apple-mobileme"></i></li>
+											<li><i class="mdi mdi-apple-safari tooltipped" data-position="top" data-tooltip="mdi-apple-safari"></i></li>
+											<li><i class="mdi mdi-application tooltipped" data-position="top" data-tooltip="mdi-application"></i></li>
+											<li><i class="mdi mdi-approval tooltipped" data-position="top" data-tooltip="mdi-approval"></i></li>
+											<li><i class="mdi mdi-apps tooltipped" data-position="top" data-tooltip="mdi-apps"></i></li>
+											<li><i class="mdi mdi-archive tooltipped" data-position="top" data-tooltip="mdi-archive"></i></li>
+											<li><i class="mdi mdi-arrange-bring-forward tooltipped" data-position="top" data-tooltip="mdi-arrange-bring-forward"></i></li>
+											<li><i class="mdi mdi-arrange-send-to-back tooltipped" data-position="top" data-tooltip="mdi-arrange-send-to-back"></i></li>
+											<li><i class="mdi mdi-arrange-bring-to-front tooltipped" data-position="top" data-tooltip="mdi-arrange-bring-to-front"></i></li>
+											<li><i class="mdi mdi-arrange-send-backward tooltipped" data-position="top" data-tooltip="mdi-arrange-send-backward"></i></li>
+											<li><i class="mdi mdi-arrow-all tooltipped" data-position="top" data-tooltip="mdi-arrow-all"></i></li>
+											<li><i class="mdi mdi-arrow-bottom-left tooltipped" data-position="top" data-tooltip="mdi-arrow-bottom-left"></i></li>
+											<li><i class="mdi mdi-arrow-bottom-right tooltipped" data-position="top" data-tooltip="mdi-arrow-bottom-right"></i></li>
+											<li><i class="mdi mdi-arrow-collapse tooltipped" data-position="top" data-tooltip="mdi-arrow-collapse"></i></li>
+											<li><i class="mdi mdi-arrow-collapse-all tooltipped" data-position="top" data-tooltip="mdi-arrow-collapse-all"></i></li>
+											<li><i class="mdi mdi-arrow-collapse-down tooltipped" data-position="top" data-tooltip="mdi-arrow-collapse-down"></i></li>
+											<li><i class="mdi mdi-arrow-collapse-left tooltipped" data-position="top" data-tooltip="mdi-arrow-collapse-left"></i></li>
+											<li><i class="mdi mdi-arrow-collapse-right tooltipped" data-position="top" data-tooltip="mdi-arrow-collapse-right"></i></li>
+											<li><i class="mdi mdi-arrow-collapse-up tooltipped" data-position="top" data-tooltip="mdi-arrow-collapse-up"></i></li>
+											<li><i class="mdi mdi-arrow-down tooltipped" data-position="top" data-tooltip="mdi-arrow-down"></i></li>
+											<li><i class="mdi mdi-arrow-down-bold tooltipped" data-position="top" data-tooltip="mdi-arrow-down-bold"></i></li>
+											<li><i class="mdi mdi-arrow-down-bold-box tooltipped" data-position="top" data-tooltip="mdi-arrow-down-bold-box"></i></li>
+											<li><i class="mdi mdi-arrow-down-bold-box-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-down-bold-box-outline"></i></li>
+											<li><i class="mdi mdi-arrow-down-bold-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-down-bold-circle"></i></li>
+											<li><i class="mdi mdi-arrow-down-bold-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-down-bold-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-down-box tooltipped" data-position="top" data-tooltip="mdi-arrow-down-box"></i></li>
+											<li><i class="mdi mdi-arrow-down-drop-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-down-drop-circle"></i></li>
+											<li><i class="mdi mdi-arrow-down-drop-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-down-drop-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-down-thick tooltipped" data-position="top" data-tooltip="mdi-arrow-down-thick"></i></li>
+											<li><i class="mdi mdi-arrow-expand tooltipped" data-position="top" data-tooltip="mdi-arrow-expand"></i></li>
+											<li><i class="mdi mdi-arrow-expand-all tooltipped" data-position="top" data-tooltip="mdi-arrow-expand-all"></i></li>
+											<li><i class="mdi mdi-arrow-expand-down tooltipped" data-position="top" data-tooltip="mdi-arrow-expand-down"></i></li>
+											<li><i class="mdi mdi-arrow-expand-left tooltipped" data-position="top" data-tooltip="mdi-arrow-expand-left"></i></li>
+											<li><i class="mdi mdi-arrow-expand-right tooltipped" data-position="top" data-tooltip="mdi-arrow-expand-right"></i></li>
+											<li><i class="mdi mdi-arrow-expand-up tooltipped" data-position="top" data-tooltip="mdi-arrow-expand-up"></i></li>
+											<li><i class="mdi mdi-arrow-left tooltipped" data-position="top" data-tooltip="mdi-arrow-left"></i></li>
+											<li><i class="mdi mdi-arrow-left-bold tooltipped" data-position="top" data-tooltip="mdi-arrow-left-bold"></i></li>
+											<li><i class="mdi mdi-arrow-left-bold-box tooltipped" data-position="top" data-tooltip="mdi-arrow-left-bold-box"></i></li>
+											<li><i class="mdi mdi-arrow-left-bold-box-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-left-bold-box-outline"></i></li>
+											<li><i class="mdi mdi-arrow-left-bold-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-left-bold-circle"></i></li>
+											<li><i class="mdi mdi-arrow-left-bold-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-left-bold-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-left-box tooltipped" data-position="top" data-tooltip="mdi-arrow-left-box"></i></li>
+											<li><i class="mdi mdi-arrow-left-drop-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-left-drop-circle"></i></li>
+											<li><i class="mdi mdi-arrow-left-drop-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-left-drop-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-left-thick tooltipped" data-position="top" data-tooltip="mdi-arrow-left-thick"></i></li>
+											<li><i class="mdi mdi-arrow-right tooltipped" data-position="top" data-tooltip="mdi-arrow-right"></i></li>
+											<li><i class="mdi mdi-arrow-right-bold tooltipped" data-position="top" data-tooltip="mdi-arrow-right-bold"></i></li>
+											<li><i class="mdi mdi-arrow-right-bold-box tooltipped" data-position="top" data-tooltip="mdi-arrow-right-bold-box"></i></li>
+											<li><i class="mdi mdi-arrow-right-bold-box-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-right-bold-box-outline"></i></li>
+											<li><i class="mdi mdi-arrow-right-bold-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-right-bold-circle"></i></li>
+											<li><i class="mdi mdi-arrow-right-bold-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-right-bold-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-right-box tooltipped" data-position="top" data-tooltip="mdi-arrow-right-box"></i></li>
+											<li><i class="mdi mdi-arrow-right-drop-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-right-drop-circle"></i></li>
+											<li><i class="mdi mdi-arrow-right-drop-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-right-drop-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-right-thick tooltipped" data-position="top" data-tooltip="mdi-arrow-right-thick"></i></li>
+											<li><i class="mdi mdi-arrow-top-left tooltipped" data-position="top" data-tooltip="mdi-arrow-top-left"></i></li>
+											<li><i class="mdi mdi-arrow-top-right tooltipped" data-position="top" data-tooltip="mdi-arrow-top-right"></i></li>
+											<li><i class="mdi mdi-arrow-up tooltipped" data-position="top" data-tooltip="mdi-arrow-up"></i></li>
+											<li><i class="mdi mdi-arrow-up-bold tooltipped" data-position="top" data-tooltip="mdi-arrow-up-bold"></i></li>
+											<li><i class="mdi mdi-arrow-up-bold-box tooltipped" data-position="top" data-tooltip="mdi-arrow-up-bold-box"></i></li>
+											<li><i class="mdi mdi-arrow-up-bold-box-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-up-bold-box-outline"></i></li>
+											<li><i class="mdi mdi-arrow-up-bold-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-up-bold-circle"></i></li>
+											<li><i class="mdi mdi-arrow-up-bold-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-up-bold-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-up-box tooltipped" data-position="top" data-tooltip="mdi-arrow-up-box"></i></li>
+											<li><i class="mdi mdi-arrow-up-drop-circle tooltipped" data-position="top" data-tooltip="mdi-arrow-up-drop-circle"></i></li>
+											<li><i class="mdi mdi-arrow-up-drop-circle-outline tooltipped" data-position="top" data-tooltip="mdi-arrow-up-drop-circle-outline"></i></li>
+											<li><i class="mdi mdi-arrow-up-thick tooltipped" data-position="top" data-tooltip="mdi-arrow-up-thick"></i></li>
+											<li><i class="mdi mdi-assistant tooltipped" data-position="top" data-tooltip="mdi-assistant"></i></li>
+											<li><i class="mdi mdi-asterisk tooltipped" data-position="top" data-tooltip="mdi-asterisk"></i></li>
+											<li><i class="mdi mdi-at tooltipped" data-position="top" data-tooltip="mdi-at"></i></li>
+											<li><i class="mdi mdi-atom tooltipped" data-position="top" data-tooltip="mdi-atom"></i></li>
+											<li><i class="mdi mdi-attachment tooltipped" data-position="top" data-tooltip="mdi-attachment"></i></li>
+											<li><i class="mdi mdi-audiobook tooltipped" data-position="top" data-tooltip="mdi-audiobook"></i></li>
+											<li><i class="mdi mdi-auto-fix tooltipped" data-position="top" data-tooltip="mdi-auto-fix"></i></li>
+											<li><i class="mdi mdi-auto-upload tooltipped" data-position="top" data-tooltip="mdi-auto-upload"></i></li>
+											<li><i class="mdi mdi-autorenew tooltipped" data-position="top" data-tooltip="mdi-autorenew"></i></li>
+											<li><i class="mdi mdi-av-timer tooltipped" data-position="top" data-tooltip="mdi-av-timer"></i></li>
+											<li><i class="mdi mdi-baby tooltipped" data-position="top" data-tooltip="mdi-baby"></i></li>
+											<li><i class="mdi mdi-baby-buggy tooltipped" data-position="top" data-tooltip="mdi-baby-buggy"></i></li>
+											<li><i class="mdi mdi-backburger tooltipped" data-position="top" data-tooltip="mdi-backburger"></i></li>
+											<li><i class="mdi mdi-backspace tooltipped" data-position="top" data-tooltip="mdi-backspace"></i></li>
+											<li><i class="mdi mdi-backup-restore tooltipped" data-position="top" data-tooltip="mdi-backup-restore"></i></li>
+											<li><i class="mdi mdi-bandcamp tooltipped" data-position="top" data-tooltip="mdi-bandcamp"></i></li>
+											<li><i class="mdi mdi-bank tooltipped" data-position="top" data-tooltip="mdi-bank"></i></li>
+											<li><i class="mdi mdi-barcode tooltipped" data-position="top" data-tooltip="mdi-barcode"></i></li>
+											<li><i class="mdi mdi-barcode-scan tooltipped" data-position="top" data-tooltip="mdi-barcode-scan"></i></li>
+											<li><i class="mdi mdi-barley tooltipped" data-position="top" data-tooltip="mdi-barley"></i></li>
+											<li><i class="mdi mdi-barrel tooltipped" data-position="top" data-tooltip="mdi-barrel"></i></li>
+											<li><i class="mdi mdi-basecamp tooltipped" data-position="top" data-tooltip="mdi-basecamp"></i></li>
+											<li><i class="mdi mdi-basket tooltipped" data-position="top" data-tooltip="mdi-basket"></i></li>
+											<li><i class="mdi mdi-basket-fill tooltipped" data-position="top" data-tooltip="mdi-basket-fill"></i></li>
+											<li><i class="mdi mdi-basket-unfill tooltipped" data-position="top" data-tooltip="mdi-basket-unfill"></i></li>
+											<li><i class="mdi mdi-battery tooltipped" data-position="top" data-tooltip="mdi-battery"></i></li>
+											<li><i class="mdi mdi-battery-10 tooltipped" data-position="top" data-tooltip="mdi-battery-10"></i></li>
+											<li><i class="mdi mdi-battery-20 tooltipped" data-position="top" data-tooltip="mdi-battery-20"></i></li>
+											<li><i class="mdi mdi-battery-30 tooltipped" data-position="top" data-tooltip="mdi-battery-30"></i></li>
+											<li><i class="mdi mdi-battery-40 tooltipped" data-position="top" data-tooltip="mdi-battery-40"></i></li>
+											<li><i class="mdi mdi-battery-50 tooltipped" data-position="top" data-tooltip="mdi-battery-50"></i></li>
+											<li><i class="mdi mdi-battery-60 tooltipped" data-position="top" data-tooltip="mdi-battery-60"></i></li>
+											<li><i class="mdi mdi-battery-70 tooltipped" data-position="top" data-tooltip="mdi-battery-70"></i></li>
+											<li><i class="mdi mdi-battery-80 tooltipped" data-position="top" data-tooltip="mdi-battery-80"></i></li>
+											<li><i class="mdi mdi-battery-90 tooltipped" data-position="top" data-tooltip="mdi-battery-90"></i></li>
+											<li><i class="mdi mdi-battery-alert tooltipped" data-position="top" data-tooltip="mdi-battery-alert"></i></li>
+											<li><i class="mdi mdi-battery-charging tooltipped" data-position="top" data-tooltip="mdi-battery-charging"></i></li>
+											<li><i class="mdi mdi-battery-charging-100 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-100"></i></li>
+											<li><i class="mdi mdi-battery-charging-20 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-20"></i></li>
+											<li><i class="mdi mdi-battery-charging-30 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-30"></i></li>
+											<li><i class="mdi mdi-battery-charging-40 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-40"></i></li>
+											<li><i class="mdi mdi-battery-charging-60 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-60"></i></li>
+											<li><i class="mdi mdi-battery-charging-80 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-80"></i></li>
+											<li><i class="mdi mdi-battery-charging-90 tooltipped" data-position="top" data-tooltip="mdi-battery-charging-90"></i></li>
+											<li><i class="mdi mdi-battery-minus tooltipped" data-position="top" data-tooltip="mdi-battery-minus"></i></li>
+											<li><i class="mdi mdi-battery-negative tooltipped" data-position="top" data-tooltip="mdi-battery-negative"></i></li>
+											<li><i class="mdi mdi-battery-outline tooltipped" data-position="top" data-tooltip="mdi-battery-outline"></i></li>
+											<li><i class="mdi mdi-battery-plus tooltipped" data-position="top" data-tooltip="mdi-battery-plus"></i></li>
+											<li><i class="mdi mdi-battery-unknown tooltipped" data-position="top" data-tooltip="mdi-battery-unknown"></i></li>
+											<li><i class="mdi mdi-beach tooltipped" data-position="top" data-tooltip="mdi-beach"></i></li>
+											<li><i class="mdi mdi-zip-box tooltipped" data-position="top" data-tooltip="mdi-zip-box"></i></li>
+											<li><i class="mdi mdi-youtube-play tooltipped" data-position="top" data-tooltip="mdi-youtube-play"></i></li>
+											<li><i class="mdi mdi-yin-yang tooltipped" data-position="top" data-tooltip="mdi-yin-yang"></i></li>
+											<li><i class="mdi mdi-yelp tooltipped" data-position="top" data-tooltip="mdi-yelp"></i></li>
+											<li><i class="mdi mdi-yammer tooltipped" data-position="top" data-tooltip="mdi-yammer"></i></li>
+											<li><i class="mdi mdi-xmpp tooltipped" data-position="top" data-tooltip="mdi-xmpp"></i></li>
+											<li><i class="mdi mdi-xml tooltipped" data-position="top" data-tooltip="mdi-xml"></i></li>
+											<li><i class="mdi mdi-wrench tooltipped" data-position="top" data-tooltip="mdi-wrench"></i></li>
+											<li><i class="mdi mdi-wrap tooltipped" data-position="top" data-tooltip="mdi-wrap"></i></li>
+											<li><i class="mdi mdi-wunderlist tooltipped" data-position="top" data-tooltip="mdi-wunderlist"></i></li>
+											<li><i class="mdi mdi-wrench tooltipped" data-position="top" data-tooltip="mdi-wrench"></i></li>
+											<li><i class="mdi mdi-vpn tooltipped" data-position="top" data-tooltip="mdi-vpn"></i></li>
+											<li><i class="mdi mdi-volume-off tooltipped" data-position="top" data-tooltip="mdi-volume-off"></i></li>
+											<li><i class="mdi mdi-volume-mute tooltipped" data-position="top" data-tooltip="mdi-volume-mute"></i></li>
+											<li><i class="mdi mdi-vlc tooltipped" data-position="top" data-tooltip="mdi-vlc"></i></li>
+											<li><i class="mdi mdi-video tooltipped" data-position="top" data-tooltip="mdi-video"></i></li>
+											<li><i class="mdi mdi-usb tooltipped" data-position="top" data-tooltip="mdi-usb"></i></li>
+											<li><i class="mdi mdi-upload-network tooltipped" data-position="top" data-tooltip="mdi-upload-network"></i></li>
+											<li><i class="mdi mdi-update tooltipped" data-position="top" data-tooltip="mdi-update"></i></li>
+											<li><i class="mdi mdi-unity tooltipped" data-position="top" data-tooltip="mdi-unity"></i></li>
+											<li><i class="mdi mdi-undo tooltipped" data-position="top" data-tooltip="mdi-undo"></i></li>
+											<li><i class="mdi mdi-ubuntu tooltipped" data-position="top" data-tooltip="mdi-ubuntu"></i></li>
+											<li><i class="mdi mdi-tune tooltipped" data-position="top" data-tooltip="mdi-tune"></i></li>
+											<li><i class="mdi mdi-truck-trailer tooltipped" data-position="top" data-tooltip="mdi-truck-trailer"></i></li>
+											<li><i class="mdi mdi-truck tooltipped" data-position="top" data-tooltip="mdi-truck"></i></li>
+											<li><i class="mdi mdi-svg tooltipped" data-position="top" data-tooltip="mdi-svg"></i></li>
+											<li><i class="mdi mdi-subway tooltipped" data-position="top" data-tooltip="mdi-subway"></i></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Chart -->
+						
+					</div>
+				
+				</div>			
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.6.1.min.js"></script>
+		
+		<!-- Materialize JS -->
+		<script src="assets/js/materialize.min.js"></script>
+		
+		<!-- Feather Icon JS -->
+		<script src="assets/js/feather.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,224 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-11">
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="content-page-header">
+            <h5>Profile</h5>
+          </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="profile-cover">
+          <div class="profile-cover-wrap">
+            <!-- <img class="profile-cover-img" src="assets/img/profiles/avatar-02.jpg" alt="Profile Cover" id="cover-image"> -->
+
+            <!-- Custom File Cover -->
+            <!-- <div class="cover-content">
+                <div class="custom-file-btn">
+                  <input type="file" class="custom-file-btn-input" id="cover_upload">
+                  <label class="custom-file-btn-label btn btn-sm btn-white" for="cover_upload">
+                    <i class="fas fa-camera"></i>
+                    <span class="d-none d-sm-inline-block ms-1">Update Cover</span>
+                  </label>
+                </div>
+              </div> -->
+            <!-- /Custom File Cover -->
+          </div>
+        </div>
+
+        <div class="text-center mb-5">
+          <label class="avatar avatar-xxl profile-cover-avatar" for="avatar_upload">
+            {% if std.profile_pic %}
+            <img class="avatar-img" src="{{std.profile_pic}}" alt="Profile Image"
+              id="blah">
+            {% else %}
+            <img class="avatar-img" src="/static/assets/img/profiles/avatar-07.jpg" alt="Profile Image">
+            {% endif %}
+          </label>
+          <h2>{{std.login_name}}</h2>
+          <ul class="list-inline">
+            <!-- <li class="list-inline-item">
+              <i class="far fa-building"></i> <span>MCDonalds</span>
+            </li> -->
+            <!-- <li class="list-inline-item">
+              <i class="fas fa-map-marker-alt"></i> Pathadipalam, Kerala
+            </li> -->
+            <li class="list-inline-item">
+              <i class="far fa-calendar-alt"></i> <span>Joined {{ std.created_on|date:"F jS, Y" }}</span>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- <div class="row"> -->
+        <div class="row justify-content-lg-center">
+          <div class="col-lg-7">
+            <!-- <div class="card card-body">
+              <h5>Complete your profile</h5> -->
+
+              <!-- Progress -->
+              <!-- <div class="d-flex justify-content-between align-items-center">
+                <div class="progress progress-md flex-grow-1">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"
+                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="ms-4">100%</span>
+              </div> -->
+              <!-- /Progress -->
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title d-flex justify-content-between">
+                  <span>Profile</span>
+                  <a class="btn btn-sm btn-white" href="/profile_settings">Edit</a>
+                </h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                  <div class="row">
+                    <!-- <div class="col-xl-3">
+
+                      <li class="pt-2 pb-0">
+                        <h6>Customer Number</h6>
+                      </li>
+                      <li>
+                        36000001
+                      </li>
+
+                    </div> -->
+
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>User Name</h6>
+                      <li>
+                        {{std.username}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Name</h6>
+                      <li>
+                        {{std.login_name}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Email</h6>
+                      </li>
+                      <li>
+                        {{std.email}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Phone Number</h6>
+                      <li>
+                        {{std.phno}}
+                      </li>
+                    </div>
+                    <!-- <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Business Type</h6>
+                      <li>
+                        F&B
+                      </li>
+                    </div> -->
+                    <!-- <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Business Name</h6>
+                      <li>
+                        MCDOnalds
+                      </li>
+                    </div>
+                    <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>GST Number</h6>
+                      <li>
+                        A799DSJ372139
+                      </li>
+                    </div>
+                    <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Address</h6>
+                      </li>
+                      <li>
+                        8D SFS Eternia,<br>
+                        Pathadipalam,<br>
+                        Ernakulam, 682033
+                      </li>
+                    </div> -->
+                  </div>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- <div class="col-lg-8">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Activity</h5>
+                </div>
+                <div class="card-body card-body-height">
+                  <ul class="activity-feed">
+                    <li class="feed-item">
+                      <div class="feed-date">Nov 16</div>
+                      <span class="feed-text"><a href="profile.html">Brian Johnson</a> has paid the invoice <a href="invoice-details.html">"#DF65485"</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Nov 7</div>
+                      <span class="feed-text"><a href="profile.html">Marie Canales</a>  has accepted your estimate <a href="view-estimate.html">#GTR458789</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Oct 24</div>
+                      <span class="feed-text">New expenses added <a href="expenses.html">"#TR018756</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Oct 24</div>
+                      <span class="feed-text">New expenses added <a href="expenses.html">"#TR018756</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Oct 24</div>
+                      <span class="feed-text">New expenses added <a href="expenses.html">"#TR018756</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Oct 24</div>
+                      <span class="feed-text">New expenses added <a href="expenses.html">"#TR018756</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Oct 24</div>
+                      <span class="feed-text">New expenses added <a href="expenses.html">"#TR018756</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Jan 27</div>
+                      <span class="feed-text"><a href="profile.html">Robert Martin</a> gave a review for <a href="product-details.html">"Dell Laptop"</a></span>
+                    </li>
+                    <li class="feed-item">
+                      <div class="feed-date">Jan 14</div>
+                      <span class="feed-text">New customer registered <a href="profile.html">"Tori Carter"</a></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+  document.getElementById('settings').classList.add('active');
+</script>
+
+{% endblock %}

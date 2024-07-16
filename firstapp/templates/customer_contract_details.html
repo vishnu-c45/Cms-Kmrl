@@ -1,0 +1,405 @@
+{% extends 'customer_layout.html' %} {% load static %} {% block body %}
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Contract Details</h5>
+            </div>
+        </div>  
+         <!-- Inovices card -->
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body ">
+                        <!-- <a href="#"> -->
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-success-light ">
+                                <!-- <img src="assets/img/icons/receipt-item.svg" alt=""> -->
+                                <i class="fa-solid fa-indian-rupee-sign" style="color: #3ecc2e;"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">
+                                    Rent
+                                </div>
+                                <div class="dash-counts">
+                                    <p>{{std.rent_amount}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <!-- <a href="#"> -->
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-primary-light">
+                                <!-- <img src="assets/img/icons/transaction-minus.svg" alt=""> -->
+                                <i class="fa-solid fa-building-lock"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Security Deposits </div>
+                                <div class="dash-counts">
+                                    <p>{{std.security_deposit}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <!-- <a href="#"> -->
+
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-warning-light">
+                                <!-- <img src="assets/img/icons/archive-book.svg" alt=""> -->
+                                <i class="fa-solid fa-hourglass-end" style="color: #cc702e;"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Contract Period</div>
+                                <div class="dash-counts">
+                                    <p>{{std.contract_period}} Yrs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <!-- <a href="#"> -->
+
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-primary-light">
+                                <!-- <img src="assets/img/icons/clipboard-close.svg" alt=""> -->
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Invoice Start Date</div>
+                                <div class="dash-counts">
+                                    <p>{{std.invoice_start_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Inovices card -->
+
+        <!-- /Page Header -->
+        <div class="card customer-details-group">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <!-- <img class="rounded-circle" src="assets/img/profiles/avatar-05.jpg" alt=""> -->
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Contract Number</h6>
+                                    <p>{{std.contract_no}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-handshake"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Agreement Number</h6>
+                                    <p>{{std.agreement_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hotel"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Space</h6>
+                                    <p>{{std.master_space.space_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction No</h6>
+                                    <p class="customer-mail">{{std.auction_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction Date</h6>
+                                    <p class="customer-mail">{{std.auction_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction Notice No</h6>
+                                    <p>{{std.auction_notice_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction Notice Date</h6>
+                                    <p>{{std.auction_notice_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP Number</h6>
+                                    <p>{{std.rfp_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP Date </h6>
+                                    <p>{{std.rfp_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP-REF Number </h6>
+                                    <p>{{std.rfp_ref_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP REF-Date</h6>
+                                    <p>{{std.rfp_ref_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Lock In Period</h6>
+                                    <p>{{std.lock_in_period}} days</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Fitment Period</h6>
+                                    <p>{{std.fitment_period}} days</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-percent"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Hike</h6>
+                                    <p>{{std.hikes}}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-percent"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>CAM</h6>
+                                    <p>{{std.cam_charges}}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Loa Number</h6>
+                                    <p>{{std.loa_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Loa Date</h6>
+                                    <p>{{std.loa_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-ruler"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Square Feet Rate</h6>
+                                    <p>{{std.sq_ft_rate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Bill Start Date</h6>
+                                    <p>{{std.bill_start_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Tenure Start Date</h6>
+                                    <p>{{std.tenure_start_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Tenure End Date</h6>
+                                    <p>{{std.tenure_end_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+       
+
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+    document.getElementById('contract').classList.add('active');
+</script>
+
+{% endblock %}

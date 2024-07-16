@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title> Customer Management System</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" class="w-100" href="/static/assets/img/KMRL.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/feather/feather.css">
+
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/static/assets/css/style.css">
+
+</head>
+
+<body onload="CNotifications_load()">
+
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div class="header header-one">
+
+			<!-- Sidebar Toggle -->
+			<a href="javascript:void(0);" id="toggle_btn">
+				<span class="toggle-bars">
+					<span class="bar-icons"></span>
+					<span class="bar-icons"></span>
+					<span class="bar-icons"></span>
+					<span class="bar-icons"></span>
+				</span>
+			</a>
+			<!-- /Sidebar Toggle -->
+
+			<!-- Mobile Menu Toggle -->
+			<div class="d-flex align-items-center">
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+					<!-- <img src="/static/assets/img/KMRL.png" class="img-fluid logo-small view-only" alt=""> -->
+				</a>
+				
+			</div>
+			<!-- /Mobile Menu Toggle -->
+
+			<!-- <style>
+				.mobile_btn {
+					display: flex;
+					align-items: center;
+				}
+
+				.mobile_btn .logo-small {
+					width: 50px;
+					height: 50px;
+					margin-left: 120px;
+				}
+				.view-only {
+					pointer-events: none;
+				}
+			</style> -->
+
+			<!-- Header Menu -->
+			<ul class="nav nav-tabs user-menu">
+
+				<li class="nav-item dropdown  nav dropdown-heads">
+					<a data-bs-toggle="dropdown" href="#" role="button">
+						<i class="fe fe-bell"></i> <span class="badge rounded-pill" id="notification_badge"></span>
+					</a>
+					<div class="dropdown-menu notifications">
+						<div class="topnav-dropdown-header">
+							<span class="notification-title">Notifications</span>
+							<a onclick="Clear_notification()" class="clear-noti"> Clear All</a>
+						</div>
+						<div class="noti-content">
+							<ul class="notification-list" id="notification_list">
+							</ul>
+						</div>
+					</div>
+				</li>
+				<!-- /User Menu -->
+				<li class="dropdown">
+					<a href="javascript:void(0)" data-bs-toggle="dropdown">
+						<span class="user-img" id="adminimg">
+
+						</span>
+						<span class="user-content">
+							<span id="adminname" class="user-name"></span>
+						</span>
+					</a>
+					<div class="dropdown-menu menu-drop-user">
+						<div class="profilemenu">
+							<div class="subscription-menu">
+								<ul>
+									<li>
+										<a class="dropdown-item" href="/profile_info">Profile</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/edit_profile">Settings</a>
+									</li>
+								</ul>
+							</div>
+							<div class="subscription-logout">
+								<ul>
+									<li class="pb-0">
+										<a class="dropdown-item" href="/logout">Log Out</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+			<!-- /Header Menu -->
+
+		</div>
+		<!-- /Header -->
+
+		<!-- Sidebar -->
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<div class="sidebar-logo">
+					<a href="/dashboard">
+						<img src="/static/assets/img/KMRL-logo.png" class="img-fluid logo" alt="">
+
+					</a>
+					<a href="/dashboard">
+						<img src="/static/assets/img/KMRL-logo.png" class="img-fluid logo-small " alt="">
+					</a>
+				</div>
+			</div>
+			<div class="sidebar-inner slimscroll">
+				<div id="sidebar-menu" class="sidebar-menu">
+					<!-- Main -->
+
+					<ul>
+
+						<li>
+							<a id="dashboard" href="/dashboard"><i
+									class="fa-solid fa-house"></i><span>Dashboard</span></a>
+						</li>
+						<li class="menu-title mt-3"><span>Spaces</span></li>
+						<li>
+							<a id="vacantspaces" href="/vacant_spaces"><i
+								class="fa-solid fa-hotel"></i><span>Available Spaces</span></a>
+						</li>
+						<li>
+							<a id="contract" href="/contracts"><i
+									class="fa-solid fa-file-contract"></i><span>Contracts</span></a>
+						</li>
+
+
+					</ul>
+
+
+					<!-- Sales -->
+					<ul>
+						<li class="menu-title"><span>Payments</span></li>
+						<li class="submenu">
+
+						<li><a id="invoice" href="/invoices"><i class="fa fa-receipt"></i> <span>Invoices</span> </a>
+						</li>
+
+						</li>
+						<li>
+							<a id="payment" href="/payments"><i class="fa fa-credit-card-alt"></i>
+								<span>Payments</span></a>
+						</li>
+					</ul>
+					<!-- /Sales -->
+
+
+
+					<!-- Support -->
+					<ul>
+						<li class="menu-title"><span>Support</span></li>
+						<li>
+							<a id="grievances" href="/grievances"><i class="fa-solid fa-comments"></i>
+								<span>Grievances</span></a>
+						</li>
+					</ul>
+
+
+					<!-- Settings -->
+					<ul>
+						<li class="menu-title"><span>Settings</span></li>
+						<li>
+							<a id="settings" href="/edit_profile"><i class="fa-solid fa-gear"></i>
+								<span>Settings</span></a>
+						</li>
+						<li>
+							<a href="/logout"><i class="fa-solid fa-power-off"></i> <span>Logout</span></a>
+						</li>
+					</ul>
+					<!-- /Settings -->
+
+				</div>
+			</div>
+		</div>
+		<!-- /Sidebar -->
+
+		<script>
+			function CNotifications_load() {
+				var body = document.getElementById('notification_list');
+				var badge = document.getElementById('notification_badge');
+				body.innerHTML = '';
+				badge.style.display = 'none'; // Hide the badge initially
+
+
+				fetch('/api/cnotifications/')
+					.then(response => response.json())
+					.then(data => {
+						// console.log("data", data);
+						if (data.length > 0) {
+
+							data.forEach(response => {
+								if (response.type == 4) {
+
+									var time = response.time;
+									var formattedTime = moment(time).fromNow();
+									// console.log("formattedTime", formattedTime);
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="/invoices"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-info-light"><i class="fa fa-receipt"></i> </span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + response.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								} else if (response.type == 5) {
+
+									var time = response.time;
+									var formattedTime = moment(time).fromNow();
+									// console.log("formattedTime", formattedTime);
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="/invoices"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle ' + response.color + '"><i class="fa fa-receipt"></i></span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + response.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								} else if (response.type == 6) {
+
+									var time = response.time;
+									var formattedTime = moment(time).fromNow();
+									// console.log("formattedTime", formattedTime);
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="#"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-success-light"><i class="fa fa-hotel"></i> </span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + response.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								} else if (response.type == 9) {
+								    var time = response.time;
+									var formattedTime = moment(time).fromNow();
+									// console.log("formattedTime", formattedTime);
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="/grievance_details/'+ response.customer +'"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-info-light"><i class="fa fa-receipt"></i> </span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + response.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								}
+
+							});
+
+						} else {
+							var notificationElement = document.createElement('div');
+							notificationElement.className = 'notification-message';
+							notificationElement.innerHTML = '<span class="no-notifications">No new notifications</span>';
+
+							// Add CSS styles to the notification message
+							var style = document.createElement('style');
+							style.innerHTML = '.no-notifications { color: grey; text-align: center; display: block; margin-top: 20px; }'; // Center align the text and add margin-top
+
+							// Append the style to the document's head
+							document.head.appendChild(style);
+
+							// Append the notification element to the body
+							body.appendChild(notificationElement);
+
+
+
+						}
+
+						// Check if there are any notifications
+						if (data.length > 0) {
+
+							badge.style.display = 'flex'; // Show the badge
+							// badge.classList.add('badge rounded-pill');
+							badge.textContent = data.length; // Update the badge count
+						}
+					})
+					.catch(error => {
+						// console.error('Error:', error);
+					});
+
+
+				//Profice Pic load
+				fetch('/api/view_profile/')
+					.then(response => response.json())
+					.then(data2 => {
+						var span = document.getElementById('adminname')
+						var img = document.getElementById("adminimg")
+						span.innerHTML = data2.username
+						if (data2.profile_pic) {
+							// console.log(data2.profile_pic.substring(6))
+							img.innerHTML = '<img  src="' + data2.profile_pic.substring(6) + '" alt="img" class="profilesidebar"><span class="animate-circle"></span>'
+
+						} else {
+							img.innerHTML = '<img  src="/static/assets/img/profiles/avatar-07.jpg" alt="img" class="profilesidebar"><span class="animate-circle"></span>'
+
+						}
+
+
+					})
+					.catch(error => {
+						// console.error('Error:', error);
+					});
+
+
+				//Due Notification
+				fetch('/due_notification')
+					.then(response => response.json())
+					.then(data3 => {
+
+					})
+					.catch(error => {
+						// console.error('Error:', error);
+					});
+			}
+
+
+
+
+			function Clear_notification() {
+				fetch('/api/cnotifications/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'X-CSRFToken': '{{ csrf_token }}', // Replace with your CSRF token
+					},
+					body: JSON.stringify({
+					}),
+				})
+					.then(response => {
+						if (response.ok) {
+							CNotifications_load(); // Reload the page after clearing notifications
+						} else {
+						}
+					})
+					.catch(error => {
+					});
+			}
+
+
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>	
+
+
+
+
+		{% block body %} {% endblock %}
+
+
+
+
+
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="/static/assets/js/jquery-3.6.3.min.js"></script>
+
+	<!-- Datatable JS -->
+	<script src="/static/assets/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Feather Icon JS -->
+	<script src="/static/assets/js/feather.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="/static/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Chart JS -->
+	<script src="/static/assets/plugins/apexchart/apexcharts.min.js"></script>
+	<script src="/static/assets/plugins/apexchart/chart-data.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/static/assets/js/script.js"></script>
+
+	<script src="/static/assets/plugins/c3-chart/d3.v5.min.js"></script>
+	<script src="/static/assets/plugins/c3-chart/c3.min.js"></script>
+	<script src="/static/assets/plugins/c3-chart/chart-data.js"></script>
+
+	<!-- <script src="/static/plugins/select2/js/select2.full.min.js"></script> -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+		integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,590 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Contract</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                        <li>
+                            <a class="btn btn-filters w-auto popup-toggle"><span class="me-2"><i
+                                        class="fe fe-filter"></i></span>Filter </a>
+                        </li>
+                        <!-- <div class="dropdown dropdown-action">
+                            <a href="#" class="btn-filters" data-bs-toggle="dropdown" aria-expanded="false"><span><i
+                                        class="fe fe-download"></i></span></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <ul class="d-block">
+                                    <li>
+                                        <a class="d-flex align-items-center download-item" href="javascript:void(0);"
+                                            download><i class="far fa-file-pdf me-2"></i>PDF</a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-items-center download-item" href="javascript:void(0);"
+                                            download><i class="far fa-file-text me-2"></i>CVS</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+                        <!-- <li>
+                                <a class="btn btn-import" href="javascript:void(0);"><span><i class="fe fe-check-square me-2"></i>Import Customer</span></a>
+                            </li> -->
+                        <li>
+                            <a class="btn btn-primary" href="add_contract"><i class="fa fa-plus-circle me-2"
+                                    aria-hidden="true"></i>Add Contract</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+        <!-- Inovices card -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-2"><i class="fa-solid fa-file-contract"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Contract</div>
+                                <div class="dash-counts">
+                                    <p>{{contractcount}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-primary-light">
+                                <i class="fa-solid fa-building-lock"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Security Deposit</div>
+                                <div class="dash-counts">
+                                    <p>{{depositcount}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-1">
+                                <i class="fa fa-credit-card-alt"></i> </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Rent</div>
+                                <div class="dash-counts">
+                                    <p>{{rent}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Inovices card -->
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Contract Number</th>
+                                        <th>Customer Name</th>
+                                        <th>Space</th>
+                                        <th>Expiry Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in std%}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>
+                                            <h2 class="table-avatar">{{p.contract_no}}
+                                            </h2>
+                                        </td>
+                                        <td class="customer">
+                                            <h2 class="table-avatar">
+                                                <a href="/customer_details/{{p.customer_contact.id}}"
+                                                    class="avatar avatar-md me-2">
+                                                    <img class="avatar-img rounded-circle"
+                                                        src="/static/assets/img/profiles/avatar-07.jpg"
+                                                        alt="User Image">
+                                                </a>
+                                                <a
+                                                    href="/customer_details/{{p.customer_contact.id}}">{{p.customer_contact.customer.customer_name}}</a>
+                                            </h2>
+                                        </td>
+                                        <td class="spaces">{{p.master_space.space_name}}</td>
+                                        <td class="date">{{p.tenure_end_date|date:'Y-m-d'}}</td>
+                                        {% if p.status == 2 %}
+                                        <td class="status"><span
+                                                class="badge badge-pill bg-danger-light text-warning-light">Inactive</span>
+                                        </td>
+                                        {% elif p.status == 3 %}
+                                        <td class="status"><span
+                                                class="badge bg-warning-light text-warning-light">Pending</span>
+                                        </td>
+                                        {% else %}
+                                        <td class="status"><span class="badge badge-pill bg-success-light">Active</span>
+                                        </td>
+                                        {% endif %}
+                                        </td>
+                                        <td class="d-flex align-items-center ">
+                                            <a href="/contract_details/{{p.id}}" class="btn btn-greys me-2"><i
+                                                    class="fa fa-plus-circle me-1"></i> Details</a>
+                                            {% if p.status == 1 or p.status == 3 %}
+                                            <div class="dropdown dropdown-action">
+                                                <div class="dropdown dropdown-action ">
+                                                    <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                        aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-end position-fixed">
+                                                        <ul>
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{% url 'Update_contracts' p.id %}"><i
+                                                                        class="far fa-edit me-2"></i>Edit</a>
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                    onclick="deletecontract('{{p.id}}','{{p.master_space.space_name}}','{{p.master_space.area}}','{{p.master_space.metrostation.metrostation.station_name}}','{{p.termination_date}}','{{p.contract_no}}')"><i
+                                                                        class="far fa-trash-alt me-2"></i>Deactivate</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="dropdown dropdown-action">
+                                                <div class="dropdown dropdown-action ">
+                                                    <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                        aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-end position-fixed">
+                                                        <ul>
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{% url 'Update_contracts' p.id %}"><i
+                                                                        class="far fa-edit me-2"></i>Edit</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+
+
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form id="filter-form" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Spaces
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="spacesearch"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont" id="selectspace">
+                                            {% for p in spaces %}
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" value="{{p.space_name}}"
+                                                    class="spaces">
+                                                <span class="checkmark"></span> {{p.space_name}}
+                                            </label>
+                                            {% endfor %}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Customers
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse " aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="customersearch"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont" id="selectcustomer">
+                                            {% for p in customers %}
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username"
+                                                    value="{{p.customer.customer_name}}" class="customer">
+                                                <span class="checkmark"></span> {{p.customer.customer_name}}
+                                            </label>
+                                            {% endfor %}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" class="status" value="Active">
+                                        <span class="checkmark"></span> Active
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" class="status" value="Inactive">
+                                        <span class="checkmark"></span> Inactive
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Select Date
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="">
+                                    <input type="date" class="form-control datetimepicker" id="from"
+                                        placeholder="DD-MM-YYYY" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="">
+                                    <input type="date" class="form-control datetimepicker" id="to"
+                                        placeholder="DD-MM-YYYY" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span></span>Search Results
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Contract has not expired!</h3>
+                    <p>Do you still wish to continue?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="deletecontract"
+                                class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+<script>
+    document.getElementById('contract').classList.add('active');
+</script>
+
+<script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function deletecontract(ID, space, area, loc, term_date, no) {
+        $('#delete_modal').modal('show');
+        $('#deletecontract').click(function () {
+            $.ajax({
+                url: 'deletecontract/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    space_mail(space, area, loc);
+                    termination_mail(term_date, no);
+                }
+            });
+        })
+    }
+
+
+    function space_mail(x, y, z) {
+
+        // Send email to the registered customer
+        const csrftoken = getCookie("csrftoken");
+
+        $.ajax({
+            method: "POST",
+            url: "/send-email",
+            dataType: "json",
+            data: {
+                email: x,
+                Area: y,
+                station: z,
+
+                type: 2,
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            success: function () {
+                // Handle the response from the email sending process if needed
+            },
+        });
+
+        // Redirect to the desired page
+        window.location.href = "/view_contracts";
+    }
+
+    function termination_mail(x, y) {
+
+        // Send email to the registered customer
+        const csrftoken = getCookie("csrftoken");
+
+        $.ajax({
+            method: "POST",
+            url: "/admin-email",
+            dataType: "json",
+            data: {
+                term_date: x,
+                no: y,
+                type: 1,
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            success: function () {
+                // Handle the response from the email sending process if needed
+            },
+        });
+
+        // Redirect to the desired page
+        window.location.href = "/view_contracts";
+    }
+</script>
+
+
+
+<script>
+    function filterTable() {
+        var selectedcustomers = [];
+        var selectedStatuses = [];
+        var from = $("#from").val();
+        var to = $("#to").val();
+        // Get the selected checkboxes
+
+        var selectedcustomers = $('.customer:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        var selectedStatuses = $('.status:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        var selectedSpaces = $('.spaces:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        // Filter the table rows
+        $('.datatable tbody tr').each(function () {
+            var customers = $(this).find('.customer').text().trim();
+            var status = $(this).find('.status').text().trim();
+            var space = $(this).find('.spaces').text().trim();
+            var date = $(this).find('.date').text().trim();
+
+
+            var customerMatch = selectedcustomers.length === 0 || selectedcustomers.includes(customers);
+            var statusMatch = selectedStatuses.length === 0 || selectedStatuses.includes(status);
+            var spacesmatch = selectedSpaces.length == 0 || selectedSpaces.includes(space);
+            var dateMatch = (from === "" && to === "") || (date >= from && date <= to);
+            if (customerMatch && statusMatch && spacesmatch && dateMatch) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    // Call the filterTable function when the form is submitted
+    $('#filter-form').submit(function (e) {
+        e.preventDefault();
+        filterTable();
+    });
+
+</script>
+
+<script>
+    var customerSearchInput = document.getElementById('customersearch');
+    var customerCheckboxes = document.querySelectorAll('#selectcustomer input[type="checkbox"]');
+    var customerLabels = document.querySelectorAll('#selectcustomer label');
+
+    customerSearchInput.addEventListener('input', function (event) {
+        var searchTerm = event.target.value.trim().toLowerCase();
+
+        customerCheckboxes.forEach(function (checkbox, index) {
+            var customerName = customerLabels[index].textContent.toLowerCase();
+
+            if (customerName.includes(searchTerm)) {
+                checkbox.parentElement.style.display = 'block';
+            } else {
+                checkbox.parentElement.style.display = 'none';
+            }
+        });
+    });
+
+
+    // Search spaces
+    var spaceSearchInput = document.getElementById('spacesearch');
+    var spaceCheckboxes = document.querySelectorAll('#selectspace input[type="checkbox"]');
+    var spaceLabels = document.querySelectorAll('#selectspace label');
+
+    spaceSearchInput.addEventListener('input', function (event) {
+        var searchTerm = event.target.value.trim().toLowerCase();
+
+        spaceCheckboxes.forEach(function (checkbox, index) {
+            var spaceName = spaceLabels[index].textContent.toLowerCase();
+
+            if (spaceName.includes(searchTerm)) {
+                checkbox.parentElement.style.display = 'block';
+            } else {
+                checkbox.parentElement.style.display = 'none';
+            }
+        });
+    });
+
+</script>
+
+
+{% endblock %}

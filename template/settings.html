@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title> Vendor Management</title>
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="assets/img/KMRL.png">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+		<!-- Feather CSS -->
+		<link rel="stylesheet" href="assets/plugins/feather/feather.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+		
+		<!-- Datepicker CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="assets/css/style.css">
+	</head>
+	<body>
+	
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+			<!-- Header -->
+			<div class="header header-one">
+			
+				<!-- Sidebar Toggle -->
+				<a href="javascript:void(0);" id="toggle_btn">
+					<span class="toggle-bars">
+						<span class="bar-icons"></span>
+						<span class="bar-icons"></span>
+						<span class="bar-icons"></span>
+						<span class="bar-icons"></span>
+					</span>
+				</a>
+				<!-- /Sidebar Toggle -->
+				
+				<!-- Search -->
+				<div class="top-nav-search">
+					<form>
+						<input type="text" class="form-control" placeholder="Search here">
+						<button class="btn" type="submit"><img src="assets/img/icons/search.svg" alt="img"></button>
+					</form>
+				</div>
+				<!-- /Search -->
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Menu -->
+				<ul class="nav nav-tabs user-menu">
+					<!-- Flag -->
+				
+					<!-- /Flag -->
+					
+					
+					<li class="nav-item  has-arrow dropdown-heads ">
+                        <a href="javascript:void(0);" class="toggle-switch">
+                            <i class="fe fe-moon"></i>
+                        </a>
+                    </li>
+					<li class="nav-item dropdown  flag-nav dropdown-heads">
+						<a class="nav-link" data-bs-toggle="dropdown" href="#" role="button">
+							<i class="fe fe-bell"></i> <span class="badge rounded-pill"></span>
+						</a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Clear All</a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="profile.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt=""
+														src="assets/img/profiles/thomas.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Thomas Paul</span>
+														paid the invoice <span class="noti-title">#DF65485</span></p>
+													<p class="noti-time"><span class="notification-time">4 mins ago</span>
+													</p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="profile.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt=""
+														src="assets/img/profiles/joe.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Joe </span> has
+														accepted the credit note <span class="noti-title">#GTR458789</span>
+													</p>
+													<p class="noti-time"><span class="notification-time">6 mins ago</span>
+													</p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="profile.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-primary-light"><i
+															class="far fa-user"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">New user
+															registered</span></p>
+													<p class="noti-time"><span class="notification-time">8 mins ago</span>
+													</p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="profile.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt=""
+														src="assets/img/profiles/joseph.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Joseph</span>
+														declined the invoice <span class="noti-title">#RDW026896</span></p>
+													<p class="noti-time"><span class="notification-time">12 mins ago</span>
+													</p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="profile.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-info-light"><i
+															class="far fa-comment"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">You have received a new
+															message</span></p>
+													<p class="noti-time"><span class="notification-time">2 days ago</span>
+													</p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="notifications.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item  has-arrow dropdown-heads ">
+                        <a href="javascript:void(0);" class="win-maximize">
+                            <i class="fe fe-maximize"></i>
+                        </a>
+                    </li>
+					<!-- User Menu -->
+					<li class="nav-item dropdown">
+                        <a href="javascript:void(0)" class="user-link  nav-link" data-bs-toggle="dropdown">
+                            <span class="user-img">
+                                <img src="assets/img/profiles/michael.jpg" alt="img" class="profilesidebar">
+                                <span class="animate-circle"></span>
+                            </span>
+                            <span class="user-content">
+                                <span class="user-details">Admin</span>
+								<span class="user-name">Michael</span>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu menu-drop-user">
+                            <div class="profilemenu">
+                                <div class="subscription-menu">
+                                    <ul>
+                                        <li>
+                                            <a class="dropdown-item" href="profile.html">Profile</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="settings.html">Settings</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="subscription-logout">
+                                    <ul>
+                                        <li class="pb-0">
+											<a class="dropdown-item" href="login.html">Log Out</a>
+										</li>
+									</ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+					<!-- /User Menu -->
+					
+				</ul>
+				
+				<!-- /Header Menu -->
+				
+			</div>
+			<!-- /Header -->
+			
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+	<div class="sidebar-header">
+		<div class="sidebar-logo">
+			<a href="index.html">
+				<img src="assets/img/KMRL-logo.png" class="img-fluid logo" alt="">
+
+			</a>
+			<a href="index.html">
+				<img src="assets/img/KMRL-logo.png" class="img-fluid logo-small " alt="">
+			</a>
+		</div>
+	</div>
+	<div class="sidebar-inner slimscroll">
+		<div id="sidebar-menu" class="sidebar-menu">
+			<!-- Main -->
+
+			<ul>
+
+				<li>
+					<a href="index.html"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a>
+				</li>
+				<li class="menu-title mt-3"><span>Spaces</span></li>
+				<!-- <li>
+					<a href="view_metrostation.html"><i class="fa fa-subway" aria-hidden="true"></i>
+						<span>Metro Stations</span></a>
+				</li> -->
+
+				<li>
+					<a class="" href="view_properties.html"><i class="fa fa-subway" aria-hidden="true"></i>
+						<span>Properties</span></a>
+				</li>
+
+				<li>
+					<a href="view_space.html"><i class="fa-solid fa-hotel"></i></i><span>Spaces</span></a>
+				</li>
+				
+			</ul>
+			
+			<!-- Customers -->
+			<ul>
+				<li class="menu-title"><span>Customers</span></li>
+				<li>
+					<a class="" href="customers.html"><i class="fa-solid fa-users"></i><span>Customers</span></a>
+				</li>
+				
+				<li>
+					<a href="view_contract.html"><i class="fa-solid fa-file-contract"></i><span>Contracts</span></a>
+				</li>
+			</ul>
+			<!-- /Customers -->
+
+			
+			<!-- Sales -->
+			<ul>
+				<li class="menu-title"><span>Payments</span></li>
+				<li class="submenu">
+
+				<li><a href="invoices.html"><i class="fa fa-receipt"></i> <span>Invoices</span> </a></li>
+
+				</li>
+			
+				<li>
+					<a href="credit-notes.html"><i class="fa fa-sticky-note" aria-hidden="true"></i>
+						<span>Credit Notes</span></a>
+				</li>
+				<li>
+					<a href="payments.html"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+					</i> <span>Payments</span></a>
+				</li>
+			</ul>
+
+			<!-- Reports -->
+			<ul>
+				<li class="menu-title"><span>Reports</span></li>
+				
+				<li>
+					<a href="payment-summary.html"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span>Payment
+							Summary</span></a>
+				</li>
+			</ul>
+			<!-- /Reports -->
+
+			<!-- User Management -->
+			<ul>
+				<li class="menu-title"><span>User Management</span></li>
+				<li class="submenu">
+
+				<li><a href="users.html"><i class="fa-solid fa-user"></i> <span>Manage Users</span> </a></li>
+
+				</li>
+				<li>
+					<a href="roles-permission.html"><i class="fa-solid fa-clipboard"></i> <span>Roles &
+							Permissions</span></a>
+				</li>
+			</ul>
+			<!-- /User Management -->
+
+			
+			<!-- Support -->
+			<ul>
+				<li class="menu-title"><span>Support</span></li>
+				<li>
+					<a href="contact-messages.html"><i class="fa-solid fa-comments"></i></i> <span>Grievances</span></a>
+				</li>
+			</ul>
+			<!-- /Authentication -->
+
+			<!-- Settings -->
+			<ul>
+				<li class="menu-title"><span>Settings</span></li>
+				<li>
+					<a class="active" href="settings.html"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
+				</li>
+				<li>
+					<a href="login.html"><i class="fa-solid fa-power-off"></i><span>Logout</span></a>
+				</li>
+			</ul>
+			<!-- /Settings -->
+
+		</div>
+	</div>
+</div>
+<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+			<div class="page-wrapper">
+				<div class="content container-fluid">
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="content-page-header">						
+							<h5>Settings</h5>
+						</div>
+					</div>
+					<!-- /Page Header -->
+				
+					<div class="row">
+						<div class="col-xl-3 col-md-4">
+						
+							<div class="card">
+								<div class="card-body">									
+									<!-- Settings Menu -->
+									<div class="widget settings-menu mb-0">
+										<ul>
+											<li class="nav-item">
+												<a href="settings.html" class="nav-link active">
+													<i class="far fa-user"></i> <span>Profile Settings</span>
+												</a>
+											</li>
+											<!-- <li class="nav-item">
+												<a href="preferences.html" class="nav-link">
+													<i class="fas fa-cog"></i> <span>Preferences</span>
+												</a>
+											</li> -->
+											<li class="nav-item">
+												<a href="tax-types.html" class="nav-link">
+													<i class="far fa-check-square"></i> <span>Tax Types</span>
+												</a>
+											</li>
+											<!-- <li class="nav-item">
+												<a href="expense-category.html" class="nav-link">
+													<i class="far fa-list-alt"></i> <span>Expense Category</span>
+												</a>
+											</li> -->
+											<li class="nav-item">
+												<a href="notifications.html" class="nav-link">
+													<i class="far fa-bell"></i> <span>Notifications</span>
+												</a>
+											</li>
+											<li class="nav-item">
+												<a href="change-password.html" class="nav-link">
+													<i class="fas fa-unlock-alt"></i> <span>Change Password</span>
+												</a>
+											</li>
+											<li class="nav-item">
+												<a href="delete-account.html" class="nav-link">
+													<i class="fas fa-ban"></i> <span>Delete Account</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<!-- /Settings Menu -->
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="col-xl-9 col-md-8">
+						
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title">Basic information</h5>
+								</div>
+								<div class="card-body">
+								
+									<!-- Form -->
+									<form>
+										<div class="row form-group">
+											<label for="name" class="col-sm-3 col-form-label input-label">Photo</label>
+											<div class="col-sm-9">
+												<div class="d-flex align-items-center">
+													<label class="avatar avatar-xxl profile-cover-avatar m-0" for="edit_img">
+														<img id="avatarImg" class="avatar-img" src="assets/img/profiles/michael.jpg" alt="Profile Image">
+														<input type="file" id="edit_img">
+														<span class="avatar-edit">
+															<i class="fe fe-edit avatar-uploader-icon shadow-soft"></i>
+														</span>
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="name" class="col-sm-3 col-form-label input-label">Name</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="name" placeholder="Your Name" value="Michael">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="email" class="col-sm-3 col-form-label input-label">Email</label>
+											<div class="col-sm-9">
+												<input type="email" class="form-control" id="email" placeholder="Email" value="michael@gmail.com">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="phone" class="col-sm-3 col-form-label input-label">Phone <span class="text-muted"></span></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="phone" placeholder="+xx xxxxxxxxxx" value="9845676700">
+											</div>
+										</div>
+										<!-- <div class="row form-group">
+											<label for="businesstype" class="col-sm-3 col-form-label input-label">Business Type</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="businesstype" value="F&B">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="businessname" class="col-sm-3 col-form-label input-label">Business Name</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="businessname" value="MCDonalds">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="gstno" class="col-sm-3 col-form-label input-label">GST No</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="gstno" value="A573W8HR567892">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="location" class="col-sm-3 col-form-label input-label">Location</label>
+											<div class="col-sm-9">
+												<div class="mb-3">
+													<input type="text" class="form-control" id="location" placeholder="State" value="Kerala">
+												</div>
+												<div class="mb-3">
+													<input type="text" class="form-control" placeholder="District" value="Ernakulam">
+												</div>
+												<input type="text" class="form-control" placeholder="City" value="Pathadipalam">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="addressline1" class="col-sm-3 col-form-label input-label">Address line 1</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="addressline1" placeholder="Your address" value="8D SFS Eternia">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="addressline2" class="col-sm-3 col-form-label input-label">Address line 2 <span class="text-muted">(Optional)</span></label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="addressline2" placeholder="Your address">
+											</div>
+										</div>
+										<div class="row form-group">
+											<label for="zipcode" class="col-sm-3 col-form-label input-label">Pin code</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="zipcode" placeholder="Your zip code" value="682033">
+											</div>
+										</div> -->
+										<div class="text-end">
+											<button type="submit" class="btn btn-primary">Save Changes</button>
+										</div>
+									</form>
+									<!-- /Form -->
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+			
+		</div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.6.3.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Feather Icon JS -->
+		<script src="assets/js/feather.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+
+	</body>
+</html>

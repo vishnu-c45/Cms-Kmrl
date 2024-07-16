@@ -1,0 +1,222 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header ">
+                <h5>Users</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                        <li>
+                            <a class="btn btn-primary" href="/user_create"><i class="fa fa-plus-circle me-2"
+                                    aria-hidden="true"></i>Add user</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Login Name</th>
+                                        <th>Username</th>
+                                        <th>Role </th>
+                                        <!-- <th>Last Activity</th> -->
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in std %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <div class="avatar avatar-sm me-2"><img
+                                                        class="avatar-img rounded-circle"
+                                                        src="/static/assets/img/profiles/avatar-07.jpg"
+                                                        alt="User Image"></div>
+                                                {{p.login_name}}
+
+                                            </h2>
+                                        </td>
+
+                                        <td>{{p.username}}</td>
+                                        <!-- <td><span class="badge badge-pill bg-success-light">Online</span></td> -->
+                                        {% if p.usertype == 3 %}
+                                        <td>Finance</td>
+                                        {% elif p.usertype == 4 %}
+                                        <td>Alternate Revenue</td>
+                                        {% else %}
+                                        <td>Data Entry</td>
+
+                                        {% endif %}
+                                        {% if p.status == 1 %}
+                                        <td><span class="badge badge-pill bg-success-light">Active</span></td>
+                                        {% elif p.status == 2 %}
+                                        <td><span class="badge badge-pill bg-danger-light">Inactive</span></td>
+                                        {% endif %}
+                                        <td class="d-flex align-items-center position-absolute">
+                                            <div class="dropdown dropdown-action ">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-right ">
+                                                    <ul>
+                                                        {% if p.status == 1 %}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'Update_user' p.id %}"><i
+                                                                    class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="javascript:void(0);"
+                                                                onclick="deleteuser('{{p.id}}')"><i
+                                                                    class="far fa-trash-alt me-2"></i>Deactivate</a>
+                                                        </li>
+                                                        {% elif p.status == 2 %}
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'Update_user' p.id %}"><i
+                                                                    class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a data-bs-toggle="modal" data-bs-target="#activate_modal"
+                                                                onclick="activateuser('{{p.id}}')" class="dropdown-item"
+                                                                href="#">
+                                                                <i class="fa-regular fa-square-check me-2"></i>Activate
+                                                            </a>
+                                                        </li>
+                                                        {% endif %}
+
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    <!--  -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+<!-- ACTIVATE Items Modal -->
+<div class="modal custom-modal fade" id="activate_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Activate User</h3>
+                    <p>Are you sure you want to continue?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="activate_customer" class="w-100 btn btn-primary paid-continue-btn">
+                                Activate
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ACTIVATE Items Modal -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete User</h3>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete_user_id"
+                                class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+
+<script>
+    document.getElementById('users').classList.add('active');
+
+    function deleteuser(ID) {
+        $('#delete_modal').modal('show');
+        $('#delete_user_id').click(function () {
+            $.ajax({
+                url: 'deleteuser/' + ID,
+                method: 'POST',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    // alert(response)
+                    window.location.href = '/manage_users';
+                }
+            });
+        })
+    }
+    function activateuser(ID) {
+        $("#activate_modal").modal("show");
+        $("#activate_customer").click(function () {
+            $.ajax({
+                url: 'activateuser/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function () {
+                    showSuccMessage();
+                }
+            });
+        });
+    }
+    function showSuccMessage(message) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Successfully Activated',
+            text: message,
+        }).then((result) => {
+
+            window.location.href = '/manage_users';
+        });
+    }
+</script>
+
+
+{% endblock %}

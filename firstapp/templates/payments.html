@@ -1,0 +1,409 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Payments</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                        <li>
+                            <a class="btn btn-filters w-auto popup-toggle"><span class="me-2"><i
+                                        class="fe fe-filter"></i></span>Filter </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Credit card -->
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                <div class="card inovices-card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-info-light">
+                                <img src="/static/assets/img/icons/receipt-item.svg" alt="">
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Payments</div>
+                                <div class="dash-counts">
+                                    <p>{{payment_count}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                    <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">02</span></p>
+                                    <p class="inovice-trending text-success-light">02 <span class="ms-2"><i class="fe fe-trending-up"></i></span></p>
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                <div class="card inovices-card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-green-light">
+                                <img src="/static/assets/img/icons/message-edit.svg" alt="">
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Paid</div>
+                                <div class="dash-counts">
+                                    <p>{{payment_paid}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                    <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">03</span></p>
+                                    <p class="inovice-trending text-success-light">04 <span class="ms-2"><i class="fe fe-trending-up"></i></span></p>
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                <div class="card inovices-card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-warning-light">
+                                <img src="/static/assets/img/icons/archive-book.svg" alt="">
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Pending</div>
+                                <div class="dash-counts">
+                                    <p>{{payment_pending}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                    <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">01</span></p>
+                                    <p class="inovice-trending text-danger-light">03 <span class="ms-2"><i class="fe fe-trending-down"></i></span></p>
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-xl-2 col-lg-4 col-sm-6 col-12">
+            <div class="card inovices-card">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+                        <span class="inovices-widget-icon bg-primary-light">
+                            <img src="assets/img/icons/transaction-minus.svg" alt="">
+                        </span>
+                        <div class="dash-count">
+                            <div class="dash-title">Draft</div>
+                            <div class="dash-counts">
+                                <p>125</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> -->
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                <div class="card inovices-card">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-danger-light">
+                                <img src="/static/assets/img/icons/3d-rotate.svg" alt="">
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Declined</div>
+                                <div class="dash-counts">
+                                    <p>{{payment_declined}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                    <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">03</span></p>
+                                    <p class="inovice-trending text-success-light">02 <span class="ms-2"><i class="fe fe-trending-up"></i></span></p>
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Credit card -->
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-stripped table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Customer</th>
+                                        <th>Invoice Number</th>
+                                        <th>Transaction Id</th>
+                                        <th>Payment_order_id</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <!-- <th>Payment Method</th> -->
+                                        <th>Status</th>
+                                        <!-- <th>Action</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in std %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td class="customer">
+                                            <h2 class="table-avatar">
+                                                <a href="/customer_details/{{p.customer.id}}" class="avatar avatar-sm me-2"><img
+                                                        class="avatar-img rounded-circle"
+                                                        src="/static/assets/img/profiles/avatar-07.jpg"
+                                                        alt="User Image"></a>
+                                                <a href="/customer_details/{{p.customer.id}}">{{p.customer.customer.customer_name}}</a>
+                                            </h2>
+                                        </td>
+                                        <td>{{p.invoice.invoice_no}}</td>
+                                        <td>{{p.transaction_id}}</td>
+                                        <td>{{p.payment_order_id}}</td>
+                                        <td>{{p.payment_amount}}</td>
+                                        <td class="date">{{p.created_on|date:'Y-m-d'}}</td>
+                                        {% if p.status == 1 %}
+
+                                        <td class="status"><span
+                                                class="badge bg-success-light text-success-light">Paid</span></td>
+                                        {% elif p.status == 3 %}
+                                        <td class="status"><span
+                                                class="badge bg-danger-light text-danger-light">Declined</span></td>
+                                        {% else %}
+                                        <td class="status"><span
+                                                class="badge bg-warning-light text-warning-light">Pending</span></td>
+
+                                        {% endif %}
+                                        <!-- <td class="d-flex align-items-center">
+                                            <a href="#" class="btn btn-greys me-2"><i
+                                                    class="fa fa-plus-circle me-1"></i> Details</a>
+                                        </td> -->
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Table -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form id="filter-form" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Customer
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="customersearch"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            {% for p in customer %}
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username"
+                                                    value="{{p.customer.customer_name}}" class="customer">
+                                                <span class="checkmark"></span> {{p.customer.customer_name}}
+                                            </label>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+
+
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" value="Paid" class="status">
+                                        <span class="checkmark"></span> Paid
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" value="Pending" class="status">
+                                        <span class="checkmark"></span> Pending
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" value="Declined" class="status">
+                                        <span class="checkmark"></span> Declined
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Select Date
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="">
+                                    <input type="date" class="form-control datetimepicker" id="from"
+                                        placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="">
+                                    <input type="date" class="form-control datetimepicker" id="to"
+                                        placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span></span>Search Results
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+<script>
+    //Filter Tables
+    function filterTable() {
+        var selectedCustomers = [];
+        var selectedStatuses = [];
+        var from = $('#from').val();
+        var to = $('#to').val();
+
+
+        // Get the selected checkboxes
+        var selectedCustomers = $('.customer:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        var selectedStatuses = $('.status:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        // Filter the table rows
+        $('.datatable tbody tr').each(function () {
+            var customer = $(this).find('.customer').text().trim();
+            var status = $(this).find('.status').text().trim();
+            var date = $(this).find('.date').text().trim();
+
+            var customerMatch = selectedCustomers.length === 0 || selectedCustomers.includes(customer);
+            var statusMatch = selectedStatuses.length === 0 || selectedStatuses.includes(status);
+            var dateMatch = (from === '' && to === '') || (date >= from && date <= to);
+
+
+
+            if (customerMatch && statusMatch && dateMatch) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    // Call the filterTable function when the form is submitted
+    $('#filter-form').submit(function (e) {
+        e.preventDefault();
+        filterTable();
+    });
+
+</script>
+<script>
+    var searchInput = document.getElementById('customersearch');
+    var checkboxes = document.querySelectorAll('.selectBox-cont input[type="checkbox"]');
+    var labels = document.querySelectorAll('.selectBox-cont label');
+
+    searchInput.addEventListener('input', function (event) {
+        var searchTerm = event.target.value.trim().toLowerCase();
+
+        checkboxes.forEach(function (checkbox, index) {
+            var stationName = labels[index].textContent.toLowerCase();
+
+            if (stationName.includes(searchTerm)) {
+                checkbox.parentElement.style.display = 'block';
+            } else {
+                checkbox.parentElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+
+
+
+<script>
+    document.getElementById('payment').classList.add('active');
+</script>
+
+
+{% endblock %}

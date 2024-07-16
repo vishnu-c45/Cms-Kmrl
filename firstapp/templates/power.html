@@ -1,0 +1,206 @@
+{% extends 'utility_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>Electricity</h5>
+                    <div>
+                        <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#addgrievance"><i class="fa fa-plus-circle " aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        {% for p in std %}
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h4 class="card-title text-center">{{ p.metrostation.metrostation.station_name }}</h4>
+                                <p class="card-text align-center">{{ p.created_on|date:'d-m-Y' }}</p>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"> {{ p.power }} kwh</p>
+                                {% if p.powerpic == '' %}
+                                <p class="card-text">No Photos</p>
+                                {% else %}
+                                <p class="card-text">
+                                    <a href="{{p.powerpic}}" download="" style="color: black;">
+                                        <i class="fa-solid fa-download" style=" color: black;"></i>
+                                        Download
+                                    </a>
+                                </p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer d-flex justify-content-center">
+                                {% if p.status == 1%}
+                                <!-- <a href="#" class="btn btn-secondary btn-block" onclick="editpower('{{ p.id }}')"><i
+                                        class="far fa-edit"></i> </a> -->
+                                <a href="#" class="btn btn-danger btn-block" data-bs-toggle="modal"
+                                    onclick="deletepower('{{ p.id }}')"><i class="far fa-trash-alt"></i> </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Details Modal -->
+<div class="modal custom-modal fade" id="addgrievance" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0">
+                    <h4 class="mb-0">Add Electricity</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form" id="powerform" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Metro Station: <span class="text-danger"></span></label>
+                                <select name="station" class=" form-control select">
+                                    <option disabled selected>Select Metro Station</option>
+                                    {% for p in station %}
+                                    <option value="{{p.metrostation.id}}">{{p.metrostation.station_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Power:<span class="text-danger"></span></label>
+                                <input type="number" class="form-control" name="power"
+                                    placeholder="Enter Meter Reading" />
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group mb-0">
+                                <label>Photo:<span class="text-danger"></span></label>
+                                <input type="file" class="form-control" name="photo" multiple="" id="power_img">
+                                <div id="frames"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="modal-footer mt-3">
+                                <a href="#" data-bs-dismiss="modal"
+                                    class="btn btn-primary paid-cancel-btn me-2">Back</a>
+                                <button id="submitbutton" class="btn btn-primary">Save Changes</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Add Details Modal -->
+
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_grievance" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h2>Delete Entry</h2>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete" class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+<style>
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        margin-bottom: 5px;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-top: none;
+        background-color: rgb(247, 246, 246);
+    }
+
+    .card-footer .btn {
+        margin-left: 5px;
+    }
+</style>
+<script>
+    function deletepower(ID) {
+        $('#delete_grievance').modal('show');
+        $('#delete').click(function () {
+            $.ajax({
+                url: 'deletepower/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    // alert(response)
+                    window.location.href = 'power';
+                }
+            });
+        })
+    }
+</script>
+<script src="/static/assets/js/create_power.js"></script>
+<script src="/static/assets/js/update_power.js"></script>
+<script>
+    document.getElementById('power').classList.add('active');
+</script>
+
+{% endblock %}

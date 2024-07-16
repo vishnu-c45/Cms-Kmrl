@@ -1,0 +1,648 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="content-page-header">
+        <h5>Customers</h5>
+        <div class="list-btn">
+          <ul class="filter-list">
+            <li>
+              <a class="btn btn-filters w-auto popup-toggle"><span class="me-2"><i
+                    class="fe fe-filter"></i></span>Filter
+              </a>
+            </li>
+
+            <li>
+              <a class="btn btn-primary" href="/approve_customer"><i class="fa fa-plus-circle me-2"
+                  aria-hidden="true"></i>Approve Customer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <!-- Customer card -->
+    <div class="row">
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-4">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Customers</div>
+                <div class="dash-counts">
+                  <p>{{customercount}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-3">
+                <i class="fa-brands fa-android"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">App Users</div>
+                <div class="dash-counts">
+                  <p>{{app}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-primary-light">
+                <i class="fa-solid fa-building-lock"></i>
+
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Security Deposits</div>
+                <div class="dash-counts">
+                  <p>{{depositcount}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-1">
+                <i class="fa fa-credit-card-alt"></i> </span>
+              <div class="dash-count">
+                <div class="dash-title">Payments</div>
+                <div class="dash-counts">
+                  <p>{{payments}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-2" style="width: 30px;">
+                <i class="fa fa-receipt"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Invoices</div>
+                <div class="dash-counts">
+                  <p>{{invoice_count}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-danger-light">
+                <img src="/static/assets/img/icons/3d-rotate.svg" alt="" />
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Due</div>
+                <div class="dash-counts">
+                  <p>{{due}}</p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="d-flex justify-content-between align-items-center">
+                            <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">03</span></p>
+                            <p class="inovice-trending text-success-light">02 <span class="ms-2"><i class="fe fe-trending-up"></i></span></p>
+                        </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Customer card -->
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-center table-hover datatable">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Sl No</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Invoices</th>
+                    <th>Payments</th>
+                    <th>Joining date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in std %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td class="customer">
+                      <h2 class="table-avatar">
+                        <div class="avatar avatar-md me-2">
+                          <img class="avatar-img rounded-circle" src="/static/assets/img/profiles/avatar-07.jpg"
+                            alt="User Image" />
+                        </div>
+                        {{p.customer.customer_name}}
+                      </h2>
+                    </td>
+                    <td>{{p.phone_number}}</td>
+                    <td>{{ p.invoices.all.count }}</td>
+                    <td>{{ p.payments_data.all.count }}</td>
+
+                    <td class="date">{{p.created_on|date:'Y-m-d'}}</td>
+                    {% if p.status == 1 %}
+                    <td class="status">
+                      <span class="badge badge-pill bg-success-light">Active</span>
+                    </td>
+                    {% elif p.status == 2 %}
+                    <td class="status">
+                      <span class="badge badge-pill bg-danger-light">Inactive</span>
+                    </td>
+                    {% elif p.status == 3 %}
+                    <td class="status">
+                      <span class="badge bg-light-gray text-primary">Prospective</span>
+                    </td>
+                    {% else %}
+                    <td class="status">
+                      <span class="badge bg-warning-light text-warning-light">In Progress</span>
+                    </td>
+                    {% endif %}
+                    {% if p.status == 1 %}
+                    <td class="d-flex align-items-center">
+                      <a class="btn-action-icon me-2" href="/customer_details/{{p.id}}" title="View"><i
+                          class="fe fe-eye"></i></a>
+                      <a class="btn-action-icon me-2" href="{% url 'Add_customer_details' p.id %}" title="Edit">
+                        <i class="far fa-edit "></i></a>
+                      <a data-bs-toggle="modal" data-bs-target="#delete_modal" onclick="deletecustomer('{{p.id}}')"
+                        title="Deactivate" class="btn-action-icon" href="#"><i class="fe fe-trash-2"></i></a>
+                    </td>
+                    {% elif p.status == 2%}
+                    <td class="d-flex align-items-center">
+                      <a class="btn-action-icon me-2" href="/customer_details/{{p.id}}" title="View"><i
+                          class="fe fe-eye"></i></a>
+                      <a class="btn-action-icon me-2" href="{% url 'Add_customer_details' p.id %}" title="Edit">
+                        <i class="far fa-edit "></i></a>
+                      <a data-bs-toggle="modal" data-bs-target="#activate_modal" onclick="activatecustomer('{{p.id}}')"
+                        title="Activate" class="btn-action-icon" href="#"><i class="fa-solid fa-check"></i></a>
+                    </td>
+                    {% elif p.status == 3%}
+                    <td class="d-flex align-items-center">
+                      <a class="btn-action-icon me-2" href="/customer_details/{{p.id}}" title="View"><i
+                          class="fe fe-eye"></i></a>
+                      <a class="btn-action-icon me-2" href="{% url 'Add_customer_details' p.id %}" title="Edit">
+                        <i class="far fa-edit "></i></a>
+                      <a data-bs-toggle="modal" data-bs-target="#progress_modal" onclick="progress('{{p.id}}')"
+                        title="In Progress" class="btn-action-icon" href="#"><i class="fa-solid fa-check"></i></a>
+                    </td>
+                    {% else %}
+                    <td class="d-flex align-items-center">
+                      <a class="btn-action-icon me-2" href="/customer_details/{{p.id}}" title="View"><i
+                          class="fe fe-eye"></i></a>
+                      <a class="btn-action-icon me-2" href="{% url 'Add_customer_details' p.id %}" title="Edit">
+                        <i class="far fa-edit "></i></a>
+                      <a data-bs-toggle="modal" data-bs-target="#prospective_modal" onclick="prospective('{{p.id}}')"
+                        title="Prospective" class="btn-action-icon" href="#"><i class="fa-solid fa-check"></i></a>
+                    </td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+  <div class="sidebar-layout-filter">
+    <div class="sidebar-header">
+      <h5>Filter</h5>
+      <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+    </div>
+    <div class="sidebar-body">
+      <form id="filter-form" autocomplete="off">
+        <!-- Customer -->
+        <div class="accordion" id="accordionMain1">
+          <div class="card-header-new" id="headingOne">
+            <h6 class="filter-title">
+              <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Customer
+                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+              </a>
+            </h6>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample1">
+            <div class="card-body-chat">
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="checkBoxes1">
+                    <div class="form-custom">
+                      <input type="text" class="form-control" id="customersearch" placeholder="Search here" />
+                      <span><img src="/static/assets/img/icons/search.svg" alt="img" /></span>
+                    </div>
+                    <div class="selectBox-cont">
+                      {% for p in std %}
+                      <label class="custom_check w-100">
+                        <input type="checkbox" name="username" value="{{p.customer.customer_name}}" class="customer" />
+                        <span class="checkmark"></span>
+                        {{p.customer.customer_name}}
+                      </label>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Customer -->
+        <!-- Select Date -->
+        <div class="accordion" id="accordionMain2">
+          <div class="card-header-new" id="headingTwo">
+            <h6 class="filter-title">
+              <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                Select Date
+                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+              </a>
+            </h6>
+          </div>
+
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+            <div class="card-body-chat">
+              <div class="form-group">
+                <label class="form-control-label">From</label>
+                <div class="">
+                  <input type="date" class="form-control datetimepicker" id="from" placeholder="DD-MM-YYYY" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">To</label>
+                <div class="">
+                  <input type="date" class="form-control datetimepicker" id="to" placeholder="DD-MM-YYYY" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Select Date -->
+
+        <!-- By Status -->
+        <div class="accordion" id="accordionMain3">
+          <div class="card-header-new" id="headingThree">
+            <h6 class="filter-title">
+              <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                By Status
+                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+              </a>
+            </h6>
+          </div>
+
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample3">
+            <div class="card-body-chat">
+              <div id="checkBoxes2">
+                <div class="selectBox-cont">
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" class="status" value="Active" />
+                    <span class="checkmark"></span> Active
+                  </label>
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" class="status" value="Inactive" />
+                    <span class="checkmark"></span> Inactive
+                  </label>
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" class="status" value="Prospective" />
+                    <span class="checkmark"></span> Prospective
+                  </label>
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" class="status" value="In Progress" />
+                    <span class="checkmark"></span> In Progress
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /By Status -->
+
+        <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+          <span></span>Search Results
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<!--/Add Asset -->
+
+<script>
+  function filterTable() {
+    var selectedcustomers = [];
+    var selectedStatuses = [];
+    var from = $("#from").val();
+    var to = $("#to").val();
+
+    // Get the selected checkboxes
+
+    var selectedcustomers = $(".customer:checked")
+      .map(function () {
+        return $(this).val();
+      })
+      .get();
+
+    var selectedStatuses = $(".status:checked")
+      .map(function () {
+        return $(this).val();
+      })
+      .get();
+
+    // Filter the table rows
+    $(".datatable tbody tr").each(function () {
+      var customers = $(this).find(".customer").text().trim();
+      var status = $(this).find(".status").text().trim();
+      var date = $(this).find(".date").text().trim();
+
+      var customerMatch =
+        selectedcustomers.length === 0 || selectedcustomers.includes(customers);
+      var statusMatch =
+        selectedStatuses.length === 0 || selectedStatuses.includes(status);
+      var dateMatch =
+        (from === "" && to === "") || (date >= from && date <= to);
+
+
+      if (customerMatch && statusMatch && dateMatch) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  }
+
+  // Call the filterTable function when the form is submitted
+  $("#filter-form").submit(function (e) {
+    e.preventDefault();
+    filterTable();
+  });
+</script>
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Delete Customer</h3>
+          <p>Are you sure you want to delete?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="reset" id="delete_customer" class="w-100 btn btn-primary paid-continue-btn">
+                Delete
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Delete Items Modal -->
+
+<!-- ACTIVATE Items Modal -->
+<div class="modal custom-modal fade" id="activate_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Activate Customer</h3>
+          <p>Are you sure you want to continue?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="reset" id="activate_customer" class="w-100 btn btn-primary paid-continue-btn">
+                Activate
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /ACTIVATE Items Modal -->
+<!-- ACTIVATE Items Modal -->
+<div class="modal custom-modal fade" id="progress_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Make In Progress</h3>
+          <p>Are you sure you want to continue?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="reset" id="progress_customer" class="w-100 btn btn-primary paid-continue-btn">
+                Yes
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /ACTIVATE Items Modal -->
+
+<!-- ACTIVATE Items Modal -->
+<div class="modal custom-modal fade" id="prospective_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Make Prospective</h3>
+          <p>Are you sure you want to continue?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="reset" id="prospective_customer" class="w-100 btn btn-primary paid-continue-btn">
+                Yes
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /ACTIVATE Items Modal -->
+
+<script>
+  document.getElementById("customer").classList.add("active");
+</script>
+<script>
+  function deletecustomer(ID) {
+    $("#delete_modal").modal("show");
+    $("#delete_customer").click(function () {
+      $.ajax({
+        url: "deletecustomer/" + ID,
+        method: "post",
+        data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+        success: function (response) {
+          if (response == "False") {
+            showSuccessMessage();
+          } else {
+
+            window.location.href = "/customers";
+          }
+        },
+      });
+    });
+  }
+
+  function activatecustomer(ID) {
+    $("#activate_modal").modal("show");
+    $("#activate_customer").click(function () {
+      $.ajax({
+        url: 'activatecustomer/' + ID,
+        method: 'post',
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+        success: function () {
+          showSuccMessage();
+        }
+      });
+    });
+  }
+  function progress(ID) {
+    $("#progress_modal").modal("show");
+    $("#progress_customer").click(function () {
+      $.ajax({
+        url: 'progress/' + ID,
+        method: 'post',
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+        success: function () {
+          window.location.href = "/customers";
+        }
+      });
+    });
+  }
+
+  function prospective(ID) {
+    $("#prospective_modal").modal("show");
+    $("#prospective_customer").click(function () {
+      $.ajax({
+        url: 'prospective/' + ID,
+        method: 'post',
+        data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+        success: function () {
+          window.location.href = "/customers";
+        }
+      });
+    });
+  }
+</script>
+
+<script>
+
+  function showSuccessMessage(message) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Contract has not expired',
+      text: message,
+    }).then((result) => {
+
+      window.location.href = '/customers';
+    });
+  }
+
+  function showSuccMessage(message) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Successfully Activated',
+      text: message,
+    }).then((result) => {
+
+      window.location.href = '/customers';
+    });
+  }
+</script>
+
+<script>
+  var searchInput = document.getElementById("customersearch");
+  var checkboxes = document.querySelectorAll(
+    '.selectBox-cont input[type="checkbox"]'
+  );
+  var labels = document.querySelectorAll(".selectBox-cont label");
+
+  searchInput.addEventListener("input", function (event) {
+    var searchTerm = event.target.value.trim().toLowerCase();
+
+    checkboxes.forEach(function (checkbox, index) {
+      var stationName = labels[index].textContent.toLowerCase();
+
+      if (stationName.includes(searchTerm)) {
+        checkbox.parentElement.style.display = "block";
+      } else {
+        checkbox.parentElement.style.display = "none";
+      }
+    });
+  });
+</script>
+
+{% endblock %}

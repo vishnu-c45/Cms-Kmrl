@@ -1,0 +1,670 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Contract Details</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+        <div class="card customer-details-group">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <!-- <img class="rounded-circle" src="assets/img/profiles/avatar-05.jpg" alt=""> -->
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Contract Number</h6>
+                                    <p>{{std.contract_no}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Customer </h6>
+                                    <p>{{std.customer_contact.customer.customer_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-handshake"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Agreement Number</h6>
+                                    <p>{{std.agreement_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hotel"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Space</h6>
+                                    <p>{{std.master_space.space_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction No</h6>
+                                    <p class="customer-mail">{{std.auction_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction Date
+                                        <span>
+                                            {% for p in contractpic %}
+                                            {% if p.file %}
+                                            {% if p.contracttype == 2 %}
+                                            <!-- <img src="{{ p.file }}" class="w-25" alt=" Image"> -->
+                                            <a href="{{p.file}}" download="file">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            {% else %}
+    
+                                            {% endif %}
+    
+                                            {% else %}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </h6>
+                                    <p class="customer-mail">{{std.auction_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction Notice No</h6>
+                                    <p>{{std.auction_notice_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Auction Notice Date
+                                        <span>
+                                            {% for p in contractpic %}
+                                            {% if p.file %}
+                                            {% if p.contracttype == 3 %}
+                                            <!-- <img src="{{ p.file }}" class="w-25" alt=" Image"> -->
+                                            <a href="{{p.file}}" download="file">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            {% else %}
+    
+                                            {% endif %}
+    
+                                            {% else %}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </h6>
+                                    <p>{{std.auction_notice_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP Number</h6>
+                                    <p>{{std.rfp_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP Date 
+                                        <span>
+                                            {% for p in contractpic %}
+                                            {% if p.file %}
+                                            {% if p.contracttype == 1 %}
+                                            <!-- <img src="{{ p.file }}" class="w-25" alt=" Image"> -->
+                                            <a href="{{p.file}}" download="file">
+                                                <i class="fas fa-download"  ></i>
+                                            </a>
+                                            {% else %}
+    
+                                            {% endif %}
+    
+                                            {% else %}
+                                            {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </h6>
+                                    <p>{{std.rfp_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP-REF Number </h6>
+                                    <p>{{std.rfp_ref_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>RFP REF-Date</h6>
+                                    <p>{{std.rfp_ref_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Lock In Period</h6>
+                                    <p>{{std.lock_in_period}} days</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Fitment Period</h6>
+                                    <p>{{std.fitment_period}} days</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-percent"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Hike</h6>
+                                    <p>{{std.hikes}}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-percent"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>CAM</h6>
+                                    <p>{{std.cam_charges}}%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-hashtag"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Loa Number</h6>
+                                    <p>{{std.loa_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Loa Date</h6>
+                                    <p>{{std.loa_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-ruler"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Square Feet Rate</h6>
+                                    <p>{{std.sq_ft_rate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Bill Start Date</h6>
+                                    <p>{{std.bill_start_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Tenure Start Date</h6>
+                                    <p>{{std.tenure_start_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Tenure End Date</h6>
+                                    <p>{{std.tenure_end_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-signature"></i> </span>
+                                <div class="customer-details-cont">
+                                    <h6>Authorized Signatory</h6>
+                                    <p>{{std.auth_sign}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-brands fa-black-tie"></i></span>
+                                <div class="customer-details-cont">
+                                    <h6>Designation</h6>
+                                    <p>{{std.desiginations}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Created on</h6>
+                                    <p>{{std.created_on|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Created by</h6>
+                                    <p>{{std.created_by}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Updated on</h6>
+                                    <p>{{std.updated_on|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Updated by</h6>
+                                    <p>{{updated.login_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Filter -->
+        <div id="filter_inputs" class="card filter-card">
+            <div class="card-body pb-0">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Search Filter -->
+
+        <!-- Inovices card -->
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body ">
+                        <!-- <a href="#"> -->
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-success-light ">
+                                <!-- <img src="assets/img/icons/receipt-item.svg" alt=""> -->
+                                <i class="fa-solid fa-indian-rupee-sign" style="color: #3ecc2e;"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">
+                                    Rent
+                                </div>
+                                <div class="dash-counts">
+                                    <p>{{std.rent_amount}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <!-- <a href="#"> -->
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-primary-light">
+                                <!-- <img src="assets/img/icons/transaction-minus.svg" alt=""> -->
+                                <i class="fa-solid fa-building-lock"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Security Deposits </div>
+                                <div class="dash-counts">
+                                    <p>{{std.security_deposit}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <!-- <a href="#"> -->
+
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-warning-light">
+                                <!-- <img src="assets/img/icons/archive-book.svg" alt=""> -->
+                                <i class="fa-solid fa-hourglass-end" style="color: #cc702e;"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Contract Period</div>
+                                <div class="dash-counts">
+                                    <p>{{std.contract_period}} Yrs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <!-- <a href="#"> -->
+
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-primary-light">
+                                <!-- <img src="assets/img/icons/clipboard-close.svg" alt=""> -->
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Invoice Start Date</div>
+                                <div class="dash-counts">
+                                    <p>{{std.invoice_start_date|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Inovices card -->
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-stripped table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Space Name</th>
+                                        <th>Station</th>
+                                        <th>Type </th>
+                                        <th>Area Type</th>
+                                        <th>Area Level</th>
+                                        <th>Area Side</th>
+                                        <th>Area sqft</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in spaces %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{p.space_name}}</td>
+                                        <td>{{p.metrostation.metrostation.station_name}}</td>
+                                        <td>{{p.space_type}}</td>
+                                        <td>{{p.area_type}}</td>
+                                        <td>{{p.area_level}}</td>
+                                        <td>{{p.area_side}}</td>
+                                        <td>{{p.area}} sqft</td>
+                                        {% if p.vacancy_status == 1 %}
+                                        <td class="status"><span class="badge badge-pill bg-success-light">Vacant</span>
+                                        </td>
+                                        {% elif p.vacancy_status == 2 %}
+                                        <td class="status"><span
+                                                class="badge bg-warning-light text-warning-light">Occupied</span></td>
+                                        {% else %}
+                                        <td class="status"><span
+                                                class="badge badge-pill bg-danger-light">Inactive</span></td>
+                                        {% endif %}
+                                        <td class="d-flex align-items-center">
+                                            <a href="/space_details/{{p.id}}" class="btn btn-greys me-2"><i
+                                                    class="fa fa-plus-circle me-1"></i> Details</a>
+
+                                        </td>
+                                    </tr>
+
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Table -->
+
+        <!-- Delete Items Modal -->
+        <div class="modal custom-modal fade" id="delete_modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-header">
+                            <h3>Delete Customer Details</h3>
+                            <p>Are you sure you want to delete?</p>
+                        </div>
+                        <div class="modal-btn delete-action">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="#" data-bs-dismiss="modal"
+                                        class="btn btn-primary paid-continue-btn">Delete</a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="#" data-bs-dismiss="modal"
+                                        class="btn btn-primary paid-cancel-btn">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Delete Items Modal -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+    document.getElementById('contract').classList.add('active');
+</script>
+
+{% endblock %}

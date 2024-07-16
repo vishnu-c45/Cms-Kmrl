@@ -1,0 +1,51 @@
+{% extends 'customer_layout.html' %}
+{% load static %}
+{% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Contracts</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        {% for p in std %}
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h4 class="card-title text-center">{{ p.contract_no }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ p.master_space.space_name }}</p>
+                                <p class="card-text">{{ p.contract_period }}yrs</p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center">
+                                <a href="/contract-details/{{ p.id }}" class="btn btn-primary btn-block">Details</a>
+                            </div>
+                        </div>
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /Page Wrapper -->
+
+<script>
+    document.getElementById('contract').classList.add('active');
+</script>
+
+{% endblock %}

@@ -1,0 +1,415 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5> Customer Registration Details</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        
+        <div class="card customer-details-group">
+            <div class="card-body">
+                <div class="row align-items-center">					
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-img d-inline-flex">
+                                    <img class="rounded-circle" src="/static/assets/img/profiles/avatar-07.jpg" alt="">
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>{{std.customer.customer_name}}</h6>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Email Address</h6>
+                                    <p>{{std.email}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Phone Number</h6>
+                                    <p>{{std.phone_number}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fe fe-airplay"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Business Name</h6>
+                                    <p>{{std.customer.business_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-building" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Business Type</h6>
+                                    <p class="customer-mail">{{std.customer.business_type}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	    
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>PAN</h6>
+                                    <p class="customer-mail">{{std.pan_no}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>GST Number</h6>
+                                    <p class="customer-mail">{{std.gst_no}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Address</h6>
+                                    <p>{{std.address}}, {{std.city}}, {{std.pincode}}</p>
+                                    <p>{{std.district}}, {{std.state}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>State Code</h6>
+                                    <p class="customer-mail">{{std.state_code}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">						
+            <form action="#" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Customer	
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"  data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">														
+                                            <input type="text" class="form-control" id="member_search1" placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span>  Brian Johnson
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span>  Russell Copeland
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span>  Greg Lynch
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> John Blair
+                                            </label>
+                                            <!-- View All -->
+                                            <div class="view-content">
+                                                <div class="viewall-One">	
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Barbara Moore
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Hendry Evan
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Richard Miles
+                                                    </label>
+                                                </div>
+                                                <div class="view-all">
+                                                    <a href="javascript:void(0);" class="viewall-button-One"><span class="me-2">View All</span><span><i class="fa fa-circle-chevron-down"></i></span></a>
+                                                </div>
+                                            </div>
+                                            <!-- /View All -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100 collapsed"  data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                            Select Date	
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"  data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100 collapsed"  data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                            By Status	
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"  data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="form-custom">														
+                                    <input type="text" class="form-control" id="member_search2" placeholder="Search here">
+                                    <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                </div>
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> All Invoices
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span>  Paid
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span>  Overdue
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Draft
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Recurring
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Cancelled
+                                    </label>
+                                </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+
+                <!-- Category -->
+                <div class="accordion accordion-last" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                        <a href="javascript:void(0);" class="w-100 collapsed"  data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            Category	
+                            <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                        </a> 
+                        </h6>
+                    </div>
+                
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"  data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes3">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Advertising
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span>  Food
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span>  Repairs
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Software
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">	
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Stationary
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Medical
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Designing
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span class="me-2">View All</span><span><i class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <!-- /Category -->
+
+                <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span><img src="/static/assets/img/icons/chart.svg" class="me-2" alt="Generate report"></span>Generate report
+                </button>
+            </form>
+            
+        </div>
+    </div>
+</div>	
+<!--/Add Asset -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Customer</h3>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete_space"
+                                class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+
+<script>
+    document.getElementById('customer').classList.add('active');
+</script>
+<!-- <script>
+    function deletespace(ID) {
+        $('#delete_modal').modal('show');
+        $('#delete_customer').click(function () {
+            $.ajax({
+                url: 'deletespace/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    // alert(response)
+                    window.location.href = 'view_spaces';
+                }
+            });
+        })
+    }
+</script> -->
+
+{% endblock %}

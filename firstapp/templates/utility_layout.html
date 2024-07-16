@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title> Customer Management System</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" class="w-100" href="/static/assets/img/KMRL.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/feather/feather.css">
+
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/static/assets/css/style.css">
+
+</head>
+
+<body>
+
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div class="header header-one">
+
+
+			<!-- Mobile Menu Toggle -->
+			<div class="d-flex align-items-center">
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+
+					<!-- <img src="/static/assets/img/KMRL.png" class="img-fluid logo-small" alt=""> -->
+				</a>
+			</div>
+			<!-- /Mobile Menu Toggle -->
+
+			<!-- <style>
+				.mobile_btn {
+					display: flex;
+					align-items: center;
+				}
+
+				.mobile_btn .logo-small {
+					width: 50px;
+					/* Adjust the width as needed */
+					height: 50px;
+					/* Adjust the height as needed */
+					margin-left: 120px;
+					/* Adjust the margin as needed */
+				}
+			</style> -->
+
+			<!-- Header Menu -->
+			<ul class="nav nav-tabs user-menu">
+
+				<!-- /User Menu -->
+				<!-- <li class="dropdown">
+					<a href="javascript:void(0)" data-bs-toggle="dropdown">
+						<span class="user-img" id="adminimg">
+
+						</span>
+						<span class="user-content">
+							<span id="adminname" class="user-name"></span>
+						</span>
+					</a>
+					<div class="dropdown-menu menu-drop-user">
+						<div class="profilemenu">
+							<div class="subscription-menu">
+								<ul>
+									<li>
+										<a class="dropdown-item" href="/profile_info">Profile</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/edit_profile">Settings</a>
+									</li>
+								</ul>
+							</div>
+							<div class="subscription-logout">
+								<ul>
+									<li class="pb-0">
+										<a class="dropdown-item" href="/logout">Log Out</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li> -->
+				<!-- <a class="dropdown-item" href="/logout">
+					<i class="fas fa-power-off" style="font-size: x-large; "></i>
+				</a> -->
+			</ul>
+			<!-- /Header Menu -->
+
+		</div>
+		<!-- /Header -->
+
+		<!-- Sidebar -->
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<div class="sidebar-logo">
+					<a href="/dashboard">
+						<img src="/static/assets/img/KMRL-logo.png" class="img-fluid logo" alt="">
+
+					</a>
+					<a href="/dashboard">
+						<img src="/static/assets/img/KMRL-logo.png" class="img-fluid logo-small " alt="">
+					</a>
+				</div>
+			</div>
+			<div class="sidebar-inner slimscroll">
+				<div id="sidebar-menu" class="sidebar-menu">
+					<!-- Main -->
+
+					<ul>
+
+						<li class="menu-title"><span>Electricity</span></li>
+						<li>
+
+							<a id="power" href="/power"><i class="fas fa-bolt"></i><span>Electricity</span></a>
+						</li>
+						<li class="menu-title"><span>Water</span></li>
+
+						<li>
+							<a id="water" href="/water"><i class="fas fa-water"></i><span>Water</span></a>
+						</li>
+
+						<li class="menu-title"><span>Settings</span></li>
+						<li>
+							<a href="/logout"><i class="fa-solid fa-power-off"></i> <span>Logout</span></a>
+						</li>
+					</ul>
+					<!-- /Settings -->
+
+				</div>
+			</div>
+		</div>
+		<!-- /Sidebar -->
+
+		{% block body %} {% endblock %}
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="/static/assets/js/jquery-3.6.3.min.js"></script>
+
+	<!-- Datatable JS -->
+	<script src="/static/assets/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Feather Icon JS -->
+	<script src="/static/assets/js/feather.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="/static/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/static/assets/js/script.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+		integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+
+</body>
+
+</html>

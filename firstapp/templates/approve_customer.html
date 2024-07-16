@@ -1,0 +1,148 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Approve Customer</h5>
+                <div class="list-btn">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+     
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center table-hover ">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Name</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in std %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <div class="avatar avatar-md me-2">
+                                                    <img class="avatar-img rounded-circle"
+                                                        src="/static/assets/img/profiles/avatar-07.jpg"
+                                                        alt="User Image">
+                                                </div>
+                                                {{p.customer.customer_name}}
+                                            </h2>
+                                        </td>
+                                        <td>{{p.username}}</td>
+                                        <td>{{p.email}}</td>
+                                        <td>{{p.phone_number}}</td>
+                                        <td class="d-flex align-items-center">
+                                            <a onclick="Approved_customer('{{p.id}}')" class="btn bg-success-light me-2"> Approve</a>
+                                            <a onclick="Rejected_customer('{{p.id}}')" class="btn bg-danger-light me-2">Reject</a>
+                                            <!-- <a href="/customer_registration_details/{{p.id}}"
+                                                class="btn bg-ash-gray me-2">Details</a> -->
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Customer</h3>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete_space"
+                                class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+
+<script>
+    document.getElementById('customer').classList.add('active');
+</script>
+<script>
+    function Approved_customer(ID) {
+    $.ajax({
+    url: "/approved/" + ID,
+    method: "post",
+    data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+
+    success: function (response) {
+      showSuccessMessage(response);
+    },
+  });
+}
+</script>
+<script>
+    function Rejected_customer(ID) {
+  $.ajax({
+    url: "/rejected/" + ID,
+    method: "post",
+    data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+
+    success: function (response) {
+      showSuccessMessage(response);
+    },
+  });
+}
+
+
+function showSuccessMessage(message) {
+    Swal.fire({
+      icon: 'success', 
+      text: message,
+    }).then((result) => {
+      
+      window.location.href = '/approve_customer'; 
+    });
+  }
+
+</script>
+
+
+{% endblock %}

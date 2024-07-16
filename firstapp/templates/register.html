@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Customer Management System</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" class="w-100" href="/static/assets/img/KMRL.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+
+<body>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper login-body">
+        <div class="login-wrapper">
+            <div class="container">
+                <img class="img-fluid logo-dark w-25 mb-2" src="/static/assets/img/KMRL-logo.png" alt="Logo">
+                <div class="loginbox">
+                    <div class="login-right">
+                        <div class="login-right-wrap">
+                            <h1>Register</h1>
+                            <p class="account-subtitle"></p>
+                            <!-- Form -->
+                            <form role="form" class="form" id="customerregisterform">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="form-control-label">Name</label>
+                                    <input class="form-control" type="text" name="customername">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Email Address</label>
+                                    <input class="form-control" type="text" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Phone Number</label>
+                                    <input class="form-control" type="number" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Username</label>
+                                    <input class="form-control" type="text" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Password</label>
+                                    <input class="form-control" type="password" name="pass">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">Confirm Password</label>
+                                    <input class="form-control" type="password" name="cpass">
+                                </div>
+                                <div class="form-group mb-0">
+                                    <button class="btn btn-lg btn-block btn-primary w-100"
+                                        type="submit">Register</button>
+                                </div>
+                            </form>
+                            <!-- /Form -->
+                            <div class="text-center dont-have">Already have an account? <a href="/">Login</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery Validation Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+    <script>
+        $(function () {
+            $('#customerregisterform').validate({
+                rules: {
+                    customername: 'required',
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: 'required',
+                    username: 'required',
+                    pass: {
+                        required: true,
+                        minlength: 8,
+                    },
+                    cpass: {
+                        required: true,
+                        equalTo: '#customerregisterform input[name="pass"]'
+                    }
+                },
+                messages: {
+                    customername: 'Please enter your name',
+                    email: {
+                        required: 'Please enter your email address',
+                        email: 'Please enter a valid email address'
+                    },
+                    username: 'Please enter your username',
+                    phone: 'Please enter your phone number',
+                    pass: 'Please enter a password',
+                    cpass: {
+                        required: 'Please confirm your password',
+                        equalTo: 'Passwords do not match'
+                    }
+                },
+                submitHandler: function (form) {
+                    var formdata = $(form).serialize();
+                    // alert(formdata);
+                    $.ajax({
+                        method: 'POST',
+                        url: '/register',
+                        datatype: 'json',
+                        data: formdata,
+
+                        success: function (response) {
+                            if (response == 'true') {
+                                showSuccessMessage();
+                            }
+                            else if (response = 'exists') {
+                                Warning();
+                            }
+                        },
+                    });
+                }
+            });
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.startsWith(name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            function showSuccessMessage(message) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    text: message
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        // Send email to the registered customer
+                        const csrftoken = getCookie('csrftoken');
+
+                        $.ajax({
+                            method: 'POST',
+                            url: '/send-email',
+                            dataType: 'json',
+                            data: {
+                                email: $('#customerregisterform input[name="email"]').val(),
+                                customerName: $('#customerregisterform input[name="customername"]').val(),
+                                type: 1
+                            },
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            },
+                            success: function (response) {
+                                // Handle the response from the email sending process if needed
+                            }
+                        });
+
+                        // Redirect to the desired page
+                        window.location.href = '/';
+                    }
+                });
+            }
+
+
+            function Warning(message) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Username Already Exists',
+                    text: message,
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>

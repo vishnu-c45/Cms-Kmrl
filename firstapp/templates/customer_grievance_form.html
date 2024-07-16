@@ -1,0 +1,200 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<style>
+    /* Style for the cards */
+    .card {
+        margin-bottom: 0px;
+        border: 0px;
+        border-radius: 0px;
+    }
+
+    .card-header {
+        border-radius: 5px 5px 0 0;
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+</style>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Grievance Form</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Table -->
+        <div class="container-fluid">
+            <div class="card card-default">
+                <div class="card" style="background-color: #ebebf1;">
+                    <h3 class="card-title" style="color: #28084B;">CUSTOMER INFORMATION</h3>
+                </div>
+                <div class="card-body table-responsive">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-table">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-stripped table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Customer Name</th>
+                                                    <th>Contact Number </th>
+                                                    <th>Email</th>
+                                                    <th>Space Name </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{std.customer_contact.customer.customer_name}}</td>
+                                                    <td>{{std.customer_contact.phone_number}}</td>
+                                                    <td>{{std.customer_contact.email}}</td>
+                                                    <td>{{std.master_space.space_name}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-default">
+                <div class="card" style="background-color: #ebebf1;">
+                    <h3 class="card-title" style=" color: #28084B;">COMPLAINT INFORMATION</h3>
+                </div>
+                <div class="card-body table-responsive">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-table">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-stripped table-hover">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>Reason</th>
+                                                    <th>Complaint Date </th>
+                                                    <th>Photos</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{std.reason}}</td>
+                                                    <td>{{std.created_on|date:'d-m-Y'}}</td>
+                                                    {% if std.complaint_pic == '' %}
+                                                    <td>No Photos</td>
+                                                    {% else %}
+                                                    <td>
+                                                        <a href="{{std.complaint_pic}}"download="">
+                                                        <i class="fa-solid fa-download" style="margin-right: 5px; "></i> 
+                                                        Download
+                                                        </a>
+                                                    </td>
+                                                    {% endif %}
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="p-2 m-0" style=" color: #28084B;">Complaint Details:</label>
+                        <textarea readonly type="text" cols="30" rows="3" class="form-control" color:
+                            black;>{{std.complaint}}</textarea>
+                    </div>
+                    {% if std.status == 1 %}
+
+                    <button data-bs-toggle="modal" value="{{std.id}}" id="replybutton" data-bs-target="#edit_contact"
+                        class="btn btn-info text-white float-end " style="background-color: #39b1b7 ; ">Reply</button>
+
+                    {% endif %}    
+                </div>
+            </div>
+            {% if std.status == 2 %}
+            
+            <div class="card card-default">
+                <div class="card" style="background-color: #ebebf1;">
+                    <h3 class="card-title" style=" color: #28084B;">REPLY</h3>
+                </div>
+                <div class="form-group">
+                    <textarea readonly type="text" cols="30" rows="2" class="form-control" color:
+                        black;>{{std.reply}}</textarea>
+                </div>
+            </div>
+            {% endif %}    
+
+        </div>
+        <!-- /Table -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Edit Vendor Modal -->
+<div class="modal custom-modal fade" id="edit_contact" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0">
+                    <h4 class="mb-0">Reply</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form" id="replyform">
+
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Message</label>
+                                <input type="text" name="reply" class="form-control" placeholder="Enter Message">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn me-2">Cancel</a>
+                        <button id="reply" class="btn btn-primary paid-continue-btn">Reply</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /Edit Vendor Modal -->
+
+    <script>
+        document.getElementById("grievances").classList.add("active");
+    </script>
+
+    <script src="/static/assets/js/reply.js/"></script>
+
+    {% endblock %}

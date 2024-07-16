@@ -1,0 +1,285 @@
+{% extends 'customer_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+       <!-- Page Header -->
+            <div class="page-header">
+                <div class="content-page-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5>Grievances</h5>
+                        <div>
+                            <a href="javascript:void(0);" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addgrievance"><i class="fa fa-plus-circle "
+                                aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- /Page Header -->
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        {% for p in std %}
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h4 class="card-title text-center">{{ p.reason }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">{{ p.master_space.space_name }}</p>
+                                <p class="card-text">{{ p.created_on|date:'d-m-Y' }}</p>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center">
+                                {% if p.status == 1%}
+                                <a href="{% url 'View_grievance_details' p.id %}" class="btn btn-primary btn-block"><i class="fa-regular fa-eye"></i> </a>
+                                <a href="#" class="btn btn-secondary btn-block" onclick="editgrievance('{{ p.id }}')"><i class="far fa-edit"></i> </a>
+                                <a href="#" class="btn btn-danger btn-block" data-bs-toggle="modal" onclick="deletegrievance('{{ p.id }}')"><i class="far fa-trash-alt"></i> </a>
+                                {% elif p.status == 2%}
+                                <a href="{% url 'View_grievance_details' p.id %}" class="btn btn-primary btn-block"><i class="fa-regular fa-eye"></i> </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+
+
+<!-- Add Details Modal -->
+<div class="modal custom-modal fade" id="addgrievance" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0">
+                    <h4 class="mb-0">New Grievance</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form" id="grievanceform" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Space: <span class="text-danger"></span></label>
+                                <select name="space" class=" form-control select">
+                                    <option disabled selected>Select Space</option>
+                                    {% for p in masterspaces %}
+                                    <option value="{{p.master_space.id}}">{{p.master_space.space_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Reason:<span class="text-danger"></span></label>
+                                <select name="reason" class=" form-control select">
+                                    <option disabled selected>Select Reason</option>
+                                    <option value="Property Damage">Property Damage</option>
+                                    <option value="Electricity Failure">Electricity Failure</option>
+                                    <option value="Water Leak">Water Leak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Complaint Details:<span class="text-danger"></span></label>
+                                <textarea name="complaintdetails" class="form-control" id="" cols="30" rows="5" placeholder="Enter Complaint Details"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group mb-0">
+                                <label>Photo:<span class="text-danger"></span></label>
+                                <input type="file" class="form-control" name="photo" multiple="" id="image_sign">
+                                <div id="frames"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="modal-footer mt-3">
+                                <a href="#" data-bs-dismiss="modal"
+                                    class="btn btn-primary paid-cancel-btn me-2">Back</a>
+                                <button id="submitbutton" class="btn btn-primary">Save Changes</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Add Details Modal -->
+
+<!-- Edit Details Modal -->
+<div class="modal custom-modal fade" id="editgrievance" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0">
+                    <h4 class="mb-0">Edit Grievance</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form" id="editgrievanceform">
+
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Space: <span class="text-danger"></span></label>
+                                <select id="space" name="space" class=" form-control select">
+                                    <option disabled >Select Space</option>
+                                    {% for p in masterspaces %}
+                                    <option selected value="{{p.master_space.id}}">{{p.master_space.space_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Reason:<span class="text-danger"></span></label>                                        
+                                <select class="form-control" name="reason" aria-label="Default select example">
+                                    <option disabled >Select Reason</option>
+                                    <option value="Property Damage" {% if std.reason == 'Property Damage' %}selected{% endif %}>Property Damage</option>
+                                    <option value="Electricity Failure" {% if std.reason == 'Electricity Failure' %}selected{% endif %}>Electricity Failure</option>
+                                    <option value="Water Leak" {% if std.reason == 'Water Leak' %}selected{% endif %}>Water Leak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <label>Complaint Details:<span class="text-danger"></span></label>
+                                <textarea name="complaintdetails" class="form-control" id="complaintdetails" cols="30" rows="5" placeholder="Enter Complaint Details"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group mb-0">
+                                <label>Photo:<span class="text-danger"></span></label>
+                                    <input type="file" class="form-control" name="photo" multiple="" id="photo">
+                                    <div id="frames"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12">
+                            <div class="modal-footer mt-3">
+                                <a href="#" data-bs-dismiss="modal"
+                                    class="btn btn-primary paid-cancel-btn me-2">Back</a>
+                                <button id="editsubmit" class="btn btn-primary">Save Changes</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Edit Details Modal -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_grievance" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h2>Delete Grievance</h2>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete" class="w-100 btn btn-primary paid-continue-btn">
+                                Delete
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+<style>
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        margin-bottom: 5px;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-top: none;
+        background-color: rgb(247, 246, 246);
+    }
+
+    .card-footer .btn {
+        margin-left: 5px;
+    }
+</style>
+
+
+<script>
+    document.getElementById("grievances").classList.add("active");
+</script>
+<script>
+    function deletegrievance(ID) {
+        $('#delete_grievance').modal('show');
+        $('#delete').click(function () {
+            $.ajax({
+                url: 'deletegrievance/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    // alert(response)
+                    window.location.href = 'grievances';
+                }
+            });
+        })
+    }
+</script>
+
+<script src="/static/assets/js/create_grievance.js"></script>
+<script src="/static/assets/js/update_grievance.js"></script>
+
+
+
+{% endblock %}

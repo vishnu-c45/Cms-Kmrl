@@ -1,0 +1,112 @@
+{% extends 'customer_layout.html' %} {% load static %} {% block body %}
+
+<style>
+    /* Style for the cards */
+    .card {
+        margin-bottom: 0px;
+        border: 0px;
+        border-radius: 0px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .card-header {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+    
+
+</style>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Grievance Form</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <!-- Table -->
+        <div class="container-fluid">
+            <!-- CUSTOMER INFORMATION AND COMPLAINT INFORMATION -->
+            <div class="card card-default mb-3">
+                <div class="card-header" style="background-color: #ebebf1;">
+                    <h3 class="card-title" style="color: #28084B;">CUSTOMER INFORMATION</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Customer Name:</strong> {{std.customer_contact.customer.customer_name}}</li>
+                        <li class="list-group-item"><strong>Contact Number:</strong> {{std.customer_contact.phone_number}}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{std.customer_contact.email}}</li>
+                        <li class="list-group-item"><strong>Space Name:</strong> {{std.master_space.space_name}}</li>
+                    </ul>
+                </div>
+        
+                <div class="card-header" style="background-color: #ebebf1;">
+                    <h3 class="card-title" style="color: #28084B;">COMPLAINT INFORMATION</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Reason:</strong> {{std.reason}}</li>
+                        <li class="list-group-item"><strong>Complaint Date:</strong> {{std.created_on|date:'d-m-Y'}}</li>
+                        {% if std.complaint_pic == '' %}
+                            <li class="list-group-item"><strong>Photos:</strong> No Photos</li>
+                        {% else %}
+                            <li class="list-group-item">
+                                <strong>Photos:</strong>
+                                <a href="{{std.complaint_pic}}" download="" style="color: black;">
+                                    <i class="fa-solid fa-download" style=" color: black;"></i>
+                                    Download
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="list-group-item">
+                            <strong>Complaint Details:</strong>
+                            <p>{{std.complaint}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+            {% if std.status == 2 %}
+                <!-- REPLY -->
+                <div class="card card-default mb-3">
+                    <div class="card-header" style="background-color: #ebebf1;">
+                        <h3 class="card-title" style="color: #28084B;">REPLY</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>{{std.reply}}</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- /Table -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+
+    document.getElementById("grievances").classList.add("active");
+</script>
+
+
+{% endblock %}

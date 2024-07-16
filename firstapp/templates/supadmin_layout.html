@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title> Customer Management System</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" class="w-100" href="/static/assets/img/KMRL.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/static/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/feather/feather.css">
+	<link rel="stylesheet" href="/static/assets/plugins/c3-chart/c3.min.css">
+
+	<!-- Datepicker CSS -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap-datetimepicker.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="/static/assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/static/assets/css/style.css">
+
+</head>
+
+<body onload="Notifications_load()">
+
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div class="header header-one">
+
+			<!-- Sidebar Toggle -->
+			<a href="javascript:void(0);" id="toggle_btn">
+				<span class="toggle-bars">
+					<span class="bar-icons"></span>
+					<span class="bar-icons"></span>
+					<span class="bar-icons"></span>
+					<span class="bar-icons"></span>
+				</span>
+			</a>
+			<!-- /Sidebar Toggle -->
+
+			<!-- Mobile Menu Toggle -->
+			<a class="mobile_btn" id="mobile_btn">
+				<i class="fas fa-bars"></i>
+			</a>
+			<!-- /Mobile Menu Toggle -->
+
+			<!-- Header Menu -->
+			<ul class="nav nav-tabs user-menu">
+				<!-- 
+				<li class="nav-item  has-arrow dropdown-heads ">
+					<a href="javascript:void(0);" class="toggle-switch">
+						<i class="fe fe-moon"></i>
+					</a>
+				</li> -->
+				<li class="nav-item dropdown  flag-nav dropdown-heads">
+					<a class="nav-link" data-bs-toggle="dropdown" href="#" role="button">
+						<i class="fe fe-bell"></i> <span class="badge rounded-pill" id="notification_badge"></span>
+					</a>
+					<div class="dropdown-menu notifications">
+						<div class="topnav-dropdown-header">
+							<span class="notification-title">Notifications</span>
+							<a onclick="Clear_notifications()" class="clear-noti"> Clear All</a>
+						</div>
+						<div class="noti-content">
+							<ul class="notification-list" id="notification_list">
+							</ul>
+						</div>
+						<div class="topnav-dropdown-footer">
+							<!-- <a href="notifications.html">View all Notifications</a> -->
+						</div>
+					</div>
+				</li>
+				<!-- <div class="nav-item dropdown  flag-nav dropdown-heads ">
+					<a class="nav-link" data-bs-toggle="dropdown" href="#" role="button">
+						<i class="fa-regular fa-calendar"></i>					
+					</a>
+					<div class="dropdown-menu notifications m-2">
+						<div class="topnav-dropdown-header">
+							<span class="notification-title"></span>
+						</div>
+						<form method="post" action="{% url 'firstapp' %}">
+							{% csrf_token %}
+							<div class="noti-content">
+								<label for="">From</label>
+								<input type="date" class="form-control w-100" name="fromDate" id="fromDate">
+								<label for="">To</label>
+								<input type="date" class="form-control w-100" name="toDate" id="toDate">
+								<button type="submit" class="form-control mt-3 bg-primary text-white ">Search</button>
+							</div>
+						</form>
+						
+					</div>
+					
+				</div> -->
+				<!-- /User Menu -->
+				<li class="nav-item dropdown">
+					<a href="javascript:void(0)" class="user-link  nav-link" data-bs-toggle="dropdown">
+						<span class="user-img" id="adminimg">
+
+						</span>
+						<span class="user-content">
+							<span id="adminname" class="user-name"></span>
+						</span>
+					</a>
+					<div class="dropdown-menu menu-drop-user">
+						<div class="profilemenu">
+							<div class="subscription-menu">
+								<ul>
+									<li>
+										<a class="dropdown-item" href="/profile">Profile</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="/profile_settings">Settings</a>
+									</li>
+								</ul>
+							</div>
+							<div class="subscription-logout">
+								<ul>
+									<li class="pb-0">
+										<a class="dropdown-item" href="/logout">Log Out</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+			<!-- /Header Menu -->
+
+		</div>
+		<!-- /Header -->
+
+		<!-- Sidebar -->
+		<div class="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<div class="sidebar-logo">
+					<a href="/dashboardsuper">
+						<img src="/static/assets/img/KMRL-logo.png" class="img-fluid logo" alt="">
+
+					</a>
+					<a href="/dashboardsuper">
+						<img src="/static/assets/img/KMRL-logo.png" class="img-fluid logo-small " alt="">
+					</a>
+				</div>
+			</div>
+			<div class="sidebar-inner slimscroll">
+				<div id="sidebar-menu" class="sidebar-menu">
+					<!-- Main -->
+
+					<ul>
+
+						<li>
+							<a id="dashboard" href="/dashboardsuper"><i
+									class="fa-solid fa-house"></i><span>Dashboard</span></a>
+						</li>
+						<li class="menu-title mt-3"><span>Spaces</span></li>
+						<li>
+							<a id="viewmetro" href="/metrostaion"><i class="fa fa-subway" aria-hidden="true"></i>
+								<span>Metro Stations</span></a>
+						</li>
+
+						<li>
+							<a id="space-dash" href="/view_spaces"><i class="fa-solid fa-hotel"></i>
+								<span>Spaces</span></a>
+						</li>
+
+						<li>
+							<a id="intrestspace-dash" href="/IntrestSpaceView"><i class="fa-solid fa-heart"></i>
+								<span>Interested Spaces</span></a>
+						</li>
+
+
+
+					</ul>
+
+					<!-- Customers -->
+					<ul>
+						<li class="menu-title"><span>Customers</span></li>
+						<li>
+							<a id="customer" href="/customers"><i class="fa-solid fa-users"></i>
+								<span>Customers</span></a>
+						</li>
+						<li>
+							<a id="contract" href="/view_contracts"><i
+									class="fa-solid fa-file-contract"></i><span>Contracts</span></a>
+						</li>
+					</ul>
+					<!-- /Customers -->
+
+					<!-- Sales -->
+					<ul>
+						<li class="menu-title"><span>Payments</span></li>
+						<li class="submenu">
+
+						<li><a id="invoice" href="/customer_invoices"><i class="fa fa-receipt"></i>
+								<span>Invoices</span> </a>
+						</li>
+
+						</li>
+						<!-- <li>
+							<a id="creditnote" href="/creditnotes"><i class="fa fa-sticky-note"></i> <span>Credit
+									Notes</span></a>
+						</li> -->
+						<li>
+							<a id="payment" href="/customer_payments"><i class="fa fa-credit-card-alt"></i>
+								<span>Payments</span></a>
+						</li>
+					</ul>
+					<!-- /Sales -->
+
+
+					<!-- Reports -->
+					<ul>
+						<li class="menu-title"><span>Reports</span></li>
+						<li>
+							<a id="paymentreport" href="/payment_report"><i class="fa fa-credit-card-alt"></i>
+								<span>Payment
+									Summary</span></a>
+						</li>
+					</ul>
+					<!-- /Reports -->
+
+					<!-- User Management -->
+					<ul>
+						<li class="menu-title"><span>User Management</span></li>
+						<li class="submenu">
+
+						<li><a id="users" href="/manage_users"><i class="fa-solid fa-user"></i> <span>Manage
+									Users</span> </a></li>
+
+						</li>
+					</ul>
+					<!-- /User Management -->
+
+					<!-- Support -->
+					<ul>
+						<li class="menu-title"><span>Support</span></li>
+						<li>
+							<a id="grievances" href="/customer_grievances"><i class="fa-solid fa-comments"></i>
+								<span>Grievances</span></a>
+						</li>
+					</ul>
+
+
+					<!-- Settings -->
+					<ul>
+						<li class="menu-title"><span>Settings</span></li>
+						<li>
+							<a id="settings" href="/profile_settings"><i class="fa-solid fa-gear"></i>
+								<span>Settings</span></a>
+						</li>
+						<li>
+							<a href="/logout"><i class="fa-solid fa-power-off"></i> <span>Logout</span></a>
+						</li>
+					</ul>
+					<!-- /Settings -->
+
+				</div>
+			</div>
+		</div>
+		<!-- /Sidebar -->
+
+		<script>
+
+			function Notifications_load() {
+				var body = document.getElementById('notification_list');
+				var badge = document.getElementById('notification_badge');
+				body.innerHTML = '';
+				badge.style.display = 'none'; // Hide the badge initially
+
+
+				fetch('/api/notifications/')
+					.then(response => response.json())
+					.then(data => {
+						//console.log("data", data);
+						if (data.length > 0) {
+
+							data.forEach(reponse => {
+								if (reponse.type == 1) {
+
+									var time = reponse.time;
+									var formattedTime = moment(time).fromNow();
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<a href="/approve_customer"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-primary-light"><i class="far fa-user"></i></span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + reponse.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span></p> </div> </div> </a>';
+									body.appendChild(notificationElement);
+
+								} else if (reponse.type == 2) {
+
+									var time = reponse.time;
+									var formattedTime = moment(time).fromNow();
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="/customer_grievance_form/'+ reponse.customer +'"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + reponse.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								} else if (reponse.type == 3) {
+
+									var time = reponse.time;
+									var formattedTime = moment(time).fromNow();
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									if (reponse.profile_pic == null) {
+
+										notificationElement.innerHTML = '<li class="notification-message"> <a href="/customer_invoices"> <div class="media d-flex"> <span class="avatar avatar-sm"> <img class="avatar-img rounded-circle" alt="" src="/static/assets/img/profiles/avatar-07.jpg"> </span> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + reponse.name + '</span> paid the invoice <span class="noti-title">' + reponse.invoice_no + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span></p> </div> </div> </a> </li>';
+									} else {
+										notificationElement.innerHTML = '<li class="notification-message"> <a href="/customer_invoices"> <div class="media d-flex"> <span class="avatar avatar-sm"> <img class="avatar-img rounded-circle" alt="" src="' + reponse.profile_pic + '"> </span> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + reponse.name + '</span> paid the invoice <span class="noti-title">' + reponse.invoice_no + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span></p> </div> </div> </a> </li>';
+
+									}
+									body.appendChild(notificationElement);
+
+								} else if (reponse.type == 7){
+
+									var time = reponse.time;
+									var formattedTime = moment(time).fromNow();
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="/approve_contracts"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-info-light"><i class="fa-solid fa-file-contract"></i></span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + reponse.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								}else if (reponse.type == 8){
+
+									var time = reponse.time;
+									var formattedTime = moment(time).fromNow();
+
+									var notificationElement = document.createElement('li');
+									notificationElement.className = 'notification-message';
+									notificationElement.innerHTML = '<li class="notification-message"> <a href="#"> <div class="media d-flex"> <div class="avatar avatar-sm"> <span class="avatar-title rounded-circle bg-info-light"><i class="fa-solid fa-file-contract"></i></span> </div> <div class="media-body"> <p class="noti-details"><span class="noti-title">' + reponse.message + '</span></p> <p class="noti-time"><span class="notification-time">' + formattedTime + '</span> </p> </div> </div> </a> </li>';
+									body.appendChild(notificationElement);
+
+								}
+							});
+
+						} else {
+							var notificationElement = document.createElement('div');
+							notificationElement.className = 'notification-message';
+							notificationElement.innerHTML = '<span class="no-notifications">No new notifications</span>';
+
+							// Add CSS styles to the notification message
+							var style = document.createElement('style');
+							style.innerHTML = '.no-notifications { color: grey; text-align: center; display: block; margin-top: 20px; }'; // Center align the text and add margin-top
+
+							// Append the style to the document's head
+							document.head.appendChild(style);
+
+							// Append the notification element to the body
+							body.appendChild(notificationElement);
+
+
+
+						}
+
+						// Check if there are any notifications
+						if (data.length > 0) {
+
+							badge.style.display = 'flex'; // Show the badge
+							// badge.classList.add('badge rounded-pill');
+							badge.textContent = data.length; // Update the badge count
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+
+				fetch('/api/adminprofile/')
+					.then(response => response.json())
+					.then(data2 => {
+						var span = document.getElementById('adminname')
+						var img = document.getElementById("adminimg")
+						span.innerHTML = data2.username
+						//console.log(data2.profile_pic.substring(6))
+						if (data2.profile_pic) {
+							img.innerHTML = '<img  src="' + data2.profile_pic.substring(6) + '" alt="img" class="profilesidebar"><span class="animate-circle"></span>'
+
+						} else {
+							img.innerHTML = '<img  src="/static/assets/img/profiles/avatar-07.jpg" alt="img" class="profilesidebar"><span class="animate-circle"></span>'
+
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+			}
+
+
+
+
+			function Clear_notifications() {
+				fetch('/api/notifications/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'X-CSRFToken': '{{ csrf_token }}', // Replace with your CSRF token
+					},
+					body: JSON.stringify({
+						// Add any additional data you want to send in the request body
+					}),
+				})
+					.then(response => {
+						if (response.ok) {
+							// Notification status update successful
+							// You can perform any additional actions here
+							Notifications_load(); // Reload the page after clearing notifications
+						} else {
+							// Handle the error case
+						}
+					})
+					.catch(error => {
+						// Handle any network errors
+					});
+			}
+
+
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+
+
+		{% block body %} {% endblock %}
+
+
+
+
+
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="/static/assets/js/jquery-3.6.3.min.js"></script>
+
+	<!-- Datatable JS -->
+	<script src="/static/assets/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Feather Icon JS -->
+	<script src="/static/assets/js/feather.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="/static/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Chart JS -->
+	<script src="/static/assets/plugins/apexchart/apexcharts.min.js"></script>
+	<script src="/static/assets/plugins/apexchart/chart-data.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/static/assets/js/script.js"></script>
+
+	<script src="/static/assets/plugins/c3-chart/d3.v5.min.js"></script>
+	<script src="/static/assets/plugins/c3-chart/c3.min.js"></script>
+	<script src="/static/assets/plugins/c3-chart/chart-data.js"></script>
+
+	<!-- <script src="/static/plugins/select2/js/select2.full.min.js"></script> -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+		integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+
+</body>
+
+</html>

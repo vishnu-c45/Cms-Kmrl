@@ -1,0 +1,201 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Add Credit Note</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="form" id="invoiceform">
+                    {% csrf_token %}
+
+                    <div class="card-body">
+                        <div class="form-group-item border-0 mb-0">
+                            <div class="row align-item-center">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <select class="form-control" name="customername"
+                                            aria-label="Default select example" id="customerSelect"
+                                            onchange="handleOptionChange(this.value)">
+                                            <option disabled selected>Choose Customer</option>
+                                            {% for p in customer %}
+                                            <option value="{{p.id}}">{{p.customer.customer_name}}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Invoices</label>
+                                        <select class="form-control" name="invoice" id="spaces-select"
+                                            aria-label="Default select example">
+                                            <option>Select Invoices</option>
+                                        </select>
+                                    </div>
+                                </div>
+                        
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Acknowledge Date</label>
+                                        <input type="date" name="ackdate" class="form-control"
+                                            placeholder="Enter Acknowledge Date">
+                                    </div>
+                                </div>
+                                
+                             <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Taxable Amount</label>
+                                        <input type="number" name="taxamnt" class="form-control"
+                                            placeholder="Enter Taxable Amount">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Maintenance Charges</label>
+                                        <input type="number" name="maintanence" class="form-control"
+                                            placeholder="Enter Maintenance Charges">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tax Percentage</label>
+                                        <input type="number" name="taxpercent" class="form-control"
+                                            placeholder="Enter Tax Percentage">
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                        <!-- <div class="form-group-item border-0 p-0">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-12">
+                                    <div class="form-group-bank">
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-12">
+                                    <div class="form-group-bank">
+                                    </div>
+                                   
+                                    <div class="invoice-total-box mt-5">
+                                        <div class="invoice-total-inner">
+                                            <p>Taxable Amount <span id="taxableAmount">0.00</span></p>
+                                            <p>CGST <span id="cgstsum">0.00</span></p>
+                                            <p>SGST <span id="sgstsum">0.00</span></p>
+                                        </div>
+                                        <div class="invoice-total-footer">
+                                            <h4>Total Amount <span id="totalAmount">0.00</span></h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="add-customer-btns text-end">
+                        <a href="/customer_invoices" type="reset" class="btn customer-btn-cancel">Cancel</a>
+                        <button href="#" id="submitbutton" class="btn customer-btn-save">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Tax & Discount Modal -->
+<div class="modal custom-modal fade" id="add_discount" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0 align-center">
+                    <h4 class="mb-0">Add Tax & Discount</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Rate</label>
+                            <input type="number" class="form-control" placeholder="120">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Discount Amount</label>
+                            <input type="number" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Tax</label>
+                            <select class="select">
+                                <option>N/A</option>
+                                <option>5%</option>
+                                <option>10%</option>
+                                <option>15%</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer add-tax-btns">
+                <button type="reset" data-bs-dismiss="modal"
+                    class="btn btn-primary paid-cancel-btn me-2">Cancel</button>
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Tax & Discount Modal -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_discount" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 justify-content-center pb-0">
+                <div class="form-header modal-header-title text-center mb-0">
+                    <h4 class="mb-2">Delete Product / Services</h4>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+<script>
+    document.getElementById('invoice').classList.add('active');
+</script>
+
+<script src="/static/assets/js/create_invoice.js"></script>
+
+
+{% endblock %}

@@ -1,0 +1,572 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Settings</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-xl-3 col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Settings Menu -->
+                        <div class="widget settings-menu mb-0">
+                            <ul>
+                                <li class="nav-item">
+                                    <a href="/profile_settings" class="nav-link ">
+                                        <i class="far fa-user"></i> <span>Profile Settings</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/view_company_details" class="nav-link">
+                                        <i class="fa-solid fa-suitcase"></i><span>Company Details</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/bank_details" class="nav-link active">
+                                        <i class="fa fa-university" aria-hidden="true"></i><span>Bank Details</span>
+                                    </a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                            <a href="/general_parameter" class="nav-link">
+                                                <i class="far fa-list-alt"></i> <span>General Parameter</span>
+                                            </a>
+                                </li>
+
+                                <!-- <li class="nav-item">
+												<a href="expense-category.html" class="nav-link">
+													<i class="far fa-list-alt"></i> <span>Expense Category</span>
+												</a>
+											</li> -->
+                                <!-- <li class="nav-item">
+                                    <a href="/notifications" class="nav-link">
+                                        <i class="far fa-bell"></i> <span>Notifications</span>
+                                    </a>
+                                </li> -->
+                                <li class="nav-item">
+                                    <a href="/change_password" class="nav-link">
+                                        <i class="fas fa-unlock-alt"></i> <span>Change Password</span>
+                                    </a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a href="/delete_account" class="nav-link">
+                                        <i class="fas fa-ban"></i> <span>Delete Account</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <!-- /Settings Menu -->
+                    </div>
+                </div>
+                <!-- /Settings Menu -->
+            </div>
+
+            <div class="col-xl-9 col-md-8">
+                <div class="card card-table">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-title">Bank Details</h5>
+                            </div>
+                            <div class="col-auto">
+                                <a href="javascript:void(0);" class="btn btn-outline-primary btn-sm"
+                                    data-bs-toggle="modal" data-bs-target="#bank_details">Add New Bank</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No.</th>
+                                        <th>Bank Name</th>
+                                        <th>Branch Name</th>
+                                        <th>A/C No</th>
+                                        <th>IFSC Code</th>
+                                        <th>UPI ID</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in bank %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{p.bank_name}}</td>
+                                        <td>{{p.branch_name}}</td>
+                                        <td> {{p.acc_no}}</td>
+                                        <td>{{p.ifsc_code}}</td>
+                                        <td>{{p.upi_id}}</td>
+                                        <td class="text-right">
+                                            <a href="#" onclick="editbank('{{p.id}}')"
+                                                class="btn btn-sm btn-white text-success me-2"><i
+                                                    class="far fa-edit me-1"></i></a>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#delete_bank"  onclick="deletebank('{{p.id}}')"
+                                                class="btn btn-sm btn-white text-danger me-2"><i
+                                                    class="far fa-trash-alt me-1"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Bank Details Modal -->
+        <div class="modal custom-modal fade" id="bank_details" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header border-0 pb-0">
+                        <div class="form-header modal-header-title text-start mb-0">
+                            <h4 class="mb-0">Add Bank Details</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="align-center" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form" id="bankform">
+
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Bank Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="bank_name"
+                                            placeholder="Enter Bank Name" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Branch Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="branch_name"
+                                            placeholder="Enter Branch Name" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Account Number <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control" name="acc_no"
+                                            placeholder="Enter Account Number" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label>IFSC Code <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="ifsc_code"
+                                            placeholder="Enter IFSC Code" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label>UPI ID <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="upi_id"
+                                            placeholder="Enter UPI ID" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="modal-footer mt-3">
+                                        <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn me-2">Back</a>
+                                        <button id="submitbutton" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                         
+                        </form>    
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- /Add Bank Details Modal -->
+
+        <!-- Edit Bank Details Modal -->
+        <div class="modal custom-modal fade" id="edit_bank" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-header border-0 pb-0">
+                        <div class="form-header modal-header-title text-start mb-0">
+                            <h4 class="mb-0">Edit Bank Details</h4>
+                        </div>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="align-center" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" class="form" id="editbankform">
+
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Bank Name <span class="text-danger">*</span></label>
+                                        <input type="text" id="bank_name" class="form-control" name="bank_name"
+                                            placeholder="Enter Bank Name" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Branch Name <span class="text-danger">*</span></label>
+                                        <input type="text" id="branch_name" class="form-control" name="branch_name"
+                                            placeholder="Enter Branch Name" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>Account Number <span class="text-danger">*</span></label>
+                                        <input type="number" id="acc_no" class="form-control" name="acc_no"
+                                            placeholder="Enter Account Number" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label>IFSC Code <span class="text-danger">*</span></label>
+                                        <input type="text" id="ifsc_code" class="form-control" name="ifsc_code"
+                                            placeholder="Enter IFSC Code" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label>UPI ID <span class="text-danger">*</span></label>
+                                        <input type="text" id="upi_id" class="form-control" name="upi_id"
+                                            placeholder="Enter UPI ID" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="modal-footer mt-3">
+                                        <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn me-2">Back</a>
+                                        <button id="editsubmit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                         
+                        </form>    
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- /Edit Bank Details Modal -->
+
+        <!-- Delete Items Modal -->
+        <div class="modal custom-modal fade" id="delete_bank" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-md">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-header">
+                            <h2>Delete Bank</h2>
+                            <p>Are you sure you want to delete?</p>
+                        </div>
+                        <div class="modal-btn delete-action">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="reset" id="delete"
+                                        class="w-100 btn btn-primary paid-continue-btn">
+                                        Delete
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" data-bs-dismiss="modal"
+                                        class="w-100 btn btn-primary paid-cancel-btn">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Delete Items Modal -->
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form action="#" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Customer
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="member_search1"
+                                                placeholder="Search here" />
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img" /></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> Brian Johnson
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> Russell Copeland
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> Greg Lynch
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> John Blair
+                                            </label>
+                                            <!-- View All -->
+                                            <div class="view-content">
+                                                <div class="viewall-One">
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username" />
+                                                        <span class="checkmark"></span> Barbara Moore
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username" />
+                                                        <span class="checkmark"></span> Hendry Evan
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username" />
+                                                        <span class="checkmark"></span> Richard Miles
+                                                    </label>
+                                                </div>
+                                                <div class="view-all">
+                                                    <a href="javascript:void(0);" class="viewall-button-One"><span
+                                                            class="me-2">View All</span><span><i
+                                                                class="fa fa-circle-chevron-down"></i></span></a>
+                                                </div>
+                                            </div>
+                                            <!-- /View All -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Select Date
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="form-custom">
+                                    <input type="text" class="form-control" id="member_search2"
+                                        placeholder="Search here" />
+                                    <span><img src="/static/assets/img/icons/search.svg" alt="img" /></span>
+                                </div>
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" />
+                                        <span class="checkmark"></span> All Invoices
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" />
+                                        <span class="checkmark"></span> Paid
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" />
+                                        <span class="checkmark"></span> Overdue
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" />
+                                        <span class="checkmark"></span> Draft
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" />
+                                        <span class="checkmark"></span> Recurring
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus" />
+                                        <span class="checkmark"></span> Cancelled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+
+                <!-- Category -->
+                <div class="accordion accordion-last" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Category
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes3">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category" />
+                                        <span class="checkmark"></span> Advertising
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category" />
+                                        <span class="checkmark"></span> Food
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category" />
+                                        <span class="checkmark"></span> Repairs
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category" />
+                                        <span class="checkmark"></span> Software
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> Stationary
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> Medical
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username" />
+                                                <span class="checkmark"></span> Designing
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span
+                                                    class="me-2">View All</span><span><i
+                                                        class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Category -->
+
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span><img src="/static/assets/img/icons/chart.svg" class="me-2"
+                            alt="Generate report" /></span>Generate report
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+
+<script>
+    document.getElementById("settings").classList.add("active");
+</script>
+<script>
+    function deletebank(ID) {
+        $('#delete_bank').modal('show');
+        $('#delete').click(function () {
+            $.ajax({
+                url: 'deletebank/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    // alert(response)
+                    window.location.href = 'bank_details';
+                }
+            });
+        })
+    }
+</script>
+
+<script src="/static/assets/js/create_bank.js"></script>
+<script src="/static/assets/js/update_bank.js"></script>
+
+
+
+{% endblock %}

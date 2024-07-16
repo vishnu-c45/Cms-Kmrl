@@ -1,0 +1,495 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Update Company Details</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- <div class="row"> -->
+
+        <div class="col-xl-12 col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Company Details</h5>
+                </div>
+                <div class="card-body">
+
+                    <!-- Form -->
+                    <div class="card-body card-buttons">
+                        <form role="form" class="form" id="companyform">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Company Name:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.company_name}}" class="form-control"
+                                                name="companyname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">City:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.city}}" class="form-control" name="city">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">State:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.state}}" class="form-control" name="state">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">State Code:</label>
+                                        <div class="col-lg-9">
+                                            <input type="number" value="{{std.state_code}}" class="form-control"
+                                                name="state_code">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Address:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.address}}" class="form-control"
+                                                name="address">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">District:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.district}}" class="form-control"
+                                                name="district">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Pincode:</label>
+                                        <div class="col-lg-9">
+                                            <input type="number" value="{{std.pincode}}" class="form-control"
+                                                name="pincode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">GST IN: </label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.gst_no}}" class="form-control"
+                                                name="gst_no">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">PAN: </label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.pan_no}}" class="form-control"
+                                                name="pan_no">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Phone 1:</label>
+                                        <div class="col-lg-9">
+                                            <input type="number" value="{{std.phno1}}" class="form-control"
+                                                name="phno1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">CIN:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.cin}}" class="form-control" name="cin">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Phone 2:</label>
+                                        <div class="col-lg-9">
+                                            <input type="number" value="{{std.phno2}}" class="form-control"
+                                                name="phno2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Email:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.email}}" class="form-control" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">FAX: </label>
+                                        <div class="col-lg-9">
+                                            <input type="number" value="{{std.fax}}" class="form-control" name="fax">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Website:</label>
+                                        <div class="col-lg-9">
+                                            <input type="text" value="{{std.website}}" class="form-control"
+                                                name="website">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Signature Image:</label>
+                                        <div class="form-group  col-lg-9">
+                                            <!-- Show existing signature image -->
+                                            {% if std.signature %}
+                                            <img src="{{ std.signature }}" class="w-25" alt="Signature Image">
+                                            {% else %}
+                                            <!-- <img src="" alt="Signature Image"> -->
+                                            
+                                            {% endif %}
+                                            <!-- File input field for selecting a new signature image -->
+                                            <input type="file" value="{{ std.signature }}" class="form-control" name="authsign" multiple=""
+                                                id="image_sign">
+
+                                            <div id="frames"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button id="submit" value="{{std.id}}" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /Form -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /Page Wrapper -->
+
+
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form action="#" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Customer
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="member_search1"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Brian Johnson
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Russell Copeland
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Greg Lynch
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> John Blair
+                                            </label>
+                                            <!-- View All -->
+                                            <div class="view-content">
+                                                <div class="viewall-One">
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Barbara Moore
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Hendry Evan
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Richard Miles
+                                                    </label>
+                                                </div>
+                                                <div class="view-all">
+                                                    <a href="javascript:void(0);" class="viewall-button-One"><span
+                                                            class="me-2">View All</span><span><i
+                                                                class="fa fa-circle-chevron-down"></i></span></a>
+                                                </div>
+                                            </div>
+                                            <!-- /View All -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Select Date
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="form-custom">
+                                    <input type="text" class="form-control" id="member_search2"
+                                        placeholder="Search here">
+                                    <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                </div>
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> All Invoices
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Paid
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Overdue
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Draft
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Recurring
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Cancelled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+
+                <!-- Category -->
+                <div class="accordion accordion-last" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Category
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes3">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Advertising
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Food
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Repairs
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Software
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Stationary
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Medical
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Designing
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span
+                                                    class="me-2">View All</span><span><i
+                                                        class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Category -->
+
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span><img src="/static/assets/img/icons/chart.svg" class="me-2"
+                            alt="Generate report"></span>Generate report
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+<!-- reply modal -->
+
+<div class="modal custom-modal fade" id="edit_contact" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0">
+                    <h4 class="mb-0">Reply</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Message</label>
+                            <input type="textarea" class="form-control" placeholder="Enter Message">
+                            <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn me-2">Cancel</a>
+                    <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Reply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Reply Modal -->
+
+    <!-- Delete Items Modal -->
+    <div class="modal custom-modal fade" id="delete_modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-header">
+                        <h3>Delete Message</h3>
+                        <p>Are you sure you want to delete?</p>
+                    </div>
+                    <div class="modal-btn delete-action">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="reset" data-bs-dismiss="modal"
+                                    class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" data-bs-dismiss="modal"
+                                    class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Delete Items Modal -->
+
+
+</div>
+
+<script>
+    document.getElementById('settings').classList.add('active');
+</script>
+
+<script src="/static/assets/js/update_company_details.js"></script>
+
+{% endblock %}

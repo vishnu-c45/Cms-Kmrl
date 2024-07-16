@@ -1,0 +1,127 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<!-- Page Wrapper -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Add Space</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="form" id="spaceform">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group-item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Station Name</label>
+                                        <select class="form-control" name="stationname" aria-label="Default select example">
+                                            <option disabled selected>Select Metro Station</option>
+                                            {% for p in metro %}
+                                            <option value="{{p.id}}">{{p.metrostation.station_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Space Name</label>
+                                        <input type="text" class="form-control" name="spacename" placeholder="Enter space name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Space Type</label>
+                                        <select class="form-control" name="spacetype" aria-label="Default select example">
+                                            <option  disabled selected>Select space type</option>
+                                            {% for p in space_type %}
+                                            <option  value="{{p.gp_value}}">{{p.gp_value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area Type</label>
+                                        <select class="form-control" name="areatype" aria-label="Default select example">
+                                            <option disabled selected>Select area type</option>
+                                            {% for p in area_type %}
+                                            <option  value="{{p.gp_value}}">{{p.gp_value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area Side</label>
+                                        <select class="form-control" name="areaside" aria-label="Default select example">
+                                            <option disabled selected>Select area side</option>
+                                            {% for p in area_side %}
+                                            <option  value="{{p.gp_value}}">{{p.gp_value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area Level</label>
+                                        <select class="form-control" name="arealevel" aria-label="Default select example">
+                                            <option disabled selected>Select area level</option>
+                                            {% for p in area_level %}
+                                            <option value="{{p.gp_value}}">{{p.gp_value}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area (sq ft)</label>
+                                        <input type="number" class="form-control" name="area" placeholder="Enter area">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-customer-btns text-end">
+                            <a href="/view_spaces" type="reset" class="btn customer-btn-cancel">Cancel</a>
+                            <button id="submitbutton" class="btn customer-btn-save">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+
+<script>
+    document.getElementById("space-dash").classList.add("active");
+</script>
+
+<script src="/static/assets/js/create_spaces.js"></script>
+
+<style>
+    .error {
+        color: red;
+    }
+
+    .address {
+        color: blue;
+    }
+</style>
+
+{% endblock %}

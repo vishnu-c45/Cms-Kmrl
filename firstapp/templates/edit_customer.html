@@ -1,0 +1,192 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Edit Customer Details</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-xl-12 col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Basic information</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Form -->
+                        <form role="form" class="form" id="userform">
+                            {% csrf_token %}
+                            <div class="row form-group">
+                                <label for="name" class="col-sm-3 col-form-label input-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="username" id="username"
+                                        value="{{customer.username}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="name" class="col-sm-3 col-form-label input-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        value="{{customer.customer.customer_name}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="email" class="col-sm-3 col-form-label input-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        value="{{customer.email}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Phone <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="phone" id="phone"
+                                        value="{{customer.phone_number}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Business Name <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="business_name" id="business_name"
+                                        value="{{customer_main.business_name}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Business Type <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="business_type" id="business_type"
+                                        value="{{customer_main.business_type}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">GST <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="gst_no" id="gst_no"
+                                        value="{{customer.gst_no}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">PAN <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="pan_no" id="pan_no"
+                                        value="{{customer.pan_no}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Address <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        value="{{customer.address}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">City <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="city" id="city"
+                                        value="{{customer.city}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">Pincode <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="pincode" id="pincode"
+                                        value="{{customer.pincode}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">District <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="district" id="district"
+                                        value="{{customer.district}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">State <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="state" id="state"
+                                        value="{{customer.state}}">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label for="phone" class="col-sm-3 col-form-label input-label">State Code <span
+                                        class="text-muted"></span></label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="state_code" id="state_code"
+                                        value="{{customer.state_code}}">
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button id="submit" value="{{customer.id}}" class="btn btn-primary">Save
+                                    Changes</button>
+                            </div>
+                        </form>
+                        <!-- /Form -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+<script>
+    function previewImage(input) {
+        var imgElement = document.getElementById('blah');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imgElement.setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<script>
+    var pincode = $("#pincode").val();
+    if (pincode == 'None') {
+        $("#pincode").val("");
+        $('#state_code').val("");
+        $('#business_name').val("");
+        $('#business_type').val("");
+        $('#gst_no').val("");
+        $('#pan_no').val("");
+        $('#address').val("");
+        $('#city').val("");
+        $('#district').val("");
+        $('#state').val("");
+
+    }
+
+</script>
+
+
+<script>
+    document.getElementById('customer').classList.add('active');
+</script>
+
+<script src="/static/assets/js/add_customer.js"></script>
+
+
+{% endblock %}

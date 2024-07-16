@@ -1,0 +1,342 @@
+{% extends 'customer_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Payments</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <style>
+            .card {
+                border: none;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+            }
+
+            .list-group-item {
+                background-color: #f8f8f8;
+                border: none;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .list-group-item .row {
+                margin-bottom: 10px;
+            }
+
+            .list-group-item .fw-bold {
+                font-weight: 600;
+            }
+
+            .list-group-item .badge {
+                font-size: 12px;
+                padding: 6px 10px;
+                border-radius: 6px;
+            }
+
+            .text-end {
+                text-align: right;
+            }
+
+            .card-title {
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+
+            .nav-pills .nav-link {
+                border-radius: 30px;
+                padding: 10px 20px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #555;
+                transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            }
+
+            .nav-pills .nav-link.active {
+                background-color: #39b1b7;
+                color: #fff;
+            }
+
+            .nav-pills .nav-link.active:hover {
+                background-color: #0056b3;
+            }
+        </style>
+
+        <style>
+            .card {
+                border: none;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                background-color: #f5f5f5;
+                background-image: linear-gradient(to bottom, #e6f7ff, #ffffff);
+            }
+
+            .list-group-item {
+                background-color: #fff;
+                border: none;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .list-group-item .row {
+                margin-bottom: 10px;
+            }
+
+            .list-group-item .fw-bold {
+                font-weight: 600;
+            }
+
+            .list-group-item .badge {
+                font-size: 12px;
+                padding: 6px 10px;
+                border-radius: 6px;
+            }
+
+            .text-end {
+                text-align: right;
+            }
+
+            .card-title {
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+        </style>
+        <!-- Payment card -->
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#all">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#paid">Paid</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#pending">Pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#declined">Declined</a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade show active" id="all">
+                        <ul class="list-group">
+                            {% for p in payments %}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Invoice</span> #{{p.invoice.invoice_no}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span class="fw-bold">Rs.{{p.payment_amount}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Transaction Id:</span> {{ p.transaction_id}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <div>
+                                            <span class="fw-bold">Date:</span>
+                                        </div>
+                                        {{p.created_on|date:'d-m-Y'}}
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <span class="fw-bold">Order Id:</span> {{ p.payment_order_id}}
+                                        </div>
+                                        <div class="col-4 text-end" >
+                                            <span>
+                                                {% if p.status == 2 %}
+                                                <span class="text-warning">Pending</span>
+                                                {% elif p.status == 1 %}
+                                                <span class="text-success">Paid</span>
+                                                {% elif p.status == 3 %}
+                                                <span class="text-danger">Declined</span>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="paid">
+                        <ul class="list-group">
+                            {% for p in paid %}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Invoice</span> #{{p.invoice.invoice_no}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span class="fw-bold">Rs.{{p.payment_amount}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Transaction Id:</span> {{ p.transaction_id}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <div>
+                                            <span class="fw-bold">Date:</span>
+                                        </div>
+                                        {{p.created_on|date:'d-m-Y'}}
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <span class="fw-bold">Order Id:</span> {{ p.payment_order_id}}
+                                        </div>
+                                        <div class="col-4 text-end" >
+                                            <span>
+                                                {% if p.status == 2 %}
+                                                <span class="text-warning">Pending</span>
+                                                {% elif p.status == 1 %}
+                                                <span class="text-success">Paid</span>
+                                                {% elif p.status == 3 %}
+                                                <span class="text-danger">Declined</span>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="pending">
+                        <ul class="list-group">
+                            {% for p in pending %}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Invoice</span> #{{p.invoice.invoice_no}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span class="fw-bold">Rs.{{p.payment_amount}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Transaction Id:</span> {{ p.transaction_id}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <div>
+                                            <span class="fw-bold">Date:</span>
+                                        </div>
+                                        {{p.created_on|date:'d-m-Y'}}
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <span class="fw-bold">Order Id:</span> {{ p.payment_order_id}}
+                                        </div>
+                                        <div class="col-4 text-end" >
+                                            <span>
+                                                {% if p.status == 2 %}
+                                                <span class="text-warning">Pending</span>
+                                                {% elif p.status == 1 %}
+                                                <span class="text-success">Paid</span>
+                                                {% elif p.status == 3 %}
+                                                <span class="text-danger">Declined</span>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="declined">
+                        <ul class="list-group">
+                            {% for p in declined %}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Invoice</span> #{{p.invoice.invoice_no}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <span class="fw-bold">Rs.{{p.payment_amount}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="fw-bold">Transaction Id:</span> {{ p.transaction_id}}
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <div>
+                                            <span class="fw-bold">Date:</span>
+                                        </div>
+                                        {{p.created_on|date:'d-m-Y'}}
+                                    </div>
+                                </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <span class="fw-bold">Order Id:</span> {{ p.payment_order_id}}
+                                        </div>
+                                        <div class="col-4 text-end" >
+                                            <span>
+                                                {% if p.status == 2 %}
+                                                <span class="text-warning">Pending</span>
+                                                {% elif p.status == 1 %}
+                                                <span class="text-success">Paid</span>
+                                                {% elif p.status == 3 %}
+                                                <span class="text-danger">Declined</span>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Payment card -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+        <script>
+            $(document).ready(function () {
+                // Add an event listener for tab clicks
+                $('.nav-link').on('click', function () {
+                    // Remove active class from all tab items
+                    $('.nav-link').removeClass('active');
+
+                    // Add active class to the clicked tab item
+                    $(this).addClass('active');
+
+                    // Get the ID of the clicked tab
+                    var tabId = $(this).attr('href');
+
+                    // Hide all tab content
+                    $('.tab-pane').removeClass('show active');
+
+                    // Show the selected tab content
+                    $(tabId).addClass('show active');
+                });
+            });
+        </script>
+
+<script>
+    document.getElementById("payment").classList.add("active");
+</script>
+
+{% endblock %}

@@ -1,0 +1,544 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<input type="hidden" id="data-json" value="{{ std.id }}">
+<!-- Datatables CSS -->
+<!-- <link rel="stylesheet" href="/static/assets/plugins/datatables/datatables.min.css"> -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Customer Details</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+            <div class="card customer-details-group">
+                <div class="card-body">
+                    <div class="row align-items-center">					
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-img d-inline-flex">
+                                        <img class="rounded-circle" src="/static/assets/img/profiles/avatar-07.jpg" alt="">
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>{{std.customer.customer_name}}</h6><span>{{std.username}}</span>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>Email Address</h6>
+                                        <p>{{std.email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>Phone Number</h6>
+                                        <p>{{std.phone_number}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fe fe-airplay"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>Business Name</h6>
+                                        <p>{{std.customer.business_name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fa fa-building" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>Business Type</h6>
+                                        <p class="customer-mail">{{std.customer.business_type}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>	
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fa fa-university" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>GST Number</h6>
+                                        <p class="customer-mail">{{std.gst_no}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>	
+
+
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fa-solid fa-address-card"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>PAN</h6>
+                                        <p class="customer-mail">{{std.gst_no}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>	
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                            <div class="customer-details">
+                                <div class="d-flex align-items-center">
+                                    <span class="customer-widget-icon d-inline-flex">
+                                        <i class="fa fa-address-book" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="customer-details-cont">
+                                        <h6>Address</h6>
+                                        <p>{{std.address}}, {{std.city}}, {{std.pincode}}</p>
+                                        <p>{{std.district}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                        </div>	
+                    </div>
+                </div>
+            </div>
+
+
+        <!-- Inovices card -->
+        <div class="row">
+            <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body " id="contract_body">
+                        <a onclick="contract_data()">
+
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-warning-light">
+                                    <img src="/static/assets/img/icons/archive-book.svg" alt="">
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">Contracts</div>
+                                    <div class="dash-counts">
+                                        <p>{{contract_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-primary-light">
+                                <img src="/static/assets/img/icons/transaction-minus.svg" alt="">
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Security Deposits</div>
+                                <div class="dash-counts">
+                                    <p>{{deposit}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body " id="invoice_body">
+                        <a onclick="invoice_data()">
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-info-light">
+                                    <img src="/static/assets/img/icons/receipt-item.svg" alt="">
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">
+                                        Invoices
+                                    </div>
+                                    <div class="dash-counts">
+                                        <p>{{invoice_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body" id="payment_body">
+                        <a onclick="Payment_data()">
+
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-primary-light">
+                                    <img src="/static/assets/img/icons/clipboard-close.svg" alt="">
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">Payments</div>
+                                    <div class="dash-counts">
+                                        <p>{{payment}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-danger-light">
+                                <img src="/static/assets/img/icons/3d-rotate.svg" alt="">
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Due</div>
+                                <div class="dash-counts">
+                                    <p>{{due}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-green-light">
+                                    <img src="/static/assets/img/icons/message-edit.svg" alt="">
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">Credit Notes</div>
+                                    <div class="dash-counts">
+                                        <p>0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Inovices card -->
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body" >
+                        <div class="table-responsive" id="tablebody">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- /Table -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form action="#" autocomplete="off">
+                <!-- Customer -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Customer
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="member_search1"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Brian Johnson
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Russell Copeland
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Greg Lynch
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> John Blair
+                                            </label>
+                                            <!-- View All -->
+                                            <div class="view-content">
+                                                <div class="viewall-One">
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Barbara Moore
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Hendry Evan
+                                                    </label>
+                                                    <label class="custom_check w-100">
+                                                        <input type="checkbox" name="username">
+                                                        <span class="checkmark"></span> Richard Miles
+                                                    </label>
+                                                </div>
+                                                <div class="view-all">
+                                                    <a href="javascript:void(0);" class="viewall-button-One"><span
+                                                            class="me-2">View All</span><span><i
+                                                                class="fa fa-circle-chevron-down"></i></span></a>
+                                                </div>
+                                            </div>
+                                            <!-- /View All -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Customer -->
+
+                <!-- Select Date -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Select Date
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="form-group">
+                                <label class="form-control-label">From</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">To</label>
+                                <div class="cal-icon">
+                                    <input type="email" class="form-control datetimepicker" placeholder="DD-MM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Select Date -->
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="form-custom">
+                                    <input type="text" class="form-control" id="member_search2"
+                                        placeholder="Search here">
+                                    <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                </div>
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> All Invoices
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Paid
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Overdue
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Draft
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Recurring
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="bystatus">
+                                        <span class="checkmark"></span> Cancelled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+
+                <!-- Category -->
+                <div class="accordion accordion-last" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Category
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes3">
+                                <div class="selectBox-cont">
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Advertising
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Food
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Repairs
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="category">
+                                        <span class="checkmark"></span> Software
+                                    </label>
+                                    <!-- View All -->
+                                    <div class="view-content">
+                                        <div class="viewall-Two">
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Stationary
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Medical
+                                            </label>
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="username">
+                                                <span class="checkmark"></span> Designing
+                                            </label>
+                                        </div>
+                                        <div class="view-all">
+                                            <a href="javascript:void(0);" class="viewall-button-Two"><span
+                                                    class="me-2">View All</span><span><i
+                                                        class="fa fa-circle-chevron-down"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <!-- /View All -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Category -->
+
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span><img src="/static/assets/img/icons/chart.svg" class="me-2"
+                            alt="Generate report"></span>Generate report
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+<style>
+    .contract-body{
+        background-color:  #FFF6DC;
+    }
+    .invoice-body{
+        background-color:  #DDF3FF;
+
+    }
+    .payment-body{
+        background-color:  #1194F71F;
+        
+    }
+
+</style>
+
+<script>
+    document.getElementById('customer').classList.add('active');
+</script>
+
+<script src="/static/assets/js/view_detais_customer.js"></script>
+
+<!-- Datatable JS -->
+<!-- <script src="/static/assets/plugins/datatables/datatables.min.js"></script> -->
+
+
+{% endblock %}

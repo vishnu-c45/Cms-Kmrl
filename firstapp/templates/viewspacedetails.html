@@ -1,0 +1,378 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="/static/assets/plugins/datatables/datatables.min.js"></script>
+
+<input type="hidden" id="data-json" value="{{ std.id }}">
+<!-- Page Wrapper -->
+<div onload="contract_details('{{std.id}}')" class="page-wrapper">
+    <div class="content container-fluid">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Space Details</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+
+        <div class="card customer-details-group">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <!-- <img class="rounded-circle" src="assets/img/profiles/avatar-05.jpg" alt=""> -->
+
+                                    <i class="fa-solid fa-hotel "></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Space Name</h6>
+                                    <p>{{std.master_space.space_name}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <!-- <img class="rounded-circle" src="assets/img/profiles/avatar-05.jpg" alt=""> -->
+
+                                    <i class="fa-solid fa-hotel"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Master Space </h6>
+                                    <p>{{std.master_space.space_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-subway" aria-hidden="true"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Station Name</h6>
+                                    <p>{{std.metrostation.metrostation.station_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <!-- <i class="fa-solid fa-map"></i> -->
+                                    <i class="fa-solid fa-building"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Space Type</h6>
+                                    <p>{{std.space_type}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Area Type</h6>
+                                    <p class="customer-mail">{{std.area_type}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-l"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Area Side</h6>
+                                    <p class="customer-mail">{{std.area_side}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-cubes-stacked"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Area Level</h6>
+                                    <p>{{std.area_level}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa fa-map"></i>
+
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Area (Sqft)</h6>
+                                    <p>{{std.area}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Created on</h6>
+                                    <p>{{std.created_on|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Created by</h6>
+                                    <p>{{std.created_by}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Updated on</h6>
+                                    <p>{{std.updated_on|date:'d-m-Y'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                        <div class="customer-details">
+                            <div class="d-flex align-items-center">
+                                <span class="customer-widget-icon d-inline-flex">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <div class="customer-details-cont">
+                                    <h6>Updated by</h6>
+                                    <p>{{std.updated_by}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <style>
+            .gridcolor {
+                background-color:  #c9e7dd;
+            }
+        </style>
+
+        <!-- Inovices card -->
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body " id="contractgrid" >
+                        <a onclick="create_table()">
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-info-light ">
+                                    <!-- <img src="assets/img/icons/receipt-item.svg" alt=""> -->
+                                    <i class="fa-solid fa-file-signature" style="color:#39b1b7;"></i>
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">
+                                        Contracts
+                                    </div>
+                                    <div class="dash-counts">
+                                        <p>{{contract_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body" id="customergrid">
+                        <a onclick="customer_details('{{std.id}}')">
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-primary-light">
+                                    <!-- <img src="assets/img/icons/transaction-minus.svg" alt=""> -->
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">Customers </div>
+                                    <div class="dash-counts">
+                                        <p>{{contract_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">03</span></p>
+                                <p class="inovice-trending text-success-light">04 <span class="ms-2"><i class="fe fe-trending-up"></i></span></p>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body" id="invoicegrid">
+                        <a onclick="invoice_details('{{std.id}}')">
+
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-warning-light">
+                                    <!-- <img src="assets/img/icons/archive-book.svg" alt=""> -->
+                                    <i class="fa-solid fa-file-invoice" style="color: rgb(251, 192, 82);"></i>
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">Invoices</div>
+                                    <div class="dash-counts">
+                                        <p>{{invoice_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">01</span></p>
+                                <p class="inovice-trending text-danger-light">03 <span class="ms-2"><i class="fe fe-trending-down"></i></span></p>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body" id="paymentgrid">
+                        <a onclick="Payment_details('{{std.id}}')">
+
+                            <div class="dash-widget-header">
+                                <span class="inovices-widget-icon bg-primary-light">
+                                    <!-- <img src="assets/img/icons/clipboard-close.svg" alt=""> -->
+                                    <i class="fa-solid fa-indian-rupee-sign"></i>
+                                </span>
+                                <div class="dash-count">
+                                    <div class="dash-title">Payments</div>
+                                    <div class="dash-counts">
+                                        <p>{{payment_count}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- <div class="d-flex justify-content-between align-items-center">
+                                <p class="inovices-all">No of Invoice <span class="rounded-circle bg-light-gray">04</span></p>
+                                <p class="inovice-trending text-danger-light">05 <span class="ms-2"><i class="fe fe-trending-down"></i></span></p>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /Inovices card -->
+
+        <!-- Table -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body" id="cardbody">
+                        <!-- <div class="table-responsive">
+                            <table class="table table-stripped table-hover ">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Contract Number</th>
+                                        <th>Customer Name</th>
+                                        <th>Master Space</th>
+                                        <th>Contract Period</th>
+                                        <th>Invoice Start Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1001</td>
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <a class="avatar avatar-md me-2">
+                                                    <img class="avatar-img rounded-circle"
+                                                        src="/static/assets/img/profiles/avatar-07.jpg" alt="User Image">
+                                                </a>
+                                                <a>Thomas<span> thomas@gmail.com</span></a>
+                                            </h2>
+                                        </td>
+                                        <td>LHS ALUV PD 2C</td>
+                                        <td>10 YR</td>
+                                        <td>23-05-2023</td>
+                                        <td><span class="badge badge-pill bg-success-light">Active</span></td>
+                                        <td class="d-flex align-items-center">
+                                            <a href="view_details_contract.html" class="btn btn-greys me-2"><i
+                                                    class="fa fa-plus-circle me-1"></i> Details</a>
+                                            <div class="dropdown dropdown-action">
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /Table -->
+
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+    document.getElementById('space-dash').classList.add('active');
+</script>
+
+<script src="/static/assets/js/view_details_space.js"></script>
+
+<style>
+    .error {
+        color: red;
+    }
+
+    .address {
+        color: blue;
+    }
+</style>
+
+
+{% endblock %}

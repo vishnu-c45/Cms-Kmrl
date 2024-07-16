@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>Kanakku - Materialize Admin HTML Template</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" href="assets/img/favicon.png">
+		
+		<!-- Materialize CSS -->
+        
+		<link rel="stylesheet" href="assets/css/materialize.min.css">
+		<link rel="stylesheet" href="assets/css/materialize-custom.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		
+		<!-- Feather CSS -->
+		<link rel="stylesheet" href="assets/plugins/icons/feather/feather.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+		
+			<!-- Header -->
+			<div class="header header-one">
+			
+				<!-- Logo -->
+				<div class="header-left header-left-one">
+					<a href="index.html" class="logo">
+						<img src="assets/img/logo.png" alt="Logo">
+					</a>
+					<a href="index.html" class="white-logo">
+						<img src="assets/img/logo-white.png" alt="Logo">
+					</a>
+					<a href="index.html" class="logo logo-small">
+						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+					</a>
+				</div>
+				<!-- /Logo -->
+				
+				<!-- Sidebar Toggle -->
+				<a href="javascript:void(0);" id="toggle_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Sidebar Toggle -->
+				
+				<!-- Search -->
+				<div class="top-nav-search">
+					<form>
+						<input type="text" class="form-control" placeholder="Search here">
+						<button class="btn" type="submit"><i class="fas fa-search"></i></button>
+					</form>
+				</div>
+				<!-- /Search -->
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Menu -->
+				<ul class="nav nav-tabs user-menu">
+					<!-- Flag -->
+					<li class="nav-item dropdown has-arrow flag-nav">
+						<a class="nav-link dropdown-toggle dropdown-trigger" data-target="dropdown-lang" href="#" role="button">
+							<img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
+						</a> 
+						<div id="dropdown-lang" class="dropdown-content dropdown-menu dropdown-menu-right">
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/us.png" alt="" height="16"> English
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/fr.png" alt="" height="16"> French
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/es.png" alt="" height="16"> Spanish
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/de.png" alt="" height="16"> German
+							</a>
+						</div>
+					</li>
+					<!-- /Flag -->
+					
+					<!-- Notifications -->
+					<li class="nav-item dropdown">
+						<a href="#" class="dropdown-toggle dropdown-trigger nav-link" data-target="dropdown-notify">
+							<i data-feather="bell"></i> <span class="badge rounded-pill">5</span>
+						</a>
+						<div id="dropdown-notify" class="dropdown-content dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Clear All</a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-02.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
+													<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
+													<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-primary-light"><i class="far fa-user"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">New user registered</span></p>
+													<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
+													<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">You have received a new message</span></p>
+													<p class="noti-time"><span class="notification-time">2 days ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="activities.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
+					
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow main-drop">
+						<a href="#" class="dropdown-toggle dropdown-trigger nav-link" data-target="dropdown-profile">
+							<span class="user-img">
+								<img src="assets/img/profiles/avatar-01.jpg" alt="">
+								<span class="status online"></span>
+							</span>
+							<span>Admin</span>
+						</a>
+						<div id="dropdown-profile" class="dropdown-content dropdown-menu">
+							<a class="dropdown-item" href="profile.html"><i data-feather="user" class="me-1"></i> Profile</a>
+							<a class="dropdown-item" href="settings.html"><i data-feather="settings" class="me-1"></i> Settings</a>
+							<a class="dropdown-item" href="login.html"><i data-feather="log-out" class="me-1"></i> Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Menu -->
+				
+			</div>
+			<!-- /Header -->
+			
+			<!-- Sidebar -->
+			<div class="sidebar" id="sidebar">
+				<div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"><span>Main</span></li>
+							<li>
+								<a href="index.html"><i data-feather="home"></i> <span>Dashboard</span></a>
+							</li>
+							<li>
+								<a href="customers.html"><i data-feather="users"></i> <span>Customers</span></a>
+							</li>
+							<li>
+								<a href="estimates.html"><i data-feather="file-text"></i> <span>Estimates</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="clipboard"></i> <span> Invoices</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="invoices.html">Invoices List</a></li>
+									<li><a href="invoice-grid.html">Invoices Grid</a></li>
+									<li><a href="invoice-grid-two.html">Invoices Grid 2</a></li>
+									<li><a href="add-invoice.html">Add Invoices</a></li>
+									<li><a href="edit-invoice.html">Edit Invoices</a></li>
+									<li><a href="view-invoice.html">Invoices Details</a></li>
+									<li><a href="view-invoice-two.html">Invoices Details 2</a></li>
+									<li><a href="invoices-settings.html">Invoices Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="invoice-items.html"><i data-feather="star"></i> <span>Items</span></a>
+							</li>
+							<li>
+								<a href="payments.html"><i data-feather="credit-card"></i> <span>Payments</span></a>
+							</li>
+							<li>
+								<a href="expenses.html"><i data-feather="package"></i> <span>Expenses</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="pie-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="sales-report.html">Sales Report</a></li>
+									<li><a href="expenses-report.html">Expenses Report</a></li>
+									<li><a href="profit-loss-report.html">Profit & Loss Report</a></li>
+									<li><a href="taxs-report.html">Taxs Report</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Blogs</span>
+									<span class="menu-arrow"></span>
+								</a>
+								<ul>
+									<li><a href="blog.html" >All Blogs</a></li>
+									<li><a href="add-blog.html">Add Blog</a></li>
+									<li><a href="edit-blog.html">Edit Blog</a></li>
+									<li><a href="blog-categories.html">Categories</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="calendar.html">Calendar</a></li>
+									<li><a href="inbox.html">Email</a></li>
+								</ul>
+							</li>
+							<li class="menu-title"> 
+								<span>Pages</span>
+							</li>
+							<li> 
+								<a href="profile.html"><i data-feather="user-plus"></i> <span>Profile</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="lock"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="login.html"> Login </a></li>
+									<li><a href="register.html"> Register </a></li>
+									<li><a href="forgot-password.html"> Forgot Password </a></li>
+									<li><a href="lock-screen.html"> Lock Screen </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="alert-octagon"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="error-404.html">404 Error </a></li>
+									<li><a href="error-500.html">500 Error </a></li>
+								</ul>
+							</li>
+							<li> 
+								<a href="users.html"><i data-feather="user"></i> <span>Users</span></a>
+							</li>
+							<li> 
+								<a href="blank-page.html"><i data-feather="file"></i> <span>Blank Page</span></a>
+							</li>
+							<li> 
+								<a href="maps-vector.html"><i data-feather="map-pin"></i> <span>Vector Maps</span></a>
+							</li>
+							<li class="menu-title"> 
+								<span>UI Interface</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fab fa-get-pocket"></i> <span>Base UI </span> <span class="menu-arrow"></span></a>
+								<ul>
+                                    <li><a href="alerts.html">Alerts</a></li>                                    
+                                    <li><a href="accordions.html">Accordions</a></li>
+                                    <li><a href="avatar.html">Avatar</a></li> 
+                                    <li><a href="badges.html">Badges</a></li>
+                                    <li><a href="buttons.html">Buttons</a></li>   
+                                    <li><a href="buttongroup.html">Button Group</a></li>                                  
+                                    <li><a href="breadcrumbs.html">Breadcrumb</a></li>
+                                    <li><a href="cards.html">Cards</a></li>
+                                    <li><a href="carousel.html">Carousel</a></li>                                   
+                                    <li><a href="dropdowns.html">Dropdowns</a></li>
+                                    <li><a href="grid.html">Grid</a></li>
+                                    <li><a href="images.html">Images</a></li>
+                                    <li><a href="lightbox.html">Lightbox</a></li>
+                                    <li><a href="media.html">Media</a></li>                              
+                                    <li><a href="modal.html">Modals</a></li>
+                                    <li><a href="offcanvas.html">Offcanvas</a></li>
+                                    <li><a href="pagination.html">Pagination</a></li>                                   
+                                    <li><a href="progress.html">Progress Bars</a></li>
+                                    <li><a href="placeholders.html">Placeholders</a></li>
+                                    <li><a href="rangeslider.html">Range Slider</a></li>                                    
+                                    <li><a href="spinners.html">Spinner</a></li>
+                                    <li><a href="sweetalerts.html">Sweet Alerts</a></li>
+                                    <li><a href="tab.html">Tabs</a></li>
+                                    <li><a href="toastr.html">Toasts</a></li>
+                                    <li><a href="tooltip.html">Tooltip</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="video.html">Video</a></li>
+                                </ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="box"></i> <span>Elements </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="ribbon.html">Ribbon</a></li>
+									<li><a href="clipboard.html">Clipboard</a></li>
+									<li><a href="drag-drop.html">Drag & Drop</a></li>
+									<li><a href="rating.html">Rating</a></li>
+									<li><a href="text-editor.html">Text Editor</a></li>
+									<li><a href="counter.html">Counter</a></li>
+									<li><a href="scrollbar.html">Scrollbar</a></li>
+									<li><a href="notification.html">Notification</a></li>
+									<li><a href="stickynote.html">Sticky Note</a></li>
+									<li><a href="timeline.html">Timeline</a></li>
+									<li><a href="horizontal-timeline.html">Horizontal Timeline</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="bar-chart-2"></i> <span> Charts </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chart-apex.html">Apex Charts</a></li>
+									<li><a href="chart-js.html">Chart Js</a></li>
+									<li><a href="chart-morris.html">Morris Charts</a></li>
+									<li><a href="chart-flot.html">Flot Charts</a></li>
+									<li><a href="chart-peity.html">Peity Charts</a></li>
+									<li><a href="chart-c3.html">C3 Charts</a></li>
+								</ul>
+							</li>
+							<li class="submenu active">
+								<a href="#"><i data-feather="award"></i> <span> Icons </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
+									<li><a href="icon-feather.html" class="active">Feather Icons</a></li>
+									<li><a href="icon-ionic.html">Ionic Icons</a></li>
+									<li><a href="icon-material.html">Material Icons</a></li>
+									<li><a href="icon-pe7.html">Pe7 Icons</a></li>
+									<li><a href="icon-simpleline.html">Simpleline Icons</a></li>
+									<li><a href="icon-themify.html">Themify Icons</a></li>
+									<li><a href="icon-weather.html">Weather Icons</a></li>
+									<li><a href="icon-typicon.html">Typicon Icons</a></li>
+									<li><a href="icon-flag.html">Flag Icons</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="columns"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="form-basic-inputs.html">Basic Inputs </a></li>
+									<li><a href="form-input-groups.html">Input Groups </a></li>
+									<li><a href="form-horizontal.html">Horizontal Form </a></li>
+									<li><a href="form-vertical.html"> Vertical Form </a></li>
+									<li><a href="form-mask.html">Form Mask </a></li>
+									<li><a href="form-validation.html">Form Validation </a></li>
+									<li><a href="form-select2.html">Form Select2 </a></li>
+									<li><a href="form-fileupload.html">File Upload </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="layout"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="tables-basic.html">Basic Tables </a></li>
+									<li><a href="data-tables.html">Data Table </a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col s12">
+								<h3 class="page-title">Feather Icon</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Feather Icon</li>
+								</ul>
+							</div>
+						</div>
+					</div>	
+					<!-- /Page Header -->					
+					
+					<div class="row">
+					
+						<!-- Chart -->
+						<div class="col s12">	
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Feather Icon</div>
+								</div>
+								<div class="card-body">
+									<div class="icons-items">
+										<ul class="icons-list">
+											<li><i class="fe fe-activity tooltipped" data-position="top" data-tooltip="fe fe-activity"></i></li>
+											<li><i class="fe fe-airplay tooltipped" data-position="top" data-tooltip="fe fe-airplay"></i></li>
+											<li><i class="fe fe-alert-circle tooltipped" data-position="top" data-tooltip="fe fe-alert-circle"></i></li>
+											<li><i class="fe fe-alert-octagon tooltipped" data-position="top" data-tooltip="fe fe-alert-octagon"></i></li>
+											<li><i class="fe fe-alert-triangle tooltipped" data-position="top" data-tooltip="fe fe-alert-triangle"></i></li>
+											<li><i class="fe fe-align-center tooltipped" data-position="top" data-tooltip="fe fe-align-center"></i></li>
+											<li><i class="fe fe-align-justify tooltipped" data-position="top" data-tooltip="fe fe-align-justify"></i></li>
+											<li><i class="fe fe-align-left tooltipped" data-position="top" data-tooltip="fe fe-align-left"></i></li>
+											<li><i class="fe fe-align-right tooltipped" data-position="top" data-tooltip="fe fe-align-right"></i></li>
+											<li><i class="fe fe-anchor tooltipped" data-position="top" data-tooltip="fe fe-anchor"></i></li>
+											<li><i class="fe fe-aperture tooltipped" data-position="top" data-tooltip="fe fe-aperture"></i></li>
+											<li><i class="fe fe-arrow-down tooltipped" data-position="top" data-tooltip="fe fe-arrow-down"></i></li>
+											<li><i class="fe fe-arrow-down-circle tooltipped" data-position="top" data-tooltip="fe fe-arrow-down-circle"></i></li>
+											<li><i class="fe fe-arrow-down-left tooltipped" data-position="top" data-tooltip="fe fe-arrow-down-left"></i></li>
+											<li><i class="fe fe-arrow-down-right tooltipped" data-position="top" data-tooltip="fe fe-arrow-down-right"></i></li>
+											<li><i class="fe fe-arrow-left tooltipped" data-position="top" data-tooltip="fe fe-arrow-left"></i></li>
+											<li><i class="fe fe-arrow-left-circle tooltipped" data-position="top" data-tooltip="fe fe-arrow-left-circle"></i></li>
+											<li><i class="fe fe-arrow-right tooltipped" data-position="top" data-tooltip="fe fe-arrow-right"></i></li>
+											<li><i class="fe fe-arrow-right-circle tooltipped" data-position="top" data-tooltip="fe fe-arrow-right-circle"></i></li>
+											<li><i class="fe fe-arrow-up tooltipped" data-position="top" data-tooltip="fe fe-arrow-up"></i></li>
+											<li><i class="fe fe-arrow-up-circle tooltipped" data-position="top" data-tooltip="fe fe-arrow-up-circle"></i></li>
+											<li><i class="fe fe-arrow-up-left tooltipped" data-position="top" data-tooltip="fe fe-arrow-up-left"></i></li>
+											<li><i class="fe fe-arrow-up-right tooltipped" data-position="top" data-tooltip="fe fe-arrow-up-right"></i></li>
+											<li><i class="fe fe-at-sign tooltipped" data-position="top" data-tooltip="fe fe-at-sign"></i></li>
+											<li><i class="fe fe-award tooltipped" data-position="top" data-tooltip="fe fe-award"></i></li>
+											<li><i class="fe fe-bar-chart tooltipped" data-position="top" data-tooltip="fe fe-bar-chart"></i></li>
+											<li><i class="fe fe-bar-chart-2 tooltipped" data-position="top" data-tooltip="fe fe-bar-chart-2"></i></li>
+											<li><i class="fe fe-battery tooltipped" data-position="top" data-tooltip="fe fe-battery"></i></li>
+											<li><i class="fe fe-battery-charging tooltipped" data-position="top" data-tooltip="fe fe-battery-charging"></i></li>
+											<li><i class="fe fe-bell tooltipped" data-position="top" data-tooltip="fe fe-bell"></i></li>
+											<li><i class="fe fe-bell-off tooltipped" data-position="top" data-tooltip="fe fe-bell-off"></i></li>
+											<li><i class="fe fe-bluetooth tooltipped" data-position="top" data-tooltip="fe fe-bluetooth"></i></li>
+											<li><i class="fe fe-bold tooltipped" data-position="top" data-tooltip="fe fe-bold"></i></li>
+											<li><i class="fe fe-book tooltipped" data-position="top" data-tooltip="fe fe-book"></i></li>
+											<li><i class="fe fe-book-open tooltipped" data-position="top" data-tooltip="fe fe-book-open"></i></li>
+											<li><i class="fe fe-bookmark tooltipped" data-position="top" data-tooltip="fe fe-bookmark"></i></li>
+											<li><i class="fe fe-box tooltipped" data-position="top" data-tooltip="fe fe-box"></i></li>
+											<li><i class="fe fe-briefcase tooltipped" data-position="top" data-tooltip="fe fe-briefcase"></i></li>
+											<li><i class="fe fe-calendar tooltipped" data-position="top" data-tooltip="fe fe-calendar"></i></li>
+											<li><i class="fe fe-camera tooltipped" data-position="top" data-tooltip="fe fe-camera"></i></li>
+											<li><i class="fe fe-camera-off tooltipped" data-position="top" data-tooltip="fe fe-camera-off"></i></li>
+											<li><i class="fe fe-cast tooltipped" data-position="top" data-tooltip="fe fe-cast"></i></li>
+											<li><i class="fe fe-check tooltipped" data-position="top" data-tooltip="fe fe-check"></i></li>
+											<li><i class="fe fe-check-circle tooltipped" data-position="top" data-tooltip="fe fe-check-circle"></i></li>
+											<li><i class="fe fe-check-square tooltipped" data-position="top" data-tooltip="fe fe-check-square"></i></li>
+											<li><i class="fe fe-chevron-down tooltipped" data-position="top" data-tooltip="fe fe-chevron-down"></i></li>
+											<li><i class="fe fe-chevron-left tooltipped" data-position="top" data-tooltip="fe fe-chevron-left"></i></li>
+											<li><i class="fe fe-chevron-right tooltipped" data-position="top" data-tooltip="fe fe-chevron-right"></i></li>
+											<li><i class="fe fe-chevron-up tooltipped" data-position="top" data-tooltip="fe fe-chevron-up"></i></li>
+											<li><i class="fe fe-chevrons-down tooltipped" data-position="top" data-tooltip="fe fe-chevrons-down"></i></li>
+											<li><i class="fe fe-chevrons-left tooltipped" data-position="top" data-tooltip="fe fe-chevrons-left"></i></li>
+											<li><i class="fe fe-chevrons-right tooltipped" data-position="top" data-tooltip="fe fe-chevrons-right"></i></li>
+											<li><i class="fe fe-chevrons-up tooltipped" data-position="top" data-tooltip="fe fe-chevrons-up"></i></li>
+											<li><i class="fe fe-chrome tooltipped" data-position="top" data-tooltip="fe fe-chrome"></i></li>
+											<li><i class="fe fe-circle tooltipped" data-position="top" data-tooltip="fe fe-circle"></i></li>
+											<li><i class="fe fe-clipboard tooltipped" data-position="top" data-tooltip="fe fe-clipboard"></i></li>
+											<li><i class="fe fe-clock tooltipped" data-position="top" data-tooltip="fe fe-clock"></i></li>
+											<li><i class="fe fe-cloud tooltipped" data-position="top" data-tooltip="fe fe-cloud"></i></li>
+											<li><i class="fe fe-cloud-drizzle tooltipped" data-position="top" data-tooltip="fe fe-cloud-drizzle"></i></li>
+											<li><i class="fe fe-cloud-lightning tooltipped" data-position="top" data-tooltip="fe fe-cloud-lightning"></i></li>
+											<li><i class="fe fe-cloud-off tooltipped" data-position="top" data-tooltip="fe fe-cloud-off"></i></li>
+											<li><i class="fe fe-cloud-rain tooltipped" data-position="top" data-tooltip="fe fe-cloud-rain"></i></li>
+											<li><i class="fe fe-cloud-snow tooltipped" data-position="top" data-tooltip="fe fe-cloud-snow"></i></li>
+											<li><i class="fe fe-code tooltipped" data-position="top" data-tooltip="fe fe-code"></i></li>
+											<li><i class="fe fe-codepen tooltipped" data-position="top" data-tooltip="fe fe-codepen"></i></li>
+											<li><i class="fe fe-command tooltipped" data-position="top" data-tooltip="fe fe-command"></i></li>
+											<li><i class="fe fe-compass tooltipped" data-position="top" data-tooltip="fe fe-compass"></i></li>
+											<li><i class="fe fe-copy tooltipped" data-position="top" data-tooltip="fe fe-copy"></i></li>
+											<li><i class="fe fe-corner-down-left tooltipped" data-position="top" data-tooltip="fe fe-corner-down-left"></i></li>
+											<li><i class="fe fe-corner-down-right tooltipped" data-position="top" data-tooltip="fe fe-corner-down-right"></i></li>
+											<li><i class="fe fe-corner-left-down tooltipped" data-position="top" data-tooltip="fe fe-corner-left-down"></i></li>
+											<li><i class="fe fe-corner-left-up tooltipped" data-position="top" data-tooltip="fe fe-corner-left-up"></i></li>
+											<li><i class="fe fe-corner-right-down tooltipped" data-position="top" data-tooltip="fe fe-corner-right-down"></i></li>
+											<li><i class="fe fe-corner-right-up tooltipped" data-position="top" data-tooltip="fe fe-corner-right-up"></i></li>
+											<li><i class="fe fe-corner-up-left tooltipped" data-position="top" data-tooltip="fe fe-corner-up-left"></i></li>
+											<li><i class="fe fe-corner-up-right tooltipped" data-position="top" data-tooltip="fe fe-corner-up-right"></i></li>
+											<li><i class="fe fe-cpu tooltipped" data-position="top" data-tooltip="fe fe-cpu"></i></li>
+											<li><i class="fe fe-credit-card tooltipped" data-position="top" data-tooltip="fe fe-credit-card"></i></li>
+											<li><i class="fe fe-crop tooltipped" data-position="top" data-tooltip="fe fe-crop"></i></li>
+											<li><i class="fe fe-crosshair tooltipped" data-position="top" data-tooltip="fe fe-crosshair"></i></li>
+											<li><i class="fe fe-database tooltipped" data-position="top" data-tooltip="fe fe-database"></i></li>
+											<li><i class="fe fe-delete tooltipped" data-position="top" data-tooltip="fe fe-delete"></i></li>
+											<li><i class="fe fe-disc tooltipped" data-position="top" data-tooltip="fe fe-disc"></i></li>
+											<li><i class="fe fe-dollar-sign tooltipped" data-position="top" data-tooltip="fe fe-dollar-sign"></i></li>
+											<li><i class="fe fe-download tooltipped" data-position="top" data-tooltip="fe fe-download"></i></li>
+											<li><i class="fe fe-download-cloud tooltipped" data-position="top" data-tooltip="fe fe-download-cloud"></i></li>
+											<li><i class="fe fe-droplet tooltipped" data-position="top" data-tooltip="fe fe-droplet"></i></li>
+											<li><i class="fe fe-edit tooltipped" data-position="top" data-tooltip="fe fe-edit"></i></li>
+											<li><i class="fe fe-edit-2 tooltipped" data-position="top" data-tooltip="fe fe-edit-2"></i></li>
+											<li><i class="fe fe-edit-3 tooltipped" data-position="top" data-tooltip="fe fe-edit-3"></i></li>
+											<li><i class="fe fe-external-link tooltipped" data-position="top" data-tooltip="fe fe-external-link"></i></li>
+											<li><i class="fe fe-eye tooltipped" data-position="top" data-tooltip="fe fe-eye"></i></li>
+											<li><i class="fe fe-eye-off tooltipped" data-position="top" data-tooltip="fe fe-eye-off"></i></li>
+											<li><i class="fe fe-facebook tooltipped" data-position="top" data-tooltip="fe fe-facebook"></i></li>
+											<li><i class="fe fe-fast-forward tooltipped" data-position="top" data-tooltip="fe fe-fast-forward"></i></li>
+											<li><i class="fe fe-feather tooltipped" data-position="top" data-tooltip="fe fe-feather"></i></li>
+											<li><i class="fe fe-file tooltipped" data-position="top" data-tooltip="fe fe-file"></i></li>
+											<li><i class="fe fe-file-minus tooltipped" data-position="top" data-tooltip="fe fe-file-minus"></i></li>
+											<li><i class="fe fe-file-plus tooltipped" data-position="top" data-tooltip="fe fe-file-plus"></i></li>
+											<li><i class="fe fe-file-text tooltipped" data-position="top" data-tooltip="fe fe-file-text"></i></li>
+											<li><i class="fe fe-film tooltipped" data-position="top" data-tooltip="fe fe-film"></i></li>
+											<li><i class="fe fe-filter tooltipped" data-position="top" data-tooltip="fe fe-filter"></i></li>
+											<li><i class="fe fe-flag tooltipped" data-position="top" data-tooltip="fe fe-flag"></i></li>
+											<li><i class="fe fe-folder tooltipped" data-position="top" data-tooltip="fe fe-folder"></i></li>
+											<li><i class="fe fe-folder-minus tooltipped" data-position="top" data-tooltip="fe fe-folder-minus"></i></li>
+											<li><i class="fe fe-folder-plus tooltipped" data-position="top" data-tooltip="fe fe-folder-plus"></i></li>
+											<li><i class="fe fe-git-branch tooltipped" data-position="top" data-tooltip="fe fe-git-branch"></i></li>
+											<li><i class="fe fe-git-commit tooltipped" data-position="top" data-tooltip="fe fe-git-commit"></i></li>
+											<li><i class="fe fe-git-merge tooltipped" data-position="top" data-tooltip="fe fe-git-merge"></i></li>
+											<li><i class="fe fe-git-pull-request tooltipped" data-position="top" data-tooltip="fe fe-git-pull-request"></i></li>
+											<li><i class="fe fe-github tooltipped" data-position="top" data-tooltip="fe fe-github"></i></li>
+											<li><i class="fe fe-gitlab tooltipped" data-position="top" data-tooltip="fe fe-gitlab"></i></li>
+											<li><i class="fe fe-globe tooltipped" data-position="top" data-tooltip="fe fe-globe"></i></li>
+											<li><i class="fe fe-grid tooltipped" data-position="top" data-tooltip="fe fe-grid"></i></li>
+											<li><i class="fe fe-hard-drive tooltipped" data-position="top" data-tooltip="fe fe-hard-drive"></i></li>
+											<li><i class="fe fe-hash tooltipped" data-position="top" data-tooltip="fe fe-hash"></i></li>
+											<li><i class="fe fe-headphones tooltipped" data-position="top" data-tooltip="fe fe-headphones"></i></li>
+											<li><i class="fe fe-heart tooltipped" data-position="top" data-tooltip="fe fe-heart"></i></li>
+											<li><i class="fe fe-help-circle tooltipped" data-position="top" data-tooltip="fe fe-help-circle"></i></li>
+											<li><i class="fe fe-home tooltipped" data-position="top" data-tooltip="fe fe-home"></i></li>
+											<li><i class="fe fe-image tooltipped" data-position="top" data-tooltip="fe fe-image"></i></li>
+											<li><i class="fe fe-inbox tooltipped" data-position="top" data-tooltip="fe fe-inbox"></i></li>
+											<li><i class="fe fe-info tooltipped" data-position="top" data-tooltip="fe fe-info"></i></li>
+											<li><i class="fe fe-instagram tooltipped" data-position="top" data-tooltip="fe fe-instagram"></i></li>
+											<li><i class="fe fe-italic tooltipped" data-position="top" data-tooltip="fe fe-italic"></i></li>
+											<li><i class="fe fe-layers tooltipped" data-position="top" data-tooltip="fe fe-layers"></i></li>
+											<li><i class="fe fe-layout tooltipped" data-position="top" data-tooltip="fe fe-layout"></i></li>
+											<li><i class="fe fe-life-buoy tooltipped" data-position="top" data-tooltip="fe fe-life-buoy"></i></li>
+											<li><i class="fe fe-link tooltipped" data-position="top" data-tooltip="fe fe-link"></i></li>
+											<li><i class="fe fe-link-2 tooltipped" data-position="top" data-tooltip="fe fe-link-2"></i></li>
+											<li><i class="fe fe-linkedin tooltipped" data-position="top" data-tooltip="fe fe-linkedin"></i></li>
+											<li><i class="fe fe-list tooltipped" data-position="top" data-tooltip="fe fe-list"></i></li>
+											<li><i class="fe fe-loader tooltipped" data-position="top" data-tooltip="fe fe-loader"></i></li>
+											<li><i class="fe fe-lock tooltipped" data-position="top" data-tooltip="fe fe-lock"></i></li>
+											<li><i class="fe fe-log-in tooltipped" data-position="top" data-tooltip="fe fe-log-in"></i></li>
+											<li><i class="fe fe-log-out tooltipped" data-position="top" data-tooltip="fe fe-log-out"></i></li>
+											<li><i class="fe fe-mail tooltipped" data-position="top" data-tooltip="fe fe-mail"></i></li>
+											<li><i class="fe fe-map tooltipped" data-position="top" data-tooltip="fe fe-map"></i></li>
+											<li><i class="fe fe-map-pin tooltipped" data-position="top" data-tooltip="fe fe-map-pin"></i></li>
+											<li><i class="fe fe-maximize tooltipped" data-position="top" data-tooltip="fe fe-maximize"></i></li>
+											<li><i class="fe fe-maximize-2 tooltipped" data-position="top" data-tooltip="fe fe-maximize-2"></i></li>
+											<li><i class="fe fe-menu tooltipped" data-position="top" data-tooltip="fe fe-menu"></i></li>
+											<li><i class="fe fe-message-circle tooltipped" data-position="top" data-tooltip="fe fe-message-circle"></i></li>
+											<li><i class="fe fe-message-square tooltipped" data-position="top" data-tooltip="fe fe-message-square"></i></li>
+											<li><i class="fe fe-mic tooltipped" data-position="top" data-tooltip="fe fe-mic"></i></li>
+											<li><i class="fe fe-mic-off tooltipped" data-position="top" data-tooltip="fe fe-mic-off"></i></li>
+											<li><i class="fe fe-minimize tooltipped" data-position="top" data-tooltip="fe fe-minimize"></i></li>
+											<li><i class="fe fe-minimize-2 tooltipped" data-position="top" data-tooltip="fe fe-minimize-2"></i></li>
+											<li><i class="fe fe-minus tooltipped" data-position="top" data-tooltip="fe fe-minus"></i></li>
+											<li><i class="fe fe-minus-circle tooltipped" data-position="top" data-tooltip="fe fe-minus-circle"></i></li>
+											<li><i class="fe fe-minus-square tooltipped" data-position="top" data-tooltip="fe fe-minus-square"></i></li>
+											<li><i class="fe fe-monitor tooltipped" data-position="top" data-tooltip="fe fe-monitor"></i></li>
+											<li><i class="fe fe-moon tooltipped" data-position="top" data-tooltip="fe fe-moon"></i></li>
+											<li><i class="fe fe-more-horizontal tooltipped" data-position="top" data-tooltip="fe fe-more-horizontal"></i></li>
+											<li><i class="fe fe-more-vertical tooltipped" data-position="top" data-tooltip="fe fe-more-vertical"></i></li>
+											<li><i class="fe fe-move tooltipped" data-position="top" data-tooltip="fe fe-move"></i></li>
+											<li><i class="fe fe-music tooltipped" data-position="top" data-tooltip="fe fe-music"></i></li>
+											<li><i class="fe fe-navigation tooltipped" data-position="top" data-tooltip="fe fe-navigation"></i></li>
+											<li><i class="fe fe-navigation-2 tooltipped" data-position="top" data-tooltip="fe fe-navigation-2"></i></li>
+											<li><i class="fe fe-octagon tooltipped" data-position="top" data-tooltip="fe fe-octagon"></i></li>
+											<li><i class="fe fe-package tooltipped" data-position="top" data-tooltip="fe fe-package"></i></li>
+											<li><i class="fe fe-paperclip tooltipped" data-position="top" data-tooltip="fe fe-paperclip"></i></li>
+											<li><i class="fe fe-pause tooltipped" data-position="top" data-tooltip="fe fe-pause"></i></li>
+											<li><i class="fe fe-pause-circle tooltipped" data-position="top" data-tooltip="fe fe-pause-circle"></i></li>
+											<li><i class="fe fe-percent tooltipped" data-position="top" data-tooltip="fe fe-percent"></i></li>
+											<li><i class="fe fe-phone tooltipped" data-position="top" data-tooltip="fe fe-phone"></i></li>
+											<li><i class="fe fe-phone-call tooltipped" data-position="top" data-tooltip="fe fe-phone-call"></i></li>
+											<li><i class="fe fe-phone-forwarded tooltipped" data-position="top" data-tooltip="fe fe-phone-forwarded"></i></li>
+											<li><i class="fe fe-phone-incoming tooltipped" data-position="top" data-tooltip="fe fe-phone-incoming"></i></li>
+											<li><i class="fe fe-phone-missed tooltipped" data-position="top" data-tooltip="fe fe-phone-missed"></i></li>
+											<li><i class="fe fe-phone-off tooltipped" data-position="top" data-tooltip="fe fe-phone-off"></i></li>
+											<li><i class="fe fe-phone-outgoing tooltipped" data-position="top" data-tooltip="fe fe-phone-outgoing"></i></li>
+											<li><i class="fe fe-pie-chart tooltipped" data-position="top" data-tooltip="fe fe-pie-chart"></i></li>
+											<li><i class="fe fe-play tooltipped" data-position="top" data-tooltip="fe fe-play"></i></li>
+											<li><i class="fe fe-play-circle tooltipped" data-position="top" data-tooltip="fe fe-play-circle"></i></li>
+											<li><i class="fe fe-plus tooltipped" data-position="top" data-tooltip="fe fe-plus"></i></li>
+											<li><i class="fe fe-plus-circle tooltipped" data-position="top" data-tooltip="fe fe-plus-circle"></i></li>
+											<li><i class="fe fe-plus-square tooltipped" data-position="top" data-tooltip="fe fe-plus-square"></i></li>
+											<li><i class="fe fe-pocket tooltipped" data-position="top" data-tooltip="fe fe-pocket"></i></li>
+											<li><i class="fe fe-power tooltipped" data-position="top" data-tooltip="fe fe-power"></i></li>
+											<li><i class="fe fe-printer tooltipped" data-position="top" data-tooltip="fe fe-printer"></i></li>
+											<li><i class="fe fe-radio tooltipped" data-position="top" data-tooltip="fe fe-radio"></i></li>
+											<li><i class="fe fe-refresh-ccw tooltipped" data-position="top" data-tooltip="fe fe-refresh-ccw"></i></li>
+											<li><i class="fe fe-refresh-cw tooltipped" data-position="top" data-tooltip="fe fe-refresh-cw"></i></li>
+											<li><i class="fe fe-repeat tooltipped" data-position="top" data-tooltip="fe fe-repeat"></i></li>
+											<li><i class="fe fe-rewind tooltipped" data-position="top" data-tooltip="fe fe-rewind"></i></li>
+											<li><i class="fe fe-rotate-ccw tooltipped" data-position="top" data-tooltip="fe fe-rotate-ccw"></i></li>
+											<li><i class="fe fe-rotate-cw tooltipped" data-position="top" data-tooltip="fe fe-rotate-cw"></i></li>
+											<li><i class="fe fe-rss tooltipped" data-position="top" data-tooltip="fe fe-rss"></i></li>
+											<li><i class="fe fe-save tooltipped" data-position="top" data-tooltip="fe fe-save"></i></li>
+											<li><i class="fe fe-scissors tooltipped" data-position="top" data-tooltip="fe fe-scissors"></i></li>
+											<li><i class="fe fe-search tooltipped" data-position="top" data-tooltip="fe fe-search"></i></li>
+											<li><i class="fe fe-send tooltipped" data-position="top" data-tooltip="fe fe-send"></i></li>
+											<li><i class="fe fe-server tooltipped" data-position="top" data-tooltip="fe fe-server"></i></li>
+											<li><i class="fe fe-settings tooltipped" data-position="top" data-tooltip="fe fe-settings"></i></li>
+											<li><i class="fe fe-share tooltipped" data-position="top" data-tooltip="fe fe-share"></i></li>
+											<li><i class="fe fe-share-2 tooltipped" data-position="top" data-tooltip="fe fe-share-2"></i></li>
+											<li><i class="fe fe-shield tooltipped" data-position="top" data-tooltip="fe fe-shield"></i></li>
+											<li><i class="fe fe-shield-off tooltipped" data-position="top" data-tooltip="fe fe-shield-off"></i></li>
+											<li><i class="fe fe-shopping-bag tooltipped" data-position="top" data-tooltip="fe fe-shopping-bag"></i></li>
+											<li><i class="fe fe-shopping-cart tooltipped" data-position="top" data-tooltip="fe fe-shopping-cart"></i></li>
+											<li><i class="fe fe-shuffle tooltipped" data-position="top" data-tooltip="fe fe-shuffle"></i></li>
+											<li><i class="fe fe-sidebar tooltipped" data-position="top" data-tooltip="fe fe-sidebar"></i></li>
+											<li><i class="fe fe-skip-back tooltipped" data-position="top" data-tooltip="fe fe-skip-back"></i></li>
+											<li><i class="fe fe-skip-forward tooltipped" data-position="top" data-tooltip="fe fe-skip-forward"></i></li>
+											<li><i class="fe fe-slack tooltipped" data-position="top" data-tooltip="fe fe-slack"></i></li>
+											<li><i class="fe fe-slash tooltipped" data-position="top" data-tooltip="fe fe-slash"></i></li>
+											<li><i class="fe fe-sliders tooltipped" data-position="top" data-tooltip="fe fe-sliders"></i></li>
+											<li><i class="fe fe-smartphone tooltipped" data-position="top" data-tooltip="fe fe-smartphone"></i></li>
+											<li><i class="fe fe-speaker tooltipped" data-position="top" data-tooltip="fe fe-speaker"></i></li>
+											<li><i class="fe fe-square tooltipped" data-position="top" data-tooltip="fe fe-square"></i></li>
+											<li><i class="fe fe-star tooltipped" data-position="top" data-tooltip="fe fe-star"></i></li>
+											<li><i class="fe fe-stop-circle tooltipped" data-position="top" data-tooltip="fe fe-stop-circle"></i></li>
+											<li><i class="fe fe-sun tooltipped" data-position="top" data-tooltip="fe fe-sun"></i></li>
+											<li><i class="fe fe-sunrise tooltipped" data-position="top" data-tooltip="fe fe-sunrise"></i></li>
+											<li><i class="fe fe-sunset tooltipped" data-position="top" data-tooltip="fe fe-sunset"></i></li>
+											<li><i class="fe fe-tablet tooltipped" data-position="top" data-tooltip="fe fe-tablet"></i></li>
+											<li><i class="fe fe-tag tooltipped" data-position="top" data-tooltip="fe fe-tag"></i></li>
+											<li><i class="fe fe-target tooltipped" data-position="top" data-tooltip="fe fe-target"></i></li>
+											<li><i class="fe fe-terminal tooltipped" data-position="top" data-tooltip="fe fe-terminal"></i></li>
+											<li><i class="fe fe-thermometer tooltipped" data-position="top" data-tooltip="fe fe-thermometer"></i></li>
+											<li><i class="fe fe-thumbs-down tooltipped" data-position="top" data-tooltip="fe fe-thumbs-down"></i></li>
+											<li><i class="fe fe-thumbs-up tooltipped" data-position="top" data-tooltip="fe fe-thumbs-up"></i></li>
+											<li><i class="fe fe-toggle-left tooltipped" data-position="top" data-tooltip="fe fe-toggle-left"></i></li>
+											<li><i class="fe fe-toggle-right tooltipped" data-position="top" data-tooltip="fe fe-toggle-right"></i></li>
+											<li><i class="fe fe-trash tooltipped" data-position="top" data-tooltip="fe fe-trash"></i></li>
+											<li><i class="fe fe-trash-2 tooltipped" data-position="top" data-tooltip="fe fe-trash-2"></i></li>
+											<li><i class="fe fe-trending-down tooltipped" data-position="top" data-tooltip="fe fe-trending-down"></i></li>
+											<li><i class="fe fe-trending-up tooltipped" data-position="top" data-tooltip="fe fe-trending-up"></i></li>
+											<li><i class="fe fe-triangle tooltipped" data-position="top" data-tooltip="fe fe-triangle"></i></li>
+											<li><i class="fe fe-truck tooltipped" data-position="top" data-tooltip="fe fe-truck"></i></li>
+											<li><i class="fe fe-tv tooltipped" data-position="top" data-tooltip="fe fe-tv"></i></li>
+											<li><i class="fe fe-twitter tooltipped" data-position="top" data-tooltip="fe fe-twitter"></i></li>
+											<li><i class="fe fe-type tooltipped" data-position="top" data-tooltip="fe fe-type"></i></li>
+											<li><i class="fe fe-umbrella tooltipped" data-position="top" data-tooltip="fe fe-umbrella"></i></li>
+											<li><i class="fe fe-underline tooltipped" data-position="top" data-tooltip="fe fe-underline"></i></li>
+											<li><i class="fe fe-unlock tooltipped" data-position="top" data-tooltip="fe fe-unlock"></i></li>
+											<li><i class="fe fe-upload tooltipped" data-position="top" data-tooltip="fe fe-upload"></i></li>
+											<li><i class="fe fe-upload-cloud tooltipped" data-position="top" data-tooltip="fe fe-upload-cloud"></i></li>
+											<li><i class="fe fe-user tooltipped" data-position="top" data-tooltip="fe fe-user"></i></li>
+											<li><i class="fe fe-user-check tooltipped" data-position="top" data-tooltip="fe fe-user-check"></i></li>
+											<li><i class="fe fe-user-minus tooltipped" data-position="top" data-tooltip="fe fe-user-minus"></i></li>
+											<li><i class="fe fe-user-plus tooltipped" data-position="top" data-tooltip="fe fe-user-plus"></i></li>
+											<li><i class="fe fe-user-x tooltipped" data-position="top" data-tooltip="fe fe-user-x"></i></li>
+											<li><i class="fe fe-users tooltipped" data-position="top" data-tooltip="fe fe-users"></i></li>
+											<li><i class="fe fe-video tooltipped" data-position="top" data-tooltip="fe fe-video"></i></li>
+											<li><i class="fe fe-video-off tooltipped" data-position="top" data-tooltip="fe fe-video-off"></i></li>
+											<li><i class="fe fe-voicemail tooltipped" data-position="top" data-tooltip="fe fe-voicemail"></i></li>
+											<li><i class="fe fe-volume tooltipped" data-position="top" data-tooltip="fe fe-volume"></i></li>
+											<li><i class="fe fe-volume-1 tooltipped" data-position="top" data-tooltip="fe fe-volume-1"></i></li>
+											<li><i class="fe fe-volume-2 tooltipped" data-position="top" data-tooltip="fe fe-volume-2"></i></li>
+											<li><i class="fe fe-volume-x tooltipped" data-position="top" data-tooltip="fe fe-volume-x"></i></li>
+											<li><i class="fe fe-watch tooltipped" data-position="top" data-tooltip="fe fe-watch"></i></li>
+											<li><i class="fe fe-wifi tooltipped" data-position="top" data-tooltip="fe fe-wifi"></i></li>
+											<li><i class="fe fe-wifi-off tooltipped" data-position="top" data-tooltip="fe fe-wifi-off"></i></li>
+											<li><i class="fe fe-wind tooltipped" data-position="top" data-tooltip="fe fe-wind"></i></li>
+											<li><i class="fe fe-x tooltipped" data-position="top" data-tooltip="fe fe-x"></i></li>
+											<li><i class="fe fe-x-circle tooltipped" data-position="top" data-tooltip="fe fe-x-circle"></i></li>
+											<li><i class="fe fe-x-square tooltipped" data-position="top" data-tooltip="fe fe-x-square"></i></li>
+											<li><i class="fe fe-zap tooltipped" data-position="top" data-tooltip="fe fe-zap"></i></li>
+											<li><i class="fe fe-zap-off tooltipped" data-position="top" data-tooltip="fe fe-zap-off"></i></li>
+											<li><i class="fe fe-zoom-in tooltipped" data-position="top" data-tooltip="fe fe-zoom-in"></i></li>
+											<li><i class="fe fe-zoom-out tooltipped" data-position="top" data-tooltip="fe fe-zoom-out"></i></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Chart -->
+						
+					</div>
+				
+				</div>			
+			</div>
+			<!-- /Page Wrapper -->
+		
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.6.1.min.js"></script>
+		
+		<!-- Materialize JS -->
+		<script src="assets/js/materialize.min.js"></script>
+		
+		<!-- Feather Icon JS -->
+		<script src="assets/js/feather.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+
+	</body>
+</html>

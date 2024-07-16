@@ -1,0 +1,352 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="content-page-header">
+        <h5>Settings</h5>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+      <div class="col-xl-3 col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <!-- Settings Menu -->
+            <div class="widget settings-menu mb-0">
+              <ul>
+                <li class="nav-item">
+                  <a href="/profile_settings" class="nav-link">
+                    <i class="far fa-user"></i> <span>Profile Settings</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/view_company_details" class="nav-link">
+                    <i class="fa-solid fa-suitcase"></i
+                    ><span>Company Details</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="/bank_details" class="nav-link">
+                    <i class="fa fa-university" aria-hidden="true"></i
+                    ><span>Bank Details</span>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="/general_parameter" class="nav-link active">
+                    <i class="far fa-list-alt"></i>
+                    <span>General Parameter</span>
+                  </a>
+                </li>
+
+                <!-- <li class="nav-item">
+                                                            <a href="expense-category.html" class="nav-link">
+                                                                <i class="far fa-list-alt"></i> <span>Expense Category</span>
+                                                            </a>
+                                                        </li> -->
+                <!-- <li class="nav-item">
+                                                <a href="/notifications" class="nav-link">
+                                                    <i class="far fa-bell"></i> <span>Notifications</span>
+                                                </a>
+                                            </li> -->
+                <li class="nav-item">
+                  <a href="/change_password" class="nav-link">
+                    <i class="fas fa-unlock-alt"></i>
+                    <span>Change Password</span>
+                  </a>
+                </li>
+                <!-- <li class="nav-item">
+                                                <a href="/delete_account" class="nav-link">
+                                                    <i class="fas fa-ban"></i> <span>Delete Account</span>
+                                                </a>
+                                            </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /Settings Menu -->
+      </div>
+
+      <div class="col-xl-9 col-md-8">
+        <div class="card card-table">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                <h5 class="card-title">GP Types</h5>
+              </div>
+              <div class="col-auto">
+                <a
+                  href="javascript:void(0);"
+                  class="btn btn-outline-primary btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#add_tax"
+                  >Add New GP</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0 datatable">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Sl No</th>
+                    <th>Gp Type</th>
+                    <th>Gp Value</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in std %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{p.gp_type}}</td>
+                    <td>{{p.gp_value}}</td>
+                    <td>
+                      {% if p.status == 1 %}
+                      <span class="badge bg-success-light">Active</span>
+                      {% else %}
+                      <span class="badge bg-danger-light">Inactive</span>
+                      {% endif %}
+                    </td>
+                    <td class="text-right">
+                      <a
+                        onclick="edit_gp('{{p.id}}')"
+                        class="btn btn-sm btn-white text-success me-2"
+                        ><i class="far fa-edit me-1"></i> Edit</a
+                      >
+                      {% if p.status == 1 %}
+                      <a
+                        onclick="Inactive_gp('{{p.id}}')"
+                        class="btn btn-sm btn-white text-danger me-2"
+                        ><i class="far fa-trash-alt me-1"></i>Delete</a
+                      >
+                      {% else %}
+                      <a
+                        onclick="active_gp('{{p.id}}')"
+                        class="btn btn-sm btn-white text-success me-2"
+                        ><i class=""></i>Activate</a
+                      >
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Tax Modal -->
+    <div id="add_tax" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-0 pb-0">
+            <div class="form-header modal-header-title text-start mb-0">
+              <h4 class="mb-0">Add GP</h4>
+            </div>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span class="align-center" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="gp_postform">
+              <div class="form-group">
+                <label>Gp Type <span class="text-danger">*</span></label>
+                <input class="form-control" name="gptype" type="text" />
+              </div>
+              <div class="form-group">
+                <label>Gp Value <span class="text-danger">*</span></label>
+                <input class="form-control" name="gpvalue" type="text" />
+              </div>
+              <!-- <div class="form-group mb-0">
+											<label>Status <span class="text-danger">*</span></label>
+											<select class="select">
+												<option>Pending</option>
+												<option>Approved</option>
+											</select>
+										</div> -->
+              <div class="modal-footer">
+                <a
+                  href="#"
+                  data-bs-dismiss="modal"
+                  class="btn btn-primary paid-cancel-btn me-2"
+                  >Cancel</a
+                >
+                <button
+                  type="submit"
+                  id="submitbutton"
+                  class="btn btn-primary paid-continue-btn"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Add Tax Modal -->
+
+    <!-- Edit Tax Modal -->
+    <div id="edit_tax" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-0 pb-0">
+            <div class="form-header modal-header-title text-start mb-0">
+              <h4 class="mb-0">Edit Tax</h4>
+            </div>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span class="align-center" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="edit_gpform">
+              <div class="form-group">
+                <label>Gp Type <span class="text-danger">*</span></label>
+                <input
+                  class="form-control"
+                  name="gptype"
+                  id="gptype"
+                  type="text"
+                />
+              </div>
+              <div class="form-group">
+                <label>Gp value <span class="text-danger">*</span></label>
+                <input
+                  class="form-control"
+                  name="gpvalue"
+                  id="gpvalue"
+                  type="text"
+                />
+              </div>
+
+              <div class="modal-footer">
+                <a
+                  href="#"
+                  data-bs-dismiss="modal"
+                  class="btn btn-primary paid-cancel-btn me-2"
+                  >Cancel</a
+                >
+                <button
+                  href="#"
+                  id="edit_button"
+                  type="submit"
+                  class="btn btn-primary paid-continue-btn"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Edit Tax Modal -->
+
+    <!-- Delete Items Modal -->
+    <div class="modal custom-modal fade" id="inactive_modal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="form-header">
+              <h2>Delete GP</h2>
+              <p>Are you sure you want to delete?</p>
+            </div>
+            <div class="modal-btn delete-action">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    id="inactivegp"
+                    class="w-100 btn btn-primary paid-continue-btn"
+                  >
+                    Delete
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    type="submit"
+                    data-bs-dismiss="modal"
+                    class="w-100 btn btn-primary paid-cancel-btn"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Delete Items Modal -->
+  </div>
+</div>
+<!-- /Page Wrapper -->
+
+<script src="/static/assets/js/gp.js"></script>
+
+<script>
+  function Inactive_gp(ID) {
+    $("#inactive_modal").modal("show");
+    $("#inactivegp").click(function () {
+      $.ajax({
+        url: "inactive_gp/" + ID,
+        method: "POST",
+        data: { csrfmiddlewaretoken: "{{csrf_token}}" },
+        success: function (response) {
+          window.location.href = "/general_parameter";
+        },
+      });
+    });
+  }
+
+  function active_gp(ID) {
+    $.ajax({
+      url: "active_gp/" + ID,
+      method: "post",
+      data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+      success: function () {
+        showAactiveSuccessMessage();
+      },
+    });
+  }
+</script>
+
+<script>
+
+    function showAactiveSuccessMessage(message) {
+        Swal.fire({
+          icon: 'success',
+          title: ' Successfully Activated',
+          text: message,
+        }).then((result) => {
+          
+          window.location.href = '/general_parameter'; 
+        });
+      }
+</script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header ">
+                <h5>Interested Spaces</h5>
+                <div class="list-btn">
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Date</th>
+                                        <th>Space</th>
+                                        <th>MetroStation</th>
+                                        <th>Customer </th>
+                                        <th>customer details</th>
+                                        <!-- <th>status</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in spaces %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+
+                                       <td> {{p.created_on|date:'d-m-Y'}}</td> 
+                                        <td>{{p.space_id.space_name}}</td>
+                                        <td>{{p.space_id.metrostation.metrostation.station_name}}</td>
+                                        <td>{{p.login_id.login_name}}</td>
+                                        <td>{{p.login_id.email}} <br>
+                                         {{p.login_id.phno}}</td>
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                    <!--  -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+<!-- ACTIVATE Items Modal -->
+<div class="modal custom-modal fade" id="activate_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Activate User</h3>
+                    <p>Are you sure you want to continue?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="activate_customer" class="w-100 btn btn-primary paid-continue-btn">
+                                Activate
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ACTIVATE Items Modal -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete User</h3>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete_user_id"
+                                class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+<script>  document.getElementById("intrestspace-dash").classList.add("active");</script>
+
+
+
+{% endblock %}

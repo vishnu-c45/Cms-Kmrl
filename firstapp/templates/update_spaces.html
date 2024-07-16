@@ -1,0 +1,147 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<!-- Page Wrapper -->
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Update Space</h5>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="form" id="spaceform">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="form-group-item">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Station Name</label>
+                                        <select class="form-control" name="stationname"
+                                            aria-label="Default select example">
+                                            <option disabled>Select Metro Station</option>
+                                            {% for p in metro %}
+                                            <option value="{{p.id}}" {% if p.id == std.metrostation_id %}selected {% endif %}>
+                                                {{p.metrostation.station_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Space Name</label>
+                                        <input type="text" class="form-control" name="spacename"
+                                            value="{{std.space_name}}" placeholder="Enter space name">
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Master Space</label> 
+                                    <select class="form-control" name="masterspace"
+                                        aria-label="Default select example">
+                                        <option disabled>Select Master Space</option>
+                                        {% for p in master %}
+                                        <option value="{{p.id}}" {% if p.id == std.master_space_id %}selected {% endif %}>
+                                            {{p.space_name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    </div>
+                                </div> -->
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Space Type</label>
+                                        <select class="form-control" name="spacetype" aria-label="Default select example">
+                                            <option disabled>Select space type</option>
+                                            <option value="Office" {% if std.space_type == 'Office' %}selected{% endif %}>Office</option>
+                                            <option value="Kiosk" {% if std.space_type == 'Kiosk' %}selected{% endif %}>Kiosk</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area Type</label>
+                                        <select class="form-control" name="areatype"
+                                            aria-label="Default select example">
+                                            <option disabled selected>Select area type</option>
+                                            <option value="Paid" {% if std.area_type == 'Paid' %}selected{% endif %}>Paid</option>
+                                            <option value="Unpaid" {% if std.area_type == 'Unpaid' %}selected{% endif %}>Unpaid</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area Side</label>
+                                        <select class="form-control" name="areaside"
+                                            aria-label="Default select example">
+                                            <option disabled selected>Select area side</option>
+                                            <option value="LHS" {% if std.area_side == 'LHS' %}selected{% endif %}>LHS</option>
+                                            <option value="RHS" {% if std.area_side == 'RHS' %}selected{% endif %}>RHS</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area Level</label>
+                                        <select class="form-control" name="arealevel" aria-label="Default select example">
+                                            <option disabled selected>Select area level</option>
+                                            <option value="STRT" {% if std.area_level == 'STRT' %}selected{% endif %}>STRT</option>
+                                            <option value="CONC" {% if std.area_level == 'CONC' %}selected{% endif %}>CONC</option>
+                                            <option value="PLTF" {% if std.area_level == 'PLTF' %}selected{% endif %}>PLTF</option>
+                                            <option value="PD" {% if std.area_level == 'PD' %}selected{% endif %}>PD</option>
+                                        </select>
+                                        <!-- <input type="text" class="form-control" value="{{std.area_level}}"
+                                            name="arealevel" placeholder="Enter area level"> -->
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Area (sq ft)</label>
+                                        <input type="text" class="form-control" name="area" value="{{std.area}}"
+                                            placeholder="Enter area">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-customer-btns text-end">
+                            <a href="/view_spaces" type="reset" class="btn customer-btn-cancel">Cancel</a>
+                            <button id="submitbutton" value="{{std.id}}" class="btn customer-btn-save">
+                                Save Changes
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+
+<script>
+    document.getElementById("space-dash").classList.add("active");
+</script>
+
+<script src="/static/assets/js/update_space.js"></script>
+
+<style>
+    .error {
+        color: red;
+    }
+
+    .address {
+        color: blue;
+    }
+</style>
+
+{% endblock %}

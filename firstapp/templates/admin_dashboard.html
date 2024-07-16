@@ -1,0 +1,785 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script>
+  var invoiceData = JSON.parse('{{ invoice_data_json|escapejs }}');
+  var paymentData = JSON.parse('{{ payment_data_json|escapejs }}');
+  var invoiceDataYear = JSON.parse('{{ invoice_data_json_year|escapejs }}');
+  var paymentDataYear = JSON.parse('{{ payment_data_json_year|escapejs }}');
+</script>
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <div>
+      <form method="post" action="{% url 'firstapp' %}" class="flex-container mb-3">
+        {% csrf_token %}
+        <input type="date" value="{{fromdate}}" name="fromDate" class="form-control ">
+        <input type="date" value="{{todate}}" name="toDate" class="form-control  ">
+        <button type="submit" class="search-button form btn btn-primary"> <i class="fas fa-search"></i></button>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon bg-5">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Customers</div>
+                <div class="dash-counts">
+                  <p>{{customercount}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar bg-5" role="progressbar" id="progressBar1" aria-valuenow="{{prospective}}"
+                aria-valuemin="0" aria-valuemax="{{customercount}}"></div>
+            </div>
+
+            <p class="text-muted mt-3 mb-0">
+              <span class="me-1" style="color: #ffB800;">
+                <span class="hover-text" data-hover="prospective">
+                  <i class="fas fa-arrow-right me-1"></i>{{prospective}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="in progress">
+                  {{inprogress}}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Calculate the progress bar width dynamically
+        var prospective = {{ prospective }};
+        var customercount = {{ customercount }};
+        var progressBar1 = document.getElementById('progressBar1');
+        var width = (prospective / customercount) * 100;
+        progressBar1.style.width = width + "%";
+      </script>
+
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon bg-7">
+                <i class="fa-brands fa-android"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Active Customers</div>
+                <div class="dash-counts">
+                  <p>{{active}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar bg-7" role="progressbar" id="progressBar2" aria-valuenow="{{app}}"
+                aria-valuemin="0" aria-valuemax="{{active}}"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="text-success me-1">
+                <span class="hover-text" data-hover="App">
+                  <i class="fas fa-arrow-right me-1"></i>{{app}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="Non-App">
+                  0
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Calculate the progress bar width dynamically
+        var app = {{ app }};
+        var active = {{ active }};
+        var progressBar2 = document.getElementById('progressBar2');
+        var width = (app / active) * 100;
+        progressBar2.style.width = width + "%";
+      </script>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon" style="background-color: rgb(245, 51, 132);">
+                <i class="fa-solid fa-hotel"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Spaces</div>
+                <div class="dash-counts">
+                  <p>{{space}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar" role="progressbar" id="progressBar3" aria-valuenow="{{occ}}" aria-valuemin="0"
+                aria-valuemax="{{space}}" style="background-color:  rgb(245, 51, 132);"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="text-info me-1">
+                <span class="hover-text" data-hover="Occupied" style="color: rgb(245, 51, 132);">
+                  <i class="fas fa-arrow-right me-1"></i>{{occ}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="Vacant">
+                  {{vac}}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Calculate the progress bar width dynamically
+        var occ = {{ occ }};
+        var space = {{ space }};
+        var progressBar3 = document.getElementById('progressBar3');
+        var width = (occ / space) * 100;
+        progressBar3.style.width = width + "%";
+      </script>
+
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon" style="background-color: #39b1b7;">
+                <i class="fa-solid fa-map"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Area in (sq.ft.)</div>
+                <div class="dash-counts">
+                  <p>{{areasum}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar" role="progressbar" id="progressBar4" aria-valuenow="{{occsum}}"
+                aria-valuemin="0" aria-valuemax="{{areasum}}" style="background-color: #39b1b7;"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="me-1" style="color:#39b1b7;">
+                <span class="hover-text" data-hover="area">
+                  <i class="fas fa-arrow-right me-1"></i>{{occsum}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="AREA">
+                  {{vacsum}}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        var occsum = {{ occsum }};
+        var areasum = {{ areasum }};
+        var progressBar = document.getElementById('progressBar4');
+        var width = (occsum / areasum) * 100;
+        progressBar.style.width = width + "%";
+      </script>
+
+    </div>
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon" style="background-color:rgb(120, 35, 248);">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Invoices</div>
+                <div class="dash-counts">
+                  <p>{{invoicesum}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar" role="progressbar" id="progressBar5" aria-valuenow="{{invoicepaid}}"
+                aria-valuemin="0" aria-valuemax="{{invoicesum}}" style="background-color: rgb(120, 35, 248);"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="me-1" style="color: rgb(120, 35, 248);">
+                <span class="hover-text" data-hover="paid">
+                  <i class="fas fa-arrow-right me-1"></i>{{invoicepaid}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="pending">
+                  {{invoicepending}}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Calculate the progress bar width dynamically
+        var invoicepaid = {{ invoicepaid }};
+        var invoicesum = {{ invoicesum }};
+        var progressBar = document.getElementById('progressBar5');
+        var width = (invoicepaid / invoicesum) * 100;
+        progressBar.style.width = width + "%";
+      </script>
+
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body ">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon" style="background-color:  rgb(249, 105, 105);">
+                <i class="fa-solid fa-bolt-lightning"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Power in (kWh)</div>
+                <div class="dash-counts">
+                  <p>{{power}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+
+              <div class="progress-bar bg-7" role="progressbar6" id="progressBar6" aria-valuenow="{{powerused}}"
+                aria-valuemin="0" aria-valuemax="{{power}}" style="background-color: rgb(249, 105, 105);"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="text-success me-1">
+                <span class="hover-text" data-hover="power" style="color: rgb(249, 105, 105);">
+                  <i class="fas fa-arrow-right me-1"></i>{{powerused}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="Power">
+                  {{powerremaining}}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <script>
+        var powerused = {{ powerused }};
+        var power = {{ power }};
+        var progressBar = document.getElementById('progressBar6');
+        var width = (powerused / power) * 100;
+        progressBar.style.width = width + "%";
+      </script>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon bg-6">
+                <i class="fas fa-tint"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Water in (c.c.f.)</div>
+                <div class="dash-counts">
+                  <p>{{water}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar bg-6" role="progressbar7" id="progressBar7" aria-valuenow="{{waterused}}"
+                aria-valuemin="0" aria-valuemax="{{water}}"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="text-info me-1">
+                <span class="hover-text" data-hover="water">
+                  <i class="fas fa-arrow-right me-1"></i>{{waterused}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="Water">
+                  {{waterremaining}}
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <script>
+        var waterused = {{ waterused }};
+        var water = {{ water }};
+        var progressBar = document.getElementById('progressBar7');
+        var width = (waterused / water) * 100;
+        progressBar.style.width = width + "%";
+      </script>
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="dash-widget-icon bg-8">
+                <i class="fa-solid fa-building-lock"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Security Deposits</div>
+                <div class="dash-counts">
+                  <p>{{depositcount}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="progress progress-sm mt-3">
+              <div class="progress-bar bg-8" role="progressbar" id="progressBar" aria-valuenow="{{depositpaid}}"
+                aria-valuemin="0" aria-valuemax="{{depositcount}}"></div>
+            </div>
+            <p class="text-muted mt-3 mb-0">
+              <span class="me-1" style="color: #f555ff;">
+                <span class="hover-text" data-hover="Paid">
+                  <i class="fas fa-arrow-right me-1"></i>{{depositpaid}}
+                </span>
+              </span>
+              <span class="float-end">
+                <span class="hover-text" data-hover="Pending">
+                  0
+                </span>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Calculate the progress bar width dynamically
+        var depositpaid = {{ depositpaid }};
+        var depositcount = {{ depositcount }};
+        var progressBar = document.getElementById('progressBar');
+        var width = (depositpaid / depositcount) * 100;
+        progressBar.style.width = width + "%";
+      </script>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-xl-7 d-flex">
+        <div class="card flex-fill">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title">Invoice</h5>
+              <div class="dropdown">
+                <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-bs-toggle="dropdown" aria-expanded="false">Monthly</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <a href="javascript:void(0);" class="dropdown-item" data-mode="monthly">Monthly </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="dropdown-item" data-mode="yearly">Yearly </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap">
+            </div>
+            <div id="mixed-chart"></div>
+            <div id="mixed-chart2" style="display: none;"></div>
+            <button id="yearlyButton" class="btn btn-white btn-sm" style="display: none;"></button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // JavaScript to handle chart visibility and button text based on dropdown selection
+        const dropdownButton = document.getElementById('dropdownMenuButton');
+        const monthlyOption = document.querySelector('.dropdown-item[data-mode="monthly"]');
+        const yearlyOption = document.querySelector('.dropdown-item[data-mode="yearly"]');
+        const mixedChart = document.getElementById('mixed-chart');
+        const mixedChart2 = document.getElementById('mixed-chart2');
+        const yearlyButton = document.getElementById('yearlyButton');
+
+        monthlyOption.addEventListener('click', () => {
+          mixedChart.style.display = 'block';
+          mixedChart2.style.display = 'none';
+          dropdownButton.innerHTML = 'Monthly';
+          yearlyButton.style.display = 'none';
+        });
+
+        yearlyOption.addEventListener('click', () => {
+          mixedChart.style.display = 'none';
+          mixedChart2.style.display = 'block';
+          dropdownButton.innerHTML = 'Yearly';
+          yearlyButton.style.display = 'block';
+        });
+
+      </script>
+      <div class="col-xl-5 d-flex">
+        <div class="card flex-fill">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title">Invoice Analytics</h5>
+
+              <div class="dropdown">
+                <button class="btn btn-white btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">Monthly</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <a href="javascript:void(0);" class="dropdown-item" onclick="showDonut('Monthly')">Monthly </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="dropdown-item" onclick="showDonut('Yearly')">Yearly </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="chart-donut">
+            </div>
+            <div id="chart-donut-year" style="display: none;">
+            </div>
+            <div class="text-center text-muted" id="monthdata">
+              <div class="row">
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle  me-1" style="color: #52fb6a"></i>
+                      Paid</p>
+                    <input type="hidden" id="rent" value="{{paidinvoice}}">
+
+                    <h5>{{paidinvoice}}</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle  me-1"
+                        style="color: rgb(255, 115, 123);;"></i> Power</p>
+                    <input type="hidden" id="power" value="{{powerusedmonth}}">
+                    <h5>{{powerusedmonth}}</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle  me-1" style="color: #42cdff"></i> Water</p>
+                    <input type="hidden" id="water" value="{{waterusedmonth}}">
+
+                    <h5>{{waterusedmonth}}</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle me-1" style="color: #ffb800"></i>
+                      Pending</p>
+                    <input type="hidden" id="pending" value="{{pendinginvoice}}">
+
+                    <h5>{{pendinginvoice}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center text-muted" id="yeardata">
+              <div class="row">
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle  me-1" style="color: #52fb6a"></i>
+                      Paid</p>
+                    <input type="hidden" id="rent1" value="{{paidinvoiceyear}}">
+
+                    <h5>{{paidinvoiceyear}}</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle  me-1"
+                        style="color: rgb(255, 115, 123);;"></i> Power</p>
+                    <input type="hidden" id="power1" value="{{powerusedyear}}">
+                    <h5>{{powerusedyear}}</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle  me-1" style="color: #42cdff"></i> Water</p>
+                    <input type="hidden" id="water1" value="{{waterusedyear}}">
+
+                    <h5>{{waterusedyear}}</h5>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="mt-4">
+                    <p class="mb-2 text-truncate"><i class="fas fa-circle me-1" style="color: #ffb800"></i>
+                      Pending</p>
+                    <input type="hidden" id="pending1" value="{{pendinginvoiceyear}}">
+
+                    <h5>{{pendinginvoiceyear}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        #yeardata {
+          display: none;
+        }
+      </style>
+
+      <script>
+        function showDonut(selectedItem) {
+          var monthlyDonut = document.getElementById("chart-donut");
+          var yearlyDonut = document.getElementById("chart-donut-year");
+          var dropdownButton = document.getElementById("dropdownMenuButton1");
+          var monthlyData = document.getElementById("monthdata");
+          var yearlyData = document.getElementById("yeardata");
+
+
+          if (selectedItem === 'Monthly') {
+            monthlyDonut.style.display = "block";
+            monthlyData.style.display = "block";
+            yearlyDonut.style.display = "none";
+            yearlyData.style.display = "none";
+
+            dropdownButton.textContent = "Monthly";
+          } else if (selectedItem === 'Yearly') {
+            monthlyDonut.style.display = "none";
+            yearlyDonut.style.display = "block";
+            yearlyData.style.display = "block";
+            monthlyData.style.display = "none";
+
+            dropdownButton.textContent = "Yearly";
+          }
+        }
+      </script>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-center">
+              <div class="col">
+                <h5 class="card-title">Recent Invoices</h5>
+              </div>
+              <div class="col-auto">
+                <a href="/customer_invoices" class="btn-right btn btn-sm btn-outline-primary">
+                  View All
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-auto">
+                  <i class="fas fa-circle text-success me-1"></i> Paid
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-circle text-warning me-1"></i> Pending
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-circle text-danger me-1"></i> Overdue
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-circle text-info me-1"></i> Draft
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-circle text-gray-light me-1"></i> Cancelled
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+
+              <table class="table table-stripped table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Customer</th>
+                    <th>Total Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in invoice_list %}
+                  <tr>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a href="/customer_details/{{p.customer_contact.id}}"><img
+                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
+                            src="/static/assets/img/profiles/avatar-07.jpg"
+                            alt="User Image">{{p.customer_contact.customer.customer_name}}</a>
+                      </h2>
+                    </td>
+                    <td>{{p.total_amount}}</td>
+                    <td>{{p.due_date|date:'d-m-Y'}}</td>
+                    <td>
+
+                      {% if p.status == 1 %}
+                      <span class="badge bg-light-gray text-primary">Draft</span>
+                      {% elif p.status == 2 %}
+                      <span class="badge bg-warning-light text-warning">Pending</span>
+                      {% elif p.status == 3 %}
+                      <span class="badge bg-green-light text-success">Paid</span>
+                      {% elif p.status == 4 %}
+                      <span class="badge bg-danger-light text-danger">Overdue</span>
+                      {% elif p.status == 5 %}
+                      <span class="badge bg-light-gray text-gray-light">Cancelled</span>
+                      {% endif %}
+                    </td>
+                    <td class="d-flex align-items-center">
+                      <a class=" btn-action-icon me-2" href="/invoice_details/{{p.id}}" target="_blank"><i
+                          class="fe fe-eye"></i></a>
+
+                    </td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="card">
+          <div class="card-header">
+            <div class="row align-center">
+              <div class="col">
+                <h5 class="card-title">Recent Payments</h5>
+              </div>
+              <div class="col-auto">
+                <a href="/customer_payments" class="btn-right btn btn-sm btn-outline-primary">
+                  View All
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-auto">
+                  <i class="fas fa-circle text-success me-1"></i> Paid
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-circle text-warning me-1"></i> Pending
+                </div>
+                <div class="col-auto">
+                  <i class="fas fa-circle text-danger me-1"></i> Declined
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <!-- <th>Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in payments_lits %}
+                  <tr>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a href="/customer_details/{{p.customer.id}}"><img
+                            class="avatar avatar-sm me-2 avatar-img rounded-circle"
+                            src="/static/assets/img/profiles/avatar-07.jpg"
+                            alt="User Image">{{p.customer.customer.customer_name}}</a>
+                      </h2>
+                    </td>
+                    <td>{{p.payment_amount}}</td>
+                    <td>{{p.created_on|date:'d-m-Y'}}</td>
+                    {% if p.status == 1 %}
+                    <td><span class="badge bg-success-light">Paid</span></td>
+                    {% else %}
+                    <td><span class="badge bg-warning-light text-warning">Pending</span></td>
+
+                    {% endif %}
+                    <!-- <td class="d-flex align-items-center">
+                      <a class=" btn-action-icon me-2" href="#"><i class="fe fe-eye"></i></a>
+
+                    </td> -->
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Page Wrapper -->
+<script>
+  document.getElementById('dashboard').classList.add('active');
+</script>
+
+<style>
+  .flex-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .form-control {
+    width: 200px;
+    height: 40px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .form-control:hover,
+  .form-control:focus {
+    background-color: #f2f2f2;
+  }
+
+  input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="date"]:hover,
+  input[type="date"]:focus {
+    background-color: #f2f2f2;
+  }
+
+  .search-button {
+    margin-left: 10px;
+    height: 40px;
+    padding: 8px 16px;
+    background-color: #39b1b7;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-button:hover,
+  .search-button:focus {
+    background-color: #0056b3;
+  }
+</style>
+
+{% endblock %}

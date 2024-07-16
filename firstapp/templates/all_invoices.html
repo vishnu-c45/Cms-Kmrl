@@ -1,0 +1,685 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="content-page-header">
+        <h5>Invoices</h5>
+        <div class="list-btn">
+          <ul class="filter-list">
+            <li>
+              <a class="btn btn-filters w-auto popup-toggle"><span class="me-2"><i
+                    class="fe fe-filter"></i></span>Filter
+              </a>
+            </li>
+
+            <li>
+              <a class="btn btn-primary" onclick="Create_all_invoices()"><i class="fa fa-plus-circle me-2"
+                  aria-hidden="true"></i>Generate</a>
+            </li>
+            {% if draft != 0 %} 
+              {% if invoice != 0 %}
+                  <li>
+                      <a class="btn btn-primary" onclick="send_all_invoice(invoice)"><i class="far fa-paper-plane me-2" aria-hidden="true"></i>Send</a>
+                  </li>
+              {% endif %}
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+
+
+    <!-- Inovices card -->
+    <div class="row">
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-info-light">
+                <img src="/static/assets/img/icons/receipt-item.svg" alt="" />
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Invoices</div>
+                <div class="dash-counts">
+                  <p>{{invoicecount}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-green-light">
+                <img src="/static/assets/img/icons/message-edit.svg" alt="" />
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Paid</div>
+                <div class="dash-counts">
+                  <p>{{paid}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-warning-light">
+                <img src="/static/assets/img/icons/archive-book.svg" alt="" />
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Pending</div>
+                <div class="dash-counts">
+                  <p>{{pending}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-light-gray">
+                <i class="fa-regular fa-rectangle-xmark"></i>
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Cancelled</div>
+                <div class="dash-counts">
+                  <p>{{cancel}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-primary-light">
+                <img src="/static/assets/img/icons/transaction-minus.svg" alt="" />
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Draft</div>
+                <div class="dash-counts">
+                  <p>{{draft}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-4 col-sm-6 col-12 d-flex">
+        <div class="card inovices-card w-100">
+          <div class="card-body">
+            <div class="dash-widget-header">
+              <span class="inovices-widget-icon bg-danger-light">
+                <img src="/static/assets/img/icons/3d-rotate.svg" alt="" />
+              </span>
+              <div class="dash-count">
+                <div class="dash-title">Overdue</div>
+                <div class="dash-counts">
+                  <p>{{overdue}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Inovices card -->
+
+    <!-- Table -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card-table">
+          <div class="card-body" id="cardbody">
+            <div class="table-responsive">
+              <table class="table table-stripped table-hover datatable">
+                <thead class="thead-light">
+                  <tr>
+                    <th>Sl No</th>
+                    <th>Invoice No</th>
+                    <th>Customer</th>
+                    <th>Due Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for p in std %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td class="invoice-link">{{p.invoice_no}}</td>
+                    <td>
+                      <h2 class="table-avatar">
+                        <a href="/customer_details/{{p.customer_contact.id}}" class="avatar avatar-sm me-2">
+                          <img class="avatar-img rounded-circle" src="/static/assets/img/profiles/avatar-07.jpg"
+                            alt="User Image" />
+                        </a>
+                        <a href="/customer_details/{{p.customer_contact.id}}"
+                          class="customer">{{p.customer_contact.customer.customer_name}}
+                        </a>
+                      </h2>
+                    </td>
+                    <td>{{p.total_amount}}</td>
+                    <td class="due">{{p.due_date|date:'Y-m-d'}}</td>
+                    <td class="status">
+                      {% if p.status == 1 %}
+                      <span class="badge bg-light-gray text-primary">Draft</span>
+                      {% elif p.status == 2 %}
+                      <span class="badge bg-warning-light text-warning">Pending</span>
+                      {% elif p.status == 3 %}
+                      <span class="badge bg-green-light text-success">Paid</span>
+                      {% elif p.status == 4 %}
+                      <span class="badge bg-danger-light text-danger">Overdue</span>
+                      {% elif p.status == 5 %}
+                      <span class="badge bg-light-gray text-gray-light">Cancelled</span>
+                      {% endif %}
+                    </td>
+                    <td class="text-end">
+                      <div class="dropdown dropdown-action position-absolute">
+                        <a href="#" class="btn-action-icon" data-bs-toggle="dropdown" aria-expanded="false"><i
+                            class="fas fa-ellipsis-v"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                          <a class="dropdown-item" href="{% url 'View_invoice' p.id %}" target="_blank"><i
+                              class="far fa-eye me-2"></i>View</a>
+                          {% if p.status == 1 %}
+                          <a class="dropdown-item"
+                            onclick="send_invoice('{{p.id}}','{{p.invoice_no}}','{{p.total_amount}}','{{p.due_date}}','{{p.customer_contact.id}}')"><i
+                              class="far fa-paper-plane me-2"></i>Send
+                            Invoice</a>
+                          {% endif %} {% if p.status == 1%}
+                          <a class="dropdown-item" href="{% url 'Update_invoice' p.id %}"><i
+                              class="far fa-edit me-2"></i>Edit</a>
+                          {% endif %} {% if p.status != 5 and p.status != 3 %}
+                          <li>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                              onclick="deleteinvoice('{{p.id}}')"><i class="far fa-trash-alt me-2"></i>Cancel</a>
+                          </li>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Table -->
+  </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Cancel Invoice</h3>
+          <p>Are you sure you want to cancel?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="reset" id="delete_invoice" class="w-100 btn btn-primary paid-continue-btn">
+                Delete
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Delete Items Modal -->
+
+<!-- Send Items Modal -->
+<div class="modal custom-modal fade" id="send_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Send All Invoices</h3>
+          <p>Do you want to continue?</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <button type="reset" id="send_invoice" class="w-100 btn btn-primary paid-continue-btn">
+                Yes
+              </button>
+            </div>
+            <div class="col-6">
+              <button type="submit" data-bs-dismiss="modal" class="w-100 btn btn-primary paid-cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Send Items Modal -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+  <div class="sidebar-layout-filter">
+    <div class="sidebar-header">
+      <h5>Filter</h5>
+      <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+    </div>
+    <div class="sidebar-body">
+      <form id="filter-form" autocomplete="off">
+        <!-- Customer -->
+        <div class="accordion" id="accordionMain1">
+          <div class="card-header-new" id="headingOne">
+            <h6 class="filter-title">
+              <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Customer
+                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+              </a>
+            </h6>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample1">
+            <div class="card-body-chat">
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="checkBoxes1">
+                    <div class="form-custom">
+                      <input type="text" class="form-control" id="customersearch" placeholder="Search here" />
+                      <span><img src="/static/assets/img/icons/search.svg" alt="img" /></span>
+                    </div>
+                    <div class="selectBox-cont" id="selectcustomer">
+                      {% for p in customer %}
+                      <label class="custom_check w-100">
+                        <input type="checkbox" name="stationname" class="customer"
+                          value="{{p.customer.customer_name}}" />
+                        <span class="checkmark"></span>
+                        {{p.customer.customer_name}}
+                      </label>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Customer -->
+
+        <!-- By Status -->
+        <div class="accordion" id="accordionMain3">
+          <div class="card-header-new" id="headingThree">
+            <h6 class="filter-title">
+              <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                By Status
+                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+              </a>
+            </h6>
+          </div>
+
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample3">
+            <div class="card-body-chat">
+              <div id="checkBoxes2">
+                <div class="selectBox-cont">
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" value="Paid" class="status" />
+                    <span class="checkmark"></span> Paid
+                  </label>
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" value="Pending" class="status" />
+                    <span class="checkmark"></span> Pending
+                  </label>
+
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" value="Draft" class="status" />
+                    <span class="checkmark"></span> Draft
+                  </label>
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" value="Cancelled" class="status" />
+                    <span class="checkmark"></span> Cancelled
+                  </label>
+                  <label class="custom_check w-100">
+                    <input type="checkbox" name="bystatus" value="Overdue" class="status" />
+                    <span class="checkmark"></span> Overdue
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /By Status -->
+
+        <!-- Select Date -->
+        <div class="accordion" id="accordionMain2">
+          <div class="card-header-new" id="headingTwo">
+            <h6 class="filter-title">
+              <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                Select Date
+                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+              </a>
+            </h6>
+          </div>
+
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+            <div class="card-body-chat">
+              <div class="form-group">
+                <label class="form-control-label">From</label>
+                <div class="">
+                  <input type="date" class="form-control datetimepicker" id="from" placeholder="DD-MM-YYYY" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-control-label">To</label>
+                <div class="">
+                  <input type="date" class="form-control datetimepicker" id="to" placeholder="DD-MM-YYYY" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Select Date -->
+        <button type="submit" class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+          <span></span>Search Results
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<!--/Add Asset -->
+
+<script>
+  $(document).ready(function () {
+    //Filter Tables
+    function filterTable() {
+      var selectedCustomers = [];
+      var selectedStatuses = [];
+      var from = $("#from").val();
+      var to = $("#to").val();
+
+      // Get the selected checkboxes
+      var selectedCustomers = $(".customer:checked")
+        .map(function () {
+          return $(this).val();
+        })
+        .get();
+
+      var selectedStatuses = $(".status:checked")
+        .map(function () {
+          return $(this).val();
+        })
+        .get();
+
+      // Filter the table rows
+      $(".datatable tbody tr").each(function () {
+        var customer = $(this).find(".customer").text().trim();
+        var status = $(this).find(".status").text().trim();
+        var date = $(this).find(".due").text().trim();
+
+        var customerMatch =
+          selectedCustomers.length === 0 ||
+          selectedCustomers.includes(customer);
+        var statusMatch =
+          selectedStatuses.length === 0 || selectedStatuses.includes(status);
+        var dateMatch =
+          (from === "" && to === "") || (date >= from && date <= to);
+
+
+        if (customerMatch && statusMatch && dateMatch) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    }
+
+    // Call the filterTable function when the form is submitted
+    $("#filter-form").submit(function (e) {
+      e.preventDefault();
+      filterTable();
+    });
+  });
+</script>
+
+<script>
+  //Search Customer
+  var searchInput = document.getElementById("customersearch");
+  var checkboxes = document.querySelectorAll(
+    '.selectBox-cont input[type="checkbox"]'
+  );
+  var labels = document.querySelectorAll(".selectBox-cont label");
+
+  searchInput.addEventListener("input", function (event) {
+    var searchTerm = event.target.value.trim().toLowerCase();
+
+    checkboxes.forEach(function (checkbox, index) {
+      var customerName = labels[index].textContent.toLowerCase();
+
+      if (customerName.includes(searchTerm)) {
+        checkbox.parentElement.style.display = "block";
+      } else {
+        checkbox.parentElement.style.display = "none";
+      }
+    });
+  });
+</script>
+
+<script>
+  document.getElementById("invoice").classList.add("active");
+</script>
+
+<script>
+  function deleteinvoice(ID) {
+    $("#delete_modal").modal("show");
+    $("#delete_invoice").click(function () {
+      $.ajax({
+        url: "deleteinvoice/" + ID,
+        method: "post",
+        data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+        success: function (response) {
+          // alert(response)
+          window.location.href = "customer_invoices";
+        },
+      });
+    });
+  }
+</script>
+
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + "=")) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  function send_all_invoice(invoice) {
+    $("#send_modal").modal("show");
+    $("#send_invoice").click(function () {
+      fetch("/send_all_invoice", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}", // Replace with your CSRF token
+        },
+        body: JSON.stringify({
+          // Add any additional data you want to send in the request body
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            showsMessage(invoice);
+          }
+        })
+        .catch((error) => { });
+    });
+  }
+  function showsMessage(invoice) {
+    Swal.fire({
+      icon: "success",
+      title: "{{invoice}} invoices have been sent",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Send email to the registered customer
+        const csrftoken = getCookie("csrftoken");
+
+        $.ajax({
+          method: "POST",
+          url: "/send-email",
+          dataType: "json",
+          data: {
+            type: 4,
+          },
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          },
+          success: function () {
+            // Handle the response from the email sending process if needed
+          },
+        });
+
+        // Redirect to the desired page
+        window.location.href = "/customer_invoices";
+      }
+    });
+  }
+
+  function send_invoice(ID, no, amount, date, customer) {
+    fetch("/send_invoice/" + ID, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token }}", // Replace with your CSRF token
+      },
+      body: JSON.stringify({
+        // Add any additional data you want to send in the request body
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          showMessage(no, amount, date, customer);
+        } else {
+        }
+      })
+      .catch((error) => { });
+  }
+  function showMessage(x, y, z, c) {
+    Swal.fire({
+      icon: "success",
+      title: "Invoice sent successfully",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Send email to the registered customer
+        const csrftoken = getCookie("csrftoken");
+
+        $.ajax({
+          method: "POST",
+          url: "/send-email",
+          dataType: "json",
+          data: {
+            email: x,
+            Area: y,
+            station: z,
+            customerName: c,
+            type: 3,
+          },
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          },
+          success: function () {
+            // Handle the response from the email sending process if needed
+          },
+        });
+
+        // Redirect to the desired page
+        window.location.href = "/customer_invoices";
+      }
+    });
+  }
+  function showSuccessMessage() {
+    Swal.fire({
+      icon: "success",
+      title: "Invoice created successfully",
+    }).then((result) => {
+      window.location.href = "/customer_invoices";
+    });
+  }
+
+  function showInvoiceExistsMessage() {
+    Swal.fire({
+      icon: "warning",
+      title: "Invoice already exists",
+    });
+  }
+  function InvoiceSent() {
+    Swal.fire({
+      icon: "warning",
+      title: "All invoices have been sent!",
+    });
+    $("#send_modal").modal("hide");
+  }
+  function Create_all_invoices() {
+    fetch("/Create_all_invoices", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token }}", // Replace with your CSRF token
+      },
+      body: JSON.stringify({
+        // Add any additional data you want to send in the request body
+      }),
+    })
+      .then((response) => {
+        response.text().then((text) => {
+          if (text == "Invoice sent") {
+            showSuccessMessage();
+          } else {
+            showInvoiceExistsMessage();
+          }
+        });
+      })
+      .catch((error) => { });
+  }
+</script>
+
+{% endblock %}

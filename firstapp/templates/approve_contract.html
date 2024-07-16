@@ -1,0 +1,117 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Approve Contracts</h5>
+                <div class="list-btn">
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+     
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center table-hover ">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Contract Number</th>
+                                        <th>Customer Name</th>
+                                        <th>Space</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in std %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{p.contract_no}}</td>
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <div class="avatar avatar-md me-2">
+                                                    <img class="avatar-img rounded-circle"
+                                                        src="/static/assets/img/profiles/avatar-07.jpg"
+                                                        alt="User Image">
+                                                </div>
+                                                {{p.customer_contact.customer.customer_name}}
+                                            </h2>
+                                        </td>
+                                        <td>{{p.master_space.space_name}}</td>
+                                        <td class="d-flex align-items-center">
+                                            <a href="/contract_details/{{p.id}}"
+                                                class="btn bg-ash-gray me-2">Details</a>
+                                            <a onclick="Approved_contract('{{p.id}}')" class="btn bg-success-light me-2"> Approve</a>
+                                            <a onclick="Rejected_contract('{{p.id}}')" class="btn bg-danger-light me-2">Reject</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+    document.getElementById('contract').classList.add('active');
+</script>
+<script>
+    function Approved_contract(ID) {
+    $.ajax({
+    url: "/approves/" + ID,
+    method: "post",
+    data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+
+    success: function (response) {
+      showSuccessMessage(response);
+    },
+  });
+}
+</script>
+<script>
+    function Rejected_contract(ID) {
+  $.ajax({
+    url: "/rejects/" + ID,
+    method: "post",
+    data: { csrfmiddlewaretoken: "{{ csrf_token }}" },
+
+    success: function (response) {
+      showSuccessMessage(response);
+    },
+  });
+}
+
+
+function showSuccessMessage(message) {
+    Swal.fire({
+      icon: 'success', 
+      text: message,
+    }).then((result) => {
+      
+      window.location.href = '/view_contracts'; 
+    });
+  }
+
+</script>
+
+
+{% endblock %}

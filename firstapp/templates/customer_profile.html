@@ -1,0 +1,155 @@
+{% extends 'customer_layout.html' %} {% load static %} {% block body %}
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+
+    <div class="row justify-content-lg-center">
+      <div class="col-lg-11">
+
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="content-page-header">
+            <h5>Profile</h5>
+          </div>
+        </div>
+        <!-- /Page Header -->
+
+        <div class="profile-cover">
+          <div class="profile-cover-wrap">
+          
+          </div>
+        </div>
+
+        <div class="text-center mb-5">
+          <label class="avatar avatar-xxl profile-cover-avatar" for="avatar_upload">
+            {% if std.profile_pic %}
+            <img class="avatar-img" src="{{std.profile_pic}}" alt="Profile Image"
+              id="blah">
+            {% else %}
+            <img class="avatar-img" src="/static/assets/img/profiles/avatar-07.jpg" alt="Profile Image">
+            {% endif %}
+          </label>
+          <h2>{{std.login_name}}</h2>
+          <ul class="list-inline">
+           
+            <li class="list-inline-item">
+              <i class="far fa-calendar-alt"></i> <span>Joined {{ std.created_on|date:"F jS, Y" }}</span>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- <div class="row"> -->
+        <div class="row justify-content-lg-center">
+          <div class="col-lg-7">
+           
+
+            
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title d-flex justify-content-between">
+                  <span>Profile</span>
+                  <a class="btn btn-sm btn-white" href="/edit_profile">Edit</a>
+                </h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                 <div class="row">
+
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>User Name</h6>
+                      <li>
+                        {{std.username}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Name</h6>
+                      <li>
+                        {{std.login_name}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Email</h6>
+                      </li>
+                      <li>
+                        {{std.email}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Phone Number</h6>
+                      <li>
+                        {{std.phno}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Business Type</h6>
+                      <li>
+                        {{customer.customer.business_type}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Business Name</h6>
+                      <li>
+                        {{customer.customer.business_name}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>GST Number</h6>
+                      <li>
+                        {{customer.gst_no}}
+                      </li>
+                    </div>
+                    <div class="col-xl-3 mt-3">
+                        <li class="pt-2 pb-0">
+                          <h6>PAN</h6>
+                        <li>
+                          {{customer.pan_no}}
+                        </li>
+                      </div>
+                    <div class="col-xl-3 mt-3">
+                      <li class="pt-2 pb-0">
+                        <h6>Address</h6>
+                      </li>
+                      <li>
+                        {{customer.address}}<br>
+                        {{customer.pincode}},{{customer.district}}<br>
+                        {{customer.city}}<br>
+                      </li>
+                    </div> 
+                    <div class="col-xl-3 mt-3">
+                        <li class="pt-2 pb-0">
+                          <h6>State Code</h6>
+                        </li>
+                        <li>{{customer.state_code}}
+                        </li>
+                      </div> 
+                  </div>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /Page Wrapper -->
+
+<script>
+  document.getElementById('settings').classList.add('active');
+</script>
+
+{% endblock %}

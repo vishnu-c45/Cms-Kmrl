@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>Kanakku - Materialize Admin HTML Template</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" href="assets/img/favicon.png">
+		
+		<!-- Materialize CSS -->
+        
+		<link rel="stylesheet" href="assets/css/materialize.min.css">
+		<link rel="stylesheet" href="assets/css/materialize-custom.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		
+		<!-- Pe7 CSS -->
+		<link rel="stylesheet" href="assets/plugins/icons/themify/themify.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+		
+			<!-- Header -->
+			<div class="header header-one">
+			
+				<!-- Logo -->
+				<div class="header-left header-left-one">
+					<a href="index.html" class="logo">
+						<img src="assets/img/logo.png" alt="Logo">
+					</a>
+					<a href="index.html" class="white-logo">
+						<img src="assets/img/logo-white.png" alt="Logo">
+					</a>
+					<a href="index.html" class="logo logo-small">
+						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+					</a>
+				</div>
+				<!-- /Logo -->
+				
+				<!-- Sidebar Toggle -->
+				<a href="javascript:void(0);" id="toggle_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Sidebar Toggle -->
+				
+				<!-- Search -->
+				<div class="top-nav-search">
+					<form>
+						<input type="text" class="form-control" placeholder="Search here">
+						<button class="btn" type="submit"><i class="fas fa-search"></i></button>
+					</form>
+				</div>
+				<!-- /Search -->
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fas fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Menu -->
+				<ul class="nav nav-tabs user-menu">
+					<!-- Flag -->
+					<li class="nav-item dropdown has-arrow flag-nav">
+						<a class="nav-link dropdown-toggle dropdown-trigger" data-target="dropdown-lang" href="#" role="button">
+							<img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
+						</a> 
+						<div id="dropdown-lang" class="dropdown-content dropdown-menu dropdown-menu-right">
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/us.png" alt="" height="16"> English
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/fr.png" alt="" height="16"> French
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/es.png" alt="" height="16"> Spanish
+							</a>
+							<a href="javascript:void(0);" class="dropdown-item">
+								<img src="assets/img/flags/de.png" alt="" height="16"> German
+							</a>
+						</div>
+					</li>
+					<!-- /Flag -->
+					
+					<!-- Notifications -->
+					<li class="nav-item dropdown">
+						<a href="#" class="dropdown-toggle dropdown-trigger nav-link" data-target="dropdown-notify">
+							<i data-feather="bell"></i> <span class="badge rounded-pill">5</span>
+						</a>
+						<div id="dropdown-notify" class="dropdown-content dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Clear All</a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-02.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Brian Johnson</span> paid the invoice <span class="noti-title">#DF65485</span></p>
+													<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-03.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Marie Canales</span> has accepted your estimate <span class="noti-title">#GTR458789</span></p>
+													<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-primary-light"><i class="far fa-user"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">New user registered</span></p>
+													<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="" src="assets/img/profiles/avatar-04.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Barbara Moore</span> declined the invoice <span class="noti-title">#RDW026896</span></p>
+													<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="activities.html">
+											<div class="media d-flex">
+												<div class="avatar avatar-sm">
+													<span class="avatar-title rounded-circle bg-info-light"><i class="far fa-comment"></i></span>
+												</div>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">You have received a new message</span></p>
+													<p class="noti-time"><span class="notification-time">2 days ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="activities.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
+					
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow main-drop">
+						<a href="#" class="dropdown-toggle dropdown-trigger nav-link" data-target="dropdown-profile">
+							<span class="user-img">
+								<img src="assets/img/profiles/avatar-01.jpg" alt="">
+								<span class="status online"></span>
+							</span>
+							<span>Admin</span>
+						</a>
+						<div id="dropdown-profile" class="dropdown-content dropdown-menu">
+							<a class="dropdown-item" href="profile.html"><i data-feather="user" class="me-1"></i> Profile</a>
+							<a class="dropdown-item" href="settings.html"><i data-feather="settings" class="me-1"></i> Settings</a>
+							<a class="dropdown-item" href="login.html"><i data-feather="log-out" class="me-1"></i> Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Menu -->
+				
+			</div>
+			<!-- /Header -->
+			
+			<!-- Sidebar -->
+			<div class="sidebar" id="sidebar">
+				<div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"><span>Main</span></li>
+							<li>
+								<a href="index.html"><i data-feather="home"></i> <span>Dashboard</span></a>
+							</li>
+							<li>
+								<a href="customers.html"><i data-feather="users"></i> <span>Customers</span></a>
+							</li>
+							<li>
+								<a href="estimates.html"><i data-feather="file-text"></i> <span>Estimates</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="clipboard"></i> <span> Invoices</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="invoices.html">Invoices List</a></li>
+									<li><a href="invoice-grid.html">Invoices Grid</a></li>
+									<li><a href="invoice-grid-two.html">Invoices Grid 2</a></li>
+									<li><a href="add-invoice.html">Add Invoices</a></li>
+									<li><a href="edit-invoice.html">Edit Invoices</a></li>
+									<li><a href="view-invoice.html">Invoices Details</a></li>
+									<li><a href="view-invoice-two.html">Invoices Details 2</a></li>
+									<li><a href="invoices-settings.html">Invoices Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="invoice-items.html"><i data-feather="star"></i> <span>Items</span></a>
+							</li>
+							<li>
+								<a href="payments.html"><i data-feather="credit-card"></i> <span>Payments</span></a>
+							</li>
+							<li>
+								<a href="expenses.html"><i data-feather="package"></i> <span>Expenses</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="pie-chart"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="sales-report.html">Sales Report</a></li>
+									<li><a href="expenses-report.html">Expenses Report</a></li>
+									<li><a href="profit-loss-report.html">Profit & Loss Report</a></li>
+									<li><a href="taxs-report.html">Taxs Report</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Blogs</span>
+									<span class="menu-arrow"></span>
+								</a>
+								<ul>
+									<li><a href="blog.html" >All Blogs</a></li>
+									<li><a href="add-blog.html">Add Blog</a></li>
+									<li><a href="edit-blog.html">Edit Blog</a></li>
+									<li><a href="blog-categories.html">Categories</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="settings.html"><i data-feather="settings"></i> <span>Settings</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="grid"></i> <span> Application</span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="calendar.html">Calendar</a></li>
+									<li><a href="inbox.html">Email</a></li>
+								</ul>
+							</li>
+							<li class="menu-title"> 
+								<span>Pages</span>
+							</li>
+							<li> 
+								<a href="profile.html"><i data-feather="user-plus"></i> <span>Profile</span></a>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="lock"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="login.html"> Login </a></li>
+									<li><a href="register.html"> Register </a></li>
+									<li><a href="forgot-password.html"> Forgot Password </a></li>
+									<li><a href="lock-screen.html"> Lock Screen </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="alert-octagon"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="error-404.html">404 Error </a></li>
+									<li><a href="error-500.html">500 Error </a></li>
+								</ul>
+							</li>
+							<li> 
+								<a href="users.html"><i data-feather="user"></i> <span>Users</span></a>
+							</li>
+							<li> 
+								<a href="blank-page.html"><i data-feather="file"></i> <span>Blank Page</span></a>
+							</li>
+							<li> 
+								<a href="maps-vector.html"><i data-feather="map-pin"></i> <span>Vector Maps</span></a>
+							</li>
+							<li class="menu-title"> 
+								<span>UI Interface</span>
+							</li>
+							<li class="submenu">
+								<a href="#"><i class="fab fa-get-pocket"></i> <span>Base UI </span> <span class="menu-arrow"></span></a>
+								<ul>
+                                    <li><a href="alerts.html">Alerts</a></li>                                    
+                                    <li><a href="accordions.html">Accordions</a></li>
+                                    <li><a href="avatar.html">Avatar</a></li> 
+                                    <li><a href="badges.html">Badges</a></li>
+                                    <li><a href="buttons.html">Buttons</a></li>   
+                                    <li><a href="buttongroup.html">Button Group</a></li>                                  
+                                    <li><a href="breadcrumbs.html">Breadcrumb</a></li>
+                                    <li><a href="cards.html">Cards</a></li>
+                                    <li><a href="carousel.html">Carousel</a></li>                                   
+                                    <li><a href="dropdowns.html">Dropdowns</a></li>
+                                    <li><a href="grid.html">Grid</a></li>
+                                    <li><a href="images.html">Images</a></li>
+                                    <li><a href="lightbox.html">Lightbox</a></li>
+                                    <li><a href="media.html">Media</a></li>                              
+                                    <li><a href="modal.html">Modals</a></li>
+                                    <li><a href="offcanvas.html">Offcanvas</a></li>
+                                    <li><a href="pagination.html">Pagination</a></li>                                   
+                                    <li><a href="progress.html">Progress Bars</a></li>
+                                    <li><a href="placeholders.html">Placeholders</a></li>
+                                    <li><a href="rangeslider.html">Range Slider</a></li>                                    
+                                    <li><a href="spinners.html">Spinner</a></li>
+                                    <li><a href="sweetalerts.html">Sweet Alerts</a></li>
+                                    <li><a href="tab.html">Tabs</a></li>
+                                    <li><a href="toastr.html">Toasts</a></li>
+                                    <li><a href="tooltip.html">Tooltip</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="video.html">Video</a></li>
+                                </ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="box"></i> <span>Elements </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="ribbon.html">Ribbon</a></li>
+									<li><a href="clipboard.html">Clipboard</a></li>
+									<li><a href="drag-drop.html">Drag & Drop</a></li>
+									<li><a href="rating.html">Rating</a></li>
+									<li><a href="text-editor.html">Text Editor</a></li>
+									<li><a href="counter.html">Counter</a></li>
+									<li><a href="scrollbar.html">Scrollbar</a></li>
+									<li><a href="notification.html">Notification</a></li>
+									<li><a href="stickynote.html">Sticky Note</a></li>
+									<li><a href="timeline.html">Timeline</a></li>
+									<li><a href="horizontal-timeline.html">Horizontal Timeline</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="bar-chart-2"></i> <span> Charts </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="chart-apex.html">Apex Charts</a></li>
+									<li><a href="chart-js.html">Chart Js</a></li>
+									<li><a href="chart-morris.html">Morris Charts</a></li>
+									<li><a href="chart-flot.html">Flot Charts</a></li>
+									<li><a href="chart-peity.html">Peity Charts</a></li>
+									<li><a href="chart-c3.html">C3 Charts</a></li>
+								</ul>
+							</li>
+							<li class="submenu active">
+								<a href="#"><i data-feather="award"></i> <span> Icons </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
+									<li><a href="icon-feather.html">Feather Icons</a></li>
+									<li><a href="icon-ionic.html">Ionic Icons</a></li>
+									<li><a href="icon-material.html">Material Icons</a></li>
+									<li><a href="icon-pe7.html">Pe7 Icons</a></li>
+									<li><a href="icon-simpleline.html">Simpleline Icons</a></li>
+									<li><a href="icon-themify.html" class="active">Themify Icons</a></li>
+									<li><a href="icon-weather.html">Weather Icons</a></li>
+									<li><a href="icon-typicon.html">Typicon Icons</a></li>
+									<li><a href="icon-flag.html">Flag Icons</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="columns"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="form-basic-inputs.html">Basic Inputs </a></li>
+									<li><a href="form-input-groups.html">Input Groups </a></li>
+									<li><a href="form-horizontal.html">Horizontal Form </a></li>
+									<li><a href="form-vertical.html"> Vertical Form </a></li>
+									<li><a href="form-mask.html">Form Mask </a></li>
+									<li><a href="form-validation.html">Form Validation </a></li>
+									<li><a href="form-select2.html">Form Select2 </a></li>
+									<li><a href="form-fileupload.html">File Upload </a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#"><i data-feather="layout"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+								<ul>
+									<li><a href="tables-basic.html">Basic Tables </a></li>
+									<li><a href="data-tables.html">Data Table </a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col s12">
+								<h3 class="page-title">Themify Icon</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Themify Icon</li>
+								</ul>
+							</div>
+						</div>
+					</div>	
+					<!-- /Page Header -->					
+					
+					<div class="row">
+					
+						<!-- Chart -->
+						<div class="col s12">	
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Themify Icon</div>
+								</div>
+								<div class="card-body">
+									<div class="icons-items">
+										<ul class="icons-list">
+											<li><i class="ti-arrow-up tooltipped" data-position="top" data-tooltip="ti-arrow-up"></i></li>
+											<li><i class="ti-arrow-right tooltipped" data-position="top" data-tooltip="ti-arrow-right"></i></li>
+											<li><i class="ti-arrow-left tooltipped" data-position="top" data-tooltip="ti-arrow-left"></i></li>
+											<li><i class="ti-arrow-down tooltipped" data-position="top" data-tooltip="ti-arrow-down"></i></li>
+											<li><i class="ti-arrows-vertical tooltipped" data-position="top" data-tooltip="ti-arrows-vertical"></i></li>
+											<li><i class="ti-arrows-horizontal tooltipped" data-position="top" data-tooltip="ti-arrows-horizontal"></i></li>
+											<li><i class="ti-angle-up tooltipped" data-position="top" data-tooltip="ti-angle-up"></i></li>
+											<li><i class="ti-angle-right tooltipped" data-position="top" data-tooltip="ti-angle-right"></i></li>
+											<li><i class="ti-angle-left tooltipped" data-position="top" data-tooltip="ti-angle-left"></i></li>
+											<li><i class="ti-angle-down tooltipped" data-position="top" data-tooltip="ti-angle-down"></i></li>
+											<li><i class="ti-angle-double-up tooltipped" data-position="top" data-tooltip="ti-angle-double-up"></i></li>
+											<li><i class="ti-angle-double-right tooltipped" data-position="top" data-tooltip="ti-angle-double-right"></i></li>
+											<li><i class="ti-angle-double-left tooltipped" data-position="top" data-tooltip="ti-angle-double-left"></i></li>
+											<li><i class="ti-angle-double-down tooltipped" data-position="top" data-tooltip="ti-angle-double-down"></i></li>
+											<li><i class="ti-move tooltipped" data-position="top" data-tooltip="ti-move"></i></li>
+											<li><i class="ti-fullscreen tooltipped" data-position="top" data-tooltip="ti-fullscreen"></i></li>
+											<li><i class="ti-arrow-top-right tooltipped" data-position="top" data-tooltip="ti-arrow-top-right"></i></li>
+											<li><i class="ti-arrow-top-left tooltipped" data-position="top" data-tooltip="ti-arrow-top-left"></i></li>
+											<li><i class="ti-arrow-circle-up tooltipped" data-position="top" data-tooltip="ti-arrow-circle-up"></i></li>
+											<li><i class="ti-arrow-circle-right tooltipped" data-position="top" data-tooltip="ti-arrow-circle-right"></i></li>
+											<li><i class="ti-arrow-circle-left tooltipped" data-position="top" data-tooltip="ti-arrow-circle-left"></i></li>
+											<li><i class="ti-arrow-circle-down tooltipped" data-position="top" data-tooltip="ti-arrow-circle-down"></i></li>
+											<li><i class="ti-arrows-corner tooltipped" data-position="top" data-tooltip="ti-arrows-corner"></i></li>
+											<li><i class="ti-split-v tooltipped" data-position="top" data-tooltip="ti-split-v"></i></li>
+											<li><i class="ti-split-v-alt tooltipped" data-position="top" data-tooltip="ti-split-v-alt"></i></li>
+											<li><i class="ti-split-h tooltipped" data-position="top" data-tooltip="ti-split-h"></i></li>
+											<li><i class="ti-hand-point-up tooltipped" data-position="top" data-tooltip="ti-hand-point-up"></i></li>
+											<li><i class="ti-hand-point-right tooltipped" data-position="top" data-tooltip="ti-hand-point-right"></i></li>
+											<li><i class="ti-hand-point-left tooltipped" data-position="top" data-tooltip="ti-hand-point-left"></i></li>
+											<li><i class="ti-hand-point-down tooltipped" data-position="top" data-tooltip="ti-hand-point-down"></i></li>
+											<li><i class="ti-back-right tooltipped" data-position="top" data-tooltip="ti-back-right"></i></li>
+											<li><i class="ti-back-left tooltipped" data-position="top" data-tooltip="ti-back-left"></i></li>
+											<li><i class="ti-exchange-vertical tooltipped" data-position="top" data-tooltip="ti-exchange-vertical"></i></li>
+											<li><i class="ti-wand tooltipped" data-position="top" data-tooltip="ti-wand"></i></li>
+											<li><i class="ti-save tooltipped" data-position="top" data-tooltip="ti-save"></i></li>
+											<li><i class="ti-save-alt tooltipped" data-position="top" data-tooltip="ti-save-alt"></i></li>
+											<li><i class="ti-direction tooltipped" data-position="top" data-tooltip="ti-direction"></i></li>
+											<li><i class="ti-direction-alt tooltipped" data-position="top" data-tooltip="ti-direction-alt"></i></li>
+											<li><i class="ti-user tooltipped" data-position="top" data-tooltip="ti-user"></i></li>
+											<li><i class="ti-link tooltipped" data-position="top" data-tooltip="ti-link"></i></li>
+											<li><i class="ti-unlink tooltipped" data-position="top" data-tooltip="ti-unlink"></i></li>
+											<li><i class="ti-trash tooltipped" data-position="top" data-tooltip="ti-trash"></i></li>
+											<li><i class="ti-target tooltipped" data-position="top" data-tooltip="ti-target"></i></li>
+											<li><i class="ti-tag tooltipped" data-position="top" data-tooltip="ti-tag"></i></li>
+											<li><i class="ti-desktop tooltipped" data-position="top" data-tooltip="ti-desktop"></i></li>
+											<li><i class="ti-tablet tooltipped" data-position="top" data-tooltip="ti-tablet"></i></li>
+											<li><i class="ti-mobile tooltipped" data-position="top" data-tooltip="ti-mobile"></i></li>
+											<li><i class="ti-email tooltipped" data-position="top" data-tooltip="ti-email"></i></li>
+											<li><i class="ti-star tooltipped" data-position="top" data-tooltip="ti-star"></i></li>
+											<li><i class="ti-spray tooltipped" data-position="top" data-tooltip="ti-spray"></i></li>
+											<li><i class="ti-signal tooltipped" data-position="top" data-tooltip="ti-signal"></i></li>
+											<li><i class="ti-shopping-cart tooltipped" data-position="top" data-tooltip="ti-shopping-cart"></i></li>
+											<li><i class="ti-shopping-cart-full tooltipped" data-position="top" data-tooltip="ti-shopping-cart-full"></i></li>
+											<li><i class="ti-settings tooltipped" data-position="top" data-tooltip="ti-settings"></i></li>
+											<li><i class="ti-search tooltipped" data-position="top" data-tooltip="ti-search"></i></li>
+											<li><i class="ti-zoom-in tooltipped" data-position="top" data-tooltip="ti-zoom-in"></i></li>
+											<li><i class="ti-zoom-out tooltipped" data-position="top" data-tooltip="ti-zoom-out"></i></li>
+											<li><i class="ti-cut tooltipped" data-position="top" data-tooltip="ti-cut"></i></li>
+											<li><i class="ti-ruler tooltipped" data-position="top" data-tooltip="ti-ruler"></i></li>
+											<li><i class="ti-ruler-alt-2 tooltipped" data-position="top" data-tooltip="ti-ruler-alt-2"></i></li>
+											<li><i class="ti-ruler-pencil tooltipped" data-position="top" data-tooltip="ti-ruler-pencil"></i></li>
+											<li><i class="ti-ruler-alt tooltipped" data-position="top" data-tooltip="ti-ruler-alt"></i></li>
+											<li><i class="ti-bookmark tooltipped" data-position="top" data-tooltip="ti-bookmark"></i></li>
+											<li><i class="ti-bookmark-alt tooltipped" data-position="top" data-tooltip="ti-bookmark-alt"></i></li>
+											<li><i class="ti-reload tooltipped" data-position="top" data-tooltip="ti-reload"></i></li>
+											<li><i class="ti-plus tooltipped" data-position="top" data-tooltip="ti-plus"></i></li>
+											<li><i class="ti-minus tooltipped" data-position="top" data-tooltip="ti-minus"></i></li>
+											<li><i class="ti-close tooltipped" data-position="top" data-tooltip="ti-close"></i></li>
+											<li><i class="ti-pin tooltipped" data-position="top" data-tooltip="ti-pin"></i></li>
+											<li><i class="ti-pencil tooltipped" data-position="top" data-tooltip="ti-pencil"></i></li>
+											<li><i class="ti-pencil-alt tooltipped" data-position="top" data-tooltip="ti-pencil-alt"></i></li>
+											<li><i class="ti-paint-roller tooltipped" data-position="top" data-tooltip="ti-paint-roller"></i></li>
+											<li><i class="ti-paint-bucket tooltipped" data-position="top" data-tooltip="ti-paint-bucket"></i></li>
+											<li><i class="ti-na tooltipped" data-position="top" data-tooltip="ti-na"></i></li>
+											<li><i class="ti-medall tooltipped" data-position="top" data-tooltip="ti-medall"></i></li>
+											<li><i class="ti-medall-alt tooltipped" data-position="top" data-tooltip="ti-medall-alt"></i></li>
+											<li><i class="ti-marker tooltipped" data-position="top" data-tooltip="ti-marker"></i></li>
+											<li><i class="ti-marker-alt tooltipped" data-position="top" data-tooltip="ti-marker-alt"></i></li>
+											<li><i class="ti-lock tooltipped" data-position="top" data-tooltip="ti-lock"></i></li>
+											<li><i class="ti-unlock tooltipped" data-position="top" data-tooltip="ti-unlock"></i></li>
+											<li><i class="ti-location-arrow tooltipped" data-position="top" data-tooltip="ti-location-arrow"></i></li>
+											<li><i class="ti-layout tooltipped" data-position="top" data-tooltip="ti-layout"></i></li>
+											<li><i class="ti-layers tooltipped" data-position="top" data-tooltip="ti-layers"></i></li>
+											<li><i class="ti-layers-alt tooltipped" data-position="top" data-tooltip="ti-layers-alt"></i></li>
+											<li><i class="ti-key tooltipped" data-position="top" data-tooltip="ti-key"></i></li>
+											<li><i class="ti-image tooltipped" data-position="top" data-tooltip="ti-image"></i></li>
+											<li><i class="ti-heart tooltipped" data-position="top" data-tooltip="ti-heart"></i></li>
+											<li><i class="ti-heart-broken tooltipped" data-position="top" data-tooltip="ti-heart-broken"></i></li>
+											<li><i class="ti-hand-stop tooltipped" data-position="top" data-tooltip="ti-hand-stop"></i></li>
+											<li><i class="ti-hand-open tooltipped" data-position="top" data-tooltip="ti-hand-open"></i></li>
+											<li><i class="ti-hand-drag tooltipped" data-position="top" data-tooltip="ti-hand-drag"></i></li>
+											<li><i class="ti-flag tooltipped" data-position="top" data-tooltip="ti-flag"></i></li>
+											<li><i class="ti-flag-alt tooltipped" data-position="top" data-tooltip="ti-flag-alt"></i></li>
+											<li><i class="ti-flag-alt-2 tooltipped" data-position="top" data-tooltip="ti-flag-alt-2"></i></li>
+											<li><i class="ti-eye tooltipped" data-position="top" data-tooltip="ti-eye"></i></li>
+											<li><i class="ti-import tooltipped" data-position="top" data-tooltip="ti-import"></i></li>
+											<li><i class="ti-export tooltipped" data-position="top" data-tooltip="ti-export"></i></li>
+											<li><i class="ti-cup tooltipped" data-position="top" data-tooltip="ti-cup"></i></li>
+											<li><i class="ti-crown tooltipped" data-position="top" data-tooltip="ti-crown"></i></li>
+											<li><i class="ti-comments tooltipped" data-position="top" data-tooltip="ti-comments"></i></li>
+											<li><i class="ti-comment tooltipped" data-position="top" data-tooltip="ti-comment"></i></li>
+											<li><i class="ti-comment-alt tooltipped" data-position="top" data-tooltip="ti-comment-alt"></i></li>
+											<li><i class="ti-thought tooltipped" data-position="top" data-tooltip="ti-thought"></i></li>
+											<li><i class="ti-clip tooltipped" data-position="top" data-tooltip="ti-clip"></i></li>
+											<li><i class="ti-check tooltipped" data-position="top" data-tooltip="ti-check"></i></li>
+											<li><i class="ti-check-box tooltipped" data-position="top" data-tooltip="ti-check-box"></i></li>
+											<li><i class="ti-camera tooltipped" data-position="top" data-tooltip="ti-camera"></i></li>
+											<li><i class="ti-announcement tooltipped" data-position="top" data-tooltip="ti-announcement"></i></li>
+											<li><i class="ti-brush tooltipped" data-position="top" data-tooltip="ti-brush"></i></li>
+											<li><i class="ti-brush-alt tooltipped" data-position="top" data-tooltip="ti-brush-alt"></i></li>
+											<li><i class="ti-palette tooltipped" data-position="top" data-tooltip="ti-palette"></i></li>
+											<li><i class="ti-briefcase tooltipped" data-position="top" data-tooltip="ti-briefcase"></i></li>
+											<li><i class="ti-bolt tooltipped" data-position="top" data-tooltip="ti-bolt"></i></li>
+											<li><i class="ti-bolt-alt tooltipped" data-position="top" data-tooltip="ti-bolt-alt"></i></li>
+											<li><i class="ti-blackboard tooltipped" data-position="top" data-tooltip="ti-blackboard"></i></li>
+											<li><i class="ti-bag tooltipped" data-position="top" data-tooltip="ti-bag"></i></li>
+											<li><i class="ti-world tooltipped" data-position="top" data-tooltip="ti-world"></i></li>
+											<li><i class="ti-wheelchair tooltipped" data-position="top" data-tooltip="ti-wheelchair"></i></li>
+											<li><i class="ti-car tooltipped" data-position="top" data-tooltip="ti-car"></i></li>
+											<li><i class="ti-truck tooltipped" data-position="top" data-tooltip="ti-truck"></i></li>
+											<li><i class="ti-timer tooltipped" data-position="top" data-tooltip="ti-timer"></i></li>
+											<li><i class="ti-ticket tooltipped" data-position="top" data-tooltip="ti-ticket"></i></li>
+											<li><i class="ti-thumb-up tooltipped" data-position="top" data-tooltip="ti-thumb-up"></i></li>
+											<li><i class="ti-thumb-down tooltipped" data-position="top" data-tooltip="ti-thumb-down"></i></li>
+											<li><i class="ti-stats-up tooltipped" data-position="top" data-tooltip="ti-stats-up"></i></li>
+											<li><i class="ti-stats-down tooltipped" data-position="top" data-tooltip="ti-stats-down"></i></li>
+											<li><i class="ti-shine tooltipped" data-position="top" data-tooltip="ti-shine"></i></li>
+											<li><i class="ti-shift-right tooltipped" data-position="top" data-tooltip="ti-shift-right"></i></li>
+											<li><i class="ti-shift-left tooltipped" data-position="top" data-tooltip="ti-shift-left"></i></li>
+											<li><i class="ti-shift-right-alt tooltipped" data-position="top" data-tooltip="ti-shift-right-alt"></i></li>
+											<li><i class="ti-shift-left-alt tooltipped" data-position="top" data-tooltip="ti-shift-left-alt"></i></li>
+											<li><i class="ti-shield tooltipped" data-position="top" data-tooltip="ti-shield"></i></li>
+											<li><i class="ti-notepad tooltipped" data-position="top" data-tooltip="ti-notepad"></i></li>
+											<li><i class="ti-server tooltipped" data-position="top" data-tooltip="ti-server"></i></li>
+											<li><i class="ti-pulse tooltipped" data-position="top" data-tooltip="ti-pulse"></i></li>
+											<li><i class="ti-printer tooltipped" data-position="top" data-tooltip="ti-printer"></i></li>
+											<li><i class="ti-power-off tooltipped" data-position="top" data-tooltip="ti-power-off"></i></li>
+											<li><i class="ti-plug tooltipped" data-position="top" data-tooltip="ti-plug"></i></li>
+											<li><i class="ti-pie-chart tooltipped" data-position="top" data-tooltip="ti-pie-chart"></i></li>
+											<li><i class="ti-panel tooltipped" data-position="top" data-tooltip="ti-panel"></i></li>
+											<li><i class="ti-package tooltipped" data-position="top" data-tooltip="ti-package"></i></li>
+											<li><i class="ti-music tooltipped" data-position="top" data-tooltip="ti-music"></i></li>
+											<li><i class="ti-music-alt tooltipped" data-position="top" data-tooltip="ti-music-alt"></i></li>
+											<li><i class="ti-mouse tooltipped" data-position="top" data-tooltip="ti-mouse"></i></li>
+											<li><i class="ti-mouse-alt tooltipped" data-position="top" data-tooltip="ti-mouse-alt"></i></li>
+											<li><i class="ti-money tooltipped" data-position="top" data-tooltip="ti-money"></i></li>
+											<li><i class="ti-microphone tooltipped" data-position="top" data-tooltip="ti-microphone"></i></li>
+											<li><i class="ti-menu tooltipped" data-position="top" data-tooltip="ti-menu"></i></li>
+											<li><i class="ti-menu-alt tooltipped" data-position="top" data-tooltip="ti-menu-alt"></i></li>
+											<li><i class="ti-map tooltipped" data-position="top" data-tooltip="ti-map"></i></li>
+											<li><i class="ti-map-alt tooltipped" data-position="top" data-tooltip="ti-map-alt"></i></li>
+											<li><i class="ti-location-pin tooltipped" data-position="top" data-tooltip="ti-location-pin"></i></li>
+											<li><i class="ti-light-bulb tooltipped" data-position="top" data-tooltip="ti-light-bulb"></i></li>
+											<li><i class="ti-info tooltipped" data-position="top" data-tooltip="ti-info"></i></li>
+											<li><i class="ti-infinite tooltipped" data-position="top" data-tooltip="ti-infinite"></i></li>
+											<li><i class="ti-id-badge tooltipped" data-position="top" data-tooltip="ti-id-badge"></i></li>
+											<li><i class="ti-hummer tooltipped" data-position="top" data-tooltip="ti-hummer"></i></li>
+											<li><i class="ti-home tooltipped" data-position="top" data-tooltip="ti-home"></i></li>
+											<li><i class="ti-help tooltipped" data-position="top" data-tooltip="ti-help"></i></li>
+											<li><i class="ti-headphone tooltipped" data-position="top" data-tooltip="ti-headphone"></i></li>
+											<li><i class="ti-harddrives tooltipped" data-position="top" data-tooltip="ti-harddrives"></i></li>
+											<li><i class="ti-harddrive tooltipped" data-position="top" data-tooltip="ti-harddrive"></i></li>
+											<li><i class="ti-gift tooltipped" data-position="top" data-tooltip="ti-gift"></i></li>
+											<li><i class="ti-game tooltipped" data-position="top" data-tooltip="ti-game"></i></li>
+											<li><i class="ti-filter tooltipped" data-position="top" data-tooltip="ti-filter"></i></li>
+											<li><i class="ti-files tooltipped" data-position="top" data-tooltip="ti-files"></i></li>
+											<li><i class="ti-file tooltipped" data-position="top" data-tooltip="ti-file"></i></li>
+											<li><i class="ti-zip tooltipped" data-position="top" data-tooltip="ti-zip"></i></li>
+											<li><i class="ti-folder tooltipped" data-position="top" data-tooltip="ti-folder"></i></li>
+											<li><i class="ti-envelope tooltipped" data-position="top" data-tooltip="ti-envelope"></i></li>
+											<li><i class="ti-dashboard tooltipped" data-position="top" data-tooltip="ti-dashboard"></i></li>
+											<li><i class="ti-cloud tooltipped" data-position="top" data-tooltip="ti-cloud"></i></li>
+											<li><i class="ti-cloud-up tooltipped" data-position="top" data-tooltip="ti-cloud-up"></i></li>
+											<li><i class="ti-cloud-down tooltipped" data-position="top" data-tooltip="ti-cloud-down"></i></li>
+											<li><i class="ti-clipboard tooltipped" data-position="top" data-tooltip="ti-clipboard"></i></li>
+											<li><i class="ti-calendar tooltipped" data-position="top" data-tooltip="ti-calendar"></i></li>
+											<li><i class="ti-book tooltipped" data-position="top" data-tooltip="ti-book"></i></li>
+											<li><i class="ti-bell tooltipped" data-position="top" data-tooltip="ti-bell"></i></li>
+											<li><i class="ti-basketball tooltipped" data-position="top" data-tooltip="ti-basketball"></i></li>
+											<li><i class="ti-bar-chart tooltipped" data-position="top" data-tooltip="ti-bar-chart"></i></li>
+											<li><i class="ti-bar-chart-alt tooltipped" data-position="top" data-tooltip="ti-bar-chart-alt"></i></li>
+											<li><i class="ti-archive tooltipped" data-position="top" data-tooltip="ti-archive"></i></li>
+											<li><i class="ti-anchor tooltipped" data-position="top" data-tooltip="ti-anchor"></i></li>
+											<li><i class="ti-alert tooltipped" data-position="top" data-tooltip="ti-alert"></i></li>
+											<li><i class="ti-alarm-clock tooltipped" data-position="top" data-tooltip="ti-alarm-clock"></i></li>
+											<li><i class="ti-agenda tooltipped" data-position="top" data-tooltip="ti-agenda"></i></li>
+											<li><i class="ti-write tooltipped" data-position="top" data-tooltip="ti-write"></i></li>
+											<li><i class="ti-wallet tooltipped" data-position="top" data-tooltip="ti-wallet"></i></li>
+											<li><i class="ti-video-clapper tooltipped" data-position="top" data-tooltip="ti-video-clapper"></i></li>
+											<li><i class="ti-video-camera tooltipped" data-position="top" data-tooltip="ti-video-camera"></i></li>
+											<li><i class="ti-vector tooltipped" data-position="top" data-tooltip="ti-vector"></i></li>
+											<li><i class="ti-support tooltipped" data-position="top" data-tooltip="ti-support"></i></li>
+											<li><i class="ti-stamp tooltipped" data-position="top" data-tooltip="ti-stamp"></i></li>
+											<li><i class="ti-slice tooltipped" data-position="top" data-tooltip="ti-slice"></i></li>
+											<li><i class="ti-shortcode tooltipped" data-position="top" data-tooltip="ti-shortcode"></i></li>
+											<li><i class="ti-receipt tooltipped" data-position="top" data-tooltip="ti-receipt"></i></li>
+											<li><i class="ti-pin2 tooltipped" data-position="top" data-tooltip="ti-pin2"></i></li>
+											<li><i class="ti-pin-alt tooltipped" data-position="top" data-tooltip="ti-pin-alt"></i></li>
+											<li><i class="ti-pencil-alt2 tooltipped" data-position="top" data-tooltip="ti-pencil-alt2"></i></li>
+											<li><i class="ti-eraser tooltipped" data-position="top" data-tooltip="ti-eraser"></i></li>
+											<li><i class="ti-more tooltipped" data-position="top" data-tooltip="ti-more"></i></li>
+											<li><i class="ti-more-alt tooltipped" data-position="top" data-tooltip="ti-more-alt"></i></li>
+											<li><i class="ti-microphone-alt tooltipped" data-position="top" data-tooltip="ti-microphone-alt"></i></li>
+											<li><i class="ti-magnet tooltipped" data-position="top" data-tooltip="ti-magnet"></i></li>
+											<li><i class="ti-line-double tooltipped" data-position="top" data-tooltip="ti-line-double"></i></li>
+											<li><i class="ti-line-dotted tooltipped" data-position="top" data-tooltip="ti-line-dotted"></i></li>
+											<li><i class="ti-line-dashed tooltipped" data-position="top" data-tooltip="ti-line-dashed"></i></li>
+											<li><i class="ti-ink-pen tooltipped" data-position="top" data-tooltip="ti-ink-pen"></i></li>
+											<li><i class="ti-info-alt tooltipped" data-position="top" data-tooltip="ti-info-alt"></i></li>
+											<li><i class="ti-help-alt tooltipped" data-position="top" data-tooltip="ti-help-alt"></i></li>
+											<li><i class="ti-headphone-alt tooltipped" data-position="top" data-tooltip="ti-headphone-alt"></i></li>
+											<li><i class="ti-gallery tooltipped" data-position="top" data-tooltip="ti-gallery"></i></li>
+											<li><i class="ti-face-smile tooltipped" data-position="top" data-tooltip="ti-face-smile"></i></li>
+											<li><i class="ti-face-sad tooltipped" data-position="top" data-tooltip="ti-face-sad"></i></li>
+											<li><i class="ti-credit-card tooltipped" data-position="top" data-tooltip="ti-credit-card"></i></li>
+											<li><i class="ti-comments-smiley tooltipped" data-position="top" data-tooltip="ti-comments-smiley"></i></li>
+											<li><i class="ti-time tooltipped" data-position="top" data-tooltip="ti-time"></i></li>
+											<li><i class="ti-share tooltipped" data-position="top" data-tooltip="ti-share"></i></li>
+											<li><i class="ti-share-alt tooltipped" data-position="top" data-tooltip="ti-share-alt"></i></li>
+											<li><i class="ti-rocket tooltipped" data-position="top" data-tooltip="ti-rocket"></i></li>
+											<li><i class="ti-new-window tooltipped" data-position="top" data-tooltip="ti-new-window"></i></li>
+											<li><i class="ti-rss tooltipped" data-position="top" data-tooltip="ti-rss"></i></li>
+											<li><i class="ti-rss-alt tooltipped" data-position="top" data-tooltip="ti-rss-alt"></i></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Chart -->
+						
+					</div>
+				
+				</div>			
+			</div>
+			<!-- /Page Wrapper -->
+			
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.6.1.min.js"></script>
+		
+		<!-- Materialize JS -->
+		<script src="assets/js/materialize.min.js"></script>
+		
+		<!-- Feather Icon JS -->
+		<script src="assets/js/feather.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+
+	</body>
+</html>

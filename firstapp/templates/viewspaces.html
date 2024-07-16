@@ -1,0 +1,626 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Spaces</h5>
+                <div class="list-btn">
+                    <ul class="filter-list">
+                        <li>
+                            <a class="btn btn-filters w-auto popup-toggle"><span class="me-2"><i
+                                        class="fe fe-filter"></i></span>Filter </a>
+                        </li>
+                        <!-- <li>
+                                    <a class="active btn-filters" href="javascript:void(0);"><span><i class="fe fe-list"></i></span> </a>
+                                </li> -->
+                        <!-- <li>
+                                    <a class="btn-filters" href="javascript:void(0);"><span><i class="fe fe-grid"></i></span> </a>
+                                </li>
+                                <li> -->
+                        <!-- <div class="dropdown dropdown-action">
+                            <a href="#" class="btn-filters" data-bs-toggle="dropdown" aria-expanded="false"><span><i
+                                        class="fe fe-download"></i></span></a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <ul class="d-block">
+                                    <li>
+                                        <a class="d-flex align-items-center download-item" href="javascript:void(0);"
+                                            download><i class="far fa-file-pdf me-2"></i>PDF</a>
+                                    </li>
+                                    <li>
+                                        <a class="d-flex align-items-center download-item" href="javascript:void(0);"
+                                            download><i class="far fa-file-text me-2"></i>CVS</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                        
+                        <!-- <li>
+                                    <a class="btn btn-import" href="javascript:void(0);"><span><i class="fe fe-check-square me-2"></i>Import Customer</span></a>
+                                </li> -->
+                        <li>
+                            <a class="btn btn-primary" href="/add_spaces"><i class="fa fa-plus-circle me-2"
+                                    aria-hidden="true"></i>Add Space</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- Search Filter -->
+        <div id="filter_inputs" class="card filter-card">
+            <div class="card-body pb-0">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Search Filter -->
+
+        <!-- Inovices card -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-info-light">
+                                <i class="fa-solid fa-hotel" style="color: #66cfd3;"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Spaces</div>
+                                <div class="dash-counts">
+                                    <p>{{space}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-warning-light">
+                                <i class="fa-solid fa-lock" style="color: #EBBC2E;"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Occupied</div>
+                                <div class="dash-counts">
+                                    <p>{{occ}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-sm-6 col-12 d-flex">
+                <div class="card inovices-card w-100">
+                    <div class="card-body">
+                        <div class="dash-widget-header">
+                            <span class="inovices-widget-icon bg-success-light">
+                                <i class="fa-solid fa-unlock"></i>
+                            </span>
+                            <div class="dash-count">
+                                <div class="dash-title">Vacant</div>
+                                <div class="dash-counts">
+                                    <p>{{vac}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Inovices card -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-table">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr class="Rowsort">
+                                        <th>Sl No</th>
+                                        <th>Space Name</th>
+                                        <!-- <th>Master Space</th> -->
+                                        <th>Station Name</th>
+                                        <th>Space Type</th>
+                                        <th>Area Level</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    {% for p in std %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td class="space-name">{{p.space_name}}</td>
+                                        <!-- <td>{{p.master_space.space_name}}</td> -->
+                                        <td class="station-name">
+                                            <h2>
+                                                {{p.metrostation.metrostation.station_name}}
+                                            </h2>
+                                        </td>
+                                        <td class="space-type">{{p.space_type}}</td>
+                                        <td class="area-type">{{p.area_level}}</td>
+                                        {% if p.vacancy_status == 1 %}
+                                        <td class="status"><span class="badge badge-pill bg-success-light">Vacant</span></td>
+                                        {% elif p.vacancy_status == 2 %}
+                                        <td class="status"><span class="badge bg-warning-light text-warning-light">Occupied</span></td>
+                                        {% else %}
+                                        <td class="status"><span class="badge badge-pill bg-danger-light">Inactive</span></td>
+                                        {% endif %}
+                                        <td class="d-flex align-items-center">
+                                            <a href="{% url 'View_space_details' p.id %}" class="btn btn-greys me-2"><i
+                                                    class="fa fa-plus-circle me-1"></i> Details</a>
+                                            {% if p.vacancy_status == 1 %}
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-end position-fixed">
+                                                    <ul>
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'Update_space' p.id %}"><i
+                                                                    class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                onclick="deletespace('{{p.id}}')"><i
+                                                                    class="far fa-trash-alt me-2"></i>Deactivate</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% elif p.vacancy_status == 2 %}
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-end position-fixed">
+                                                    <ul>
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'Update_space' p.id %}"><i
+                                                                    class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% else %}
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class=" btn-action-icon " data-bs-toggle="dropdown"
+                                                    aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                                <div class="dropdown-menu dropdown-menu-end position-fixed">
+                                                    <ul>
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{% url 'Update_space' p.id %}"><i
+                                                                    class="far fa-edit me-2"></i>Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a id="activate_space" class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                onclick="activatespace('{{p.id}}')"><i class="fa-regular fa-square-check me-2"></i>Activate</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Asset -->
+<div class="toggle-sidebar">
+    <div class="sidebar-layout-filter">
+        <div class="sidebar-header">
+            <h5>Filter</h5>
+            <a href="#" class="sidebar-closes"><i class="fa-regular fa-circle-xmark"></i></a>
+        </div>
+        <div class="sidebar-body">
+            <form id="filter-form" autocomplete="off">
+
+
+                <!-- Space -->
+                <div class="accordion" id="accordionMain1">
+                    <div class="card-header-new" id="headingOne">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Spaces
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample1">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes1">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="spacesearch"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont" id="selectspace">
+                                            {% for p in std %}
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="spacename" value="{{p.space_name}}">
+                                                <span class="checkmark"></span>{{p.space_name}}
+                                            </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Space -->
+                <!-- Station -->
+                <div class="accordion" id="accordionMain2">
+                    <div class="card-header-new" id="headingTwo">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Metro Stations
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample2">
+                        <div class="card-body-chat">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="checkBoxes2">
+                                        <div class="form-custom">
+                                            <input type="text" class="form-control" id="stationsearch"
+                                                placeholder="Search here">
+                                            <span><img src="/static/assets/img/icons/search.svg" alt="img"></span>
+                                        </div>
+                                        <div class="selectBox-cont" id="selectstation">
+                                            {% for p in metro %}
+                                            <label class="custom_check w-100">
+                                                <input type="checkbox" name="stationname" value="{{p.metrostation.station_name}}" class="station">
+                                                <span class="checkmark"></span>{{p.metrostation.station_name}}
+                                            </label>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Station -->
+
+                <!-- By Status -->
+                <div class="accordion" id="accordionMain3">
+                    <div class="card-header-new" id="headingThree">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                By Status
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample3">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="selectBox-cont">
+
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="occupied" value="Occupied" class="status">
+                                        <span class="checkmark"></span> Occupied
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="vacant" value="Vacant" class="status">
+                                        <span class="checkmark"></span> Vacant
+                                    </label>
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="inactive" value="Inactive" class="status">
+                                        <span class="checkmark"></span> Inactive
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Status -->
+                <!-- By Space Type -->
+                <div class="accordion" id="accordionMain4">
+                    <div class="card-header-new" id="headingFour">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Space Type
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample4">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes4">
+                                <div class="selectBox-cont">
+                                    {% for p in space_type %}
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="spacetype" value="{{p.space_type}}" class="space-type">
+                                        <span class="checkmark"></span> {{p.space_type}}
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Space Type -->
+                <!-- By Area Level -->
+                <div class="accordion" id="accordionMain5">
+                    <div class="card-header-new" id="headingFive">
+                        <h6 class="filter-title">
+                            <a href="javascript:void(0);" class="w-100 collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                Area Level
+                                <span class="float-end"><i class="fa-solid fa-chevron-down"></i></span>
+                            </a>
+                        </h6>
+                    </div>
+
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#accordionExample5">
+                        <div class="card-body-chat">
+                            <div id="checkBoxes2">
+                                <div class="selectBox-cont">
+                                    {% for p in spaces %}
+                                    <label class="custom_check w-100">
+                                        <input type="checkbox" name="arealevel" value="{{p.area_level}}" class="area-type">
+                                        <span class="checkmark"></span>{{p.area_level}}
+                                    </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /By Area Level -->
+
+                
+
+                <button type="submit"
+                    class="d-inline-flex align-items-center justify-content-center btn w-100 btn-primary">
+                    <span></span>Search Results
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--/Add Asset -->
+
+<script>
+    function filterTable() {
+        var selectedSpaces = [];
+        var selectedStations = [];
+        var selectedSpaceTypes = [];
+        var selectedAreaLevels = [];
+        var selectedStatuses = [];
+
+        // Get the selected checkboxes
+        $('input[name="spacename"]:checked').each(function () {
+            selectedSpaces.push($(this).val());
+        });
+
+        var selectedStations = $('.station:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        var selectedSpaceTypes = $('.space-type:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        var selectedAreaLevels = $('.area-type:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        var selectedStatuses = $('.status:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        // Filter the table rows
+        $('.datatable tbody tr').each(function () {
+            var space = $(this).find('.space-name').text().trim();  // Trim any leading/trailing spaces
+            var station = $(this).find('.station-name').text().trim();
+            var spaceType = $(this).find('.space-type').text().trim();
+            var areaLevel = $(this).find('.area-type').text().trim();
+            var status = $(this).find('.status').text().trim();
+
+            var spaceMatch = selectedSpaces.length === 0 || selectedSpaces.includes(space);
+            var stationMatch = selectedStations.length === 0 || selectedStations.includes(station);
+            var spaceTypeMatch = selectedSpaceTypes.length === 0 || selectedSpaceTypes.includes(spaceType);
+            var areaLevelMatch = selectedAreaLevels.length === 0 || selectedAreaLevels.includes(areaLevel);
+            var statusMatch = selectedStatuses.length === 0 || selectedStatuses.includes(status);
+
+            if (spaceMatch && stationMatch && spaceTypeMatch && areaLevelMatch && statusMatch) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+
+    // Call the filterTable function when the form is submitted
+    $('#filter-form').submit(function (e) {
+        e.preventDefault();
+        filterTable();
+    });
+
+</script>
+
+
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>Delete Space</h3>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="reset" id="delete_space"
+                                class="w-100 btn btn-primary paid-continue-btn">Delete</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" data-bs-dismiss="modal"
+                                class="w-100 btn btn-primary paid-cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+
+
+<script>
+    document.getElementById('space-dash').classList.add('active');
+</script>
+<script>
+    function deletespace(ID) {
+        $('#delete_modal').modal('show');
+        $('#delete_space').click(function () {
+            $.ajax({
+                url: 'deletespace/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function (response) {
+                    // alert(response)
+                    window.location.href = 'view_spaces';
+                }
+            });
+        })
+    }
+    
+    function activatespace(ID) {
+        
+            $.ajax({
+                url: 'activatespace/' + ID,
+                method: 'post',
+                data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+                success: function () {
+                    showSuccessMessage();
+                }
+            });
+      
+    }
+</script>
+
+<script>
+
+    function showSuccessMessage(message) {
+        Swal.fire({
+          icon: 'success',
+          title: ' Successfully Activated',
+          text: message,
+        }).then((result) => {
+          
+          window.location.href = '/view_spaces'; 
+        });
+      }
+</script>
+
+
+<script>
+    //Search Station
+    var searchInput = document.getElementById('stationsearch');
+    var checkboxes = document.querySelectorAll('#selectstation input[type="checkbox"]');
+    var labels = document.querySelectorAll('#selectstation label');
+
+    searchInput.addEventListener('input', function (event) {
+        var searchTerm = event.target.value.trim().toLowerCase();
+
+        checkboxes.forEach(function (checkbox, index) {
+            var stationName = labels[index].textContent.toLowerCase();
+
+            if (stationName.includes(searchTerm)) {
+                checkbox.parentElement.style.display = 'block';
+            } else {
+                checkbox.parentElement.style.display = 'none';
+            }
+        });
+    });
+
+    //Search Spaces
+    var spaceSearchInput = document.getElementById('spacesearch');
+    var spaceCheckboxes = document.querySelectorAll('#selectspace input[type="checkbox"]');
+    var spaceLabels = document.querySelectorAll('#selectspace label');
+
+    spaceSearchInput.addEventListener('input', function (event) {
+        var searchTerm = event.target.value.trim().toLowerCase();
+
+        spaceCheckboxes.forEach(function (checkbox, index) {
+            var spaceName = spaceLabels[index].textContent.toLowerCase();
+
+            if (spaceName.includes(searchTerm)) {
+                checkbox.parentElement.style.display = 'block';
+            } else {
+                checkbox.parentElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+
+
+
+{% endblock %}

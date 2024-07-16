@@ -1,0 +1,300 @@
+{% extends 'supadmin_layout.html' %} {% load static %} {% block body %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+      // Function to calculate and update the total amount, CGST, SGST, and Taxable Amount
+      function calculateTotals() {
+        var taxamnt = parseFloat($("input[name='taxamnt']").val());
+        var maintanence = parseFloat($("input[name='maintanence']").val());
+        var taxPercentage = parseFloat($("input[name='taxpercent']").val());
+  
+        if (!isNaN(taxamnt) && !isNaN(maintanence) && !isNaN(taxPercentage)) {
+          var taxableAmount = (taxamnt + maintanence).toFixed(2);
+          var tax = (taxableAmount * (taxPercentage / 100)).toFixed(2);
+          var totalAmount = (parseFloat(taxableAmount) + parseFloat(tax)*2).toFixed(2);
+          var gst_space = (taxamnt * (taxPercentage / 100)).toFixed(2);
+          var gst_maintanence = (maintanence * (taxPercentage / 100)).toFixed(2);
+          var space_sum = (parseFloat(gst_space)*2).toFixed(2);
+          var maintanence_sum = (parseFloat(gst_maintanence)*2).toFixed(2);
+
+  
+          $("#taxableAmount").text(taxableAmount);
+          $("#cgstsum").text(tax);
+          $("#sgstsum").text(tax);
+          $("#totalAmount").text(totalAmount);
+        }
+      }
+  
+      // Event listener for input fields
+      $("input[name='taxamnt'], input[name='maintanence'], input[name='taxpercent']").on("input", calculateTotals);
+    });
+</script>
+
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="content-page-header">
+                <h5>Edit Invoice</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" class="form" id="invoiceform">
+                    {% csrf_token %}
+
+                    <div class="card-body">
+                        <div class="form-group-item border-0 mb-0">
+                            <div class="row align-item-center">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <select class="form-control" name="customername" aria-label="Default select example" id="customerSelect" onchange="handleOptionChange(this.value)">
+                                            <option disabled selected>Choose Customer</option>
+                                            {% for p in customers %}
+                                            <option value="{{p.id}}" {% if p.id == std.customer_contact_id %}selected {% endif %}>{{p.customer.customer_name}}</option>
+                                            {% endfor %}
+                                          </select>
+                                          
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Spaces</label>
+                                        <select class="form-control" name="spaces" id="spaces-select" aria-label="Default select example">
+                                            <option disabled>Select Space</option>
+                                            <option selected value="{{std.master_space_id}}" {% if p.id == std.master_space_id %} {% endif %} >{{std.master_space.space_name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Invoice Number</label>
+                                        <input type="text" value="{{std.invoice_no}}" name="invoiceno" class="form-control"
+                                            placeholder="Enter Invoice Number">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Invoice Date</label>
+                                        <div class="form-group">
+                                            <input type="date" value="{{std.invoice_issue_date|date:'Y-m-d'}}" name="invoicedate" class=" form-control"
+                                                placeholder="Select Date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Due Date</label>
+                                        <div class="form-group">
+                                            <input type="date" value="{{std.due_date|date:'Y-m-d'}}" name="duedate" class=" form-control"
+                                                placeholder="Select Date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>IRN No</label>
+                                        <input type="text" value="{{std.irn_no}}" name="irnno" class="form-control"
+                                            placeholder="Enter IRN Number">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Acknowledge No</label>
+                                        <div class="form-group">
+                                            <input type="text" value="{{std.ack_no}}" name="ackno" class=" form-control"
+                                                placeholder="Enter Acknowledge Number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Acknowledge Date</label>
+                                        <input type="date" value="{{std.ack_date|date:'Y-m-d'}}" name="ackdate" class="form-control"
+                                            placeholder="Enter Acknowledge Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Invoice Start Date</label>
+                                        <input type="date" value="{{std.invoice_start_date|date:'Y-m-d'}}" name="invoicestart" class="form-control"
+                                            placeholder="Enter Invoice Start Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Invoice End Date</label>
+                                        <input type="date" value="{{std.invoice_end_date|date:'Y-m-d'}}" name="invoiceend" class="form-control"
+                                            placeholder="Enter Invoice End Date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>SAC Code</label>
+                                        <input type="number" value="{{std.sac_code}}" name="sac" class="form-control"
+                                            placeholder="Enter SAC Code">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                      <label>Taxable Amount</label>
+                                      <input type="number" value="{{std.taxable_amount}}" name="taxamnt" class="form-control" placeholder="Enter Taxable Amount">
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                      <label>Other Charges</label>
+                                      <input type="number" value="{{std.maintanence}}" name="maintanence" class="form-control" placeholder="Enter Maintenance Charges">
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                      <label>Tax Percentage</label>
+                                      <input type="number" value="{{std.tax_percentage}}" name="taxpercent" class="form-control" placeholder="Enter Tax Percentage">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Bank</label>
+                                        <select class="form-control" name="bank">
+                                            <option disabled selected>Select Bank</option>
+                                            {% for p in bank %}
+                                            <option value="{{p.id}}" {% if p.id == std.bank_id %}selected {% endif %} >{{p.bank_name}}</option>
+                                            {% endfor %}
+                                          </select>
+                                          
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="form-group-item border-0 p-0">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-12">
+                                    <div class="form-group-bank">
+                                      
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-12">
+                                    <div class="form-group-bank">
+                                    </div>
+                                    <!-- Inside the <div class="invoice-total-box mt-5"> -->
+                                        <div class="invoice-total-box mt-5">
+                                            <div class="invoice-total-inner">
+                                              <p>Taxable Amount <span id="taxableAmount">{{std.taxable_amount}}</span></p>
+                                              <p>CGST <span id="cgstsum">{{std.cgst}}</span></p>
+                                              <p>SGST <span id="sgstsum">{{std.sgst}}</span></p>
+                                            </div>
+                                            <div class="invoice-total-footer">
+                                              <h4>Total Amount <span id="totalAmount">{{std.total_amount}}</span></h4>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-customer-btns text-end">
+                        <a href="/customer_invoices" type="reset" class="btn customer-btn-cancel">Cancel</a>
+                        <button href="#" id="submitbutton" value="{{std.id}}" class="btn customer-btn-save">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /Page Wrapper -->
+
+<!-- Add Tax & Discount Modal -->
+<div class="modal custom-modal fade" id="add_discount" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <div class="form-header modal-header-title text-start mb-0 align-center">
+                    <h4 class="mb-0">Add Tax & Discount</h4>
+                </div>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Rate</label>
+                            <input type="number" class="form-control" placeholder="120">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group">
+                            <label>Discount Amount</label>
+                            <input type="number" class="form-control" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Tax</label>
+                            <select class="select">
+                                <option>N/A</option>
+                                <option>5%</option>
+                                <option>10%</option>
+                                <option>15%</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer add-tax-btns">
+                <button type="reset" data-bs-dismiss="modal"
+                    class="btn btn-primary paid-cancel-btn me-2">Cancel</button>
+                <button type="submit" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Add Tax & Discount Modal -->
+
+<!-- Delete Items Modal -->
+<div class="modal custom-modal fade" id="delete_discount" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="modal-header border-0 justify-content-center pb-0">
+                <div class="form-header modal-header-title text-center mb-0">
+                    <h4 class="mb-2">Delete Product / Services</h4>
+                    <p>Are you sure you want to delete?</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-continue-btn">Delete</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" data-bs-dismiss="modal" class="btn btn-primary paid-cancel-btn">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Items Modal -->
+<script>
+    document.getElementById('invoice').classList.add('active');
+</script>
+
+<script src="/static/assets/js/update_invoice.js"></script>
+
+
+{% endblock %}
