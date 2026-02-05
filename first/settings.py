@@ -28,7 +28,8 @@ SECRET_KEY = "django-insecure-ln75$a1)_l3dvn9o$n2j^^w!=l5x1cft+@o2l-8u+ofqkns!dl
 DEBUG = True
 
 # ALLOWED_HOSTS = ['192.168.29.102']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["56.228.26.217", "localhost", "127.0.0.1"]
+
 
 # ALLOWED_HOSTS = ['44.210.127.207']
 # ALLOWED_HOSTS = ['3.107.91.68']
@@ -153,6 +154,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
