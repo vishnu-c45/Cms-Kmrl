@@ -93,6 +93,7 @@ DATABASES = {
         "NAME": "kmrl",
         "USER": "root",
         "PASSWORD": "root",
+        "HOST": "db",
         "PORT": "3306",
     }
 }
