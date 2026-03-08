@@ -3,7 +3,7 @@ name: Django CI-CD Pipeline
 on:
   push:
     branches:
-      - main  # Make sure this matches your default branch name
+      - my_pc  # Make sure this matches your default branch name
 
 jobs:
   deploy:
