@@ -31,7 +31,7 @@ jobs:
             docker system prune -f
             
             # 4. Rebuild the web container
-            docker-compose build web
+            docker-compose build --no-cache web
             
             # 5. Restart the services in detached mode
             docker-compose up -d
